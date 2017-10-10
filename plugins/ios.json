@@ -9,7 +9,18 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        }
+    }
 }
