@@ -1,11 +1,31 @@
-document.addEventListener('init', function(event) {
-  var page = event.target;
+$(document).ready(function () {
+    var url = "http://api.petfinder.com/pet.getRandom?format=json&key=3a62ece31719a64dcf6726980917d7ad&animal=dog&output=basic&callback=?"
 
-  if (page.id === 'page1') {
-    page.querySelector('#push-button').onclick = function() {
-      document.querySelector('#myNavigator').pushPage('page2.html', {data: {title: 'Page 2'}});
+    $('#loadImage').on('click', function () {
+        $( ".inner" ).append( "<p>Test</p>" );
+
+        $.getJSON(url, function (data) {
+            console.log(data);
+
+            alert(data.petfinder.pet.age.$t);
+            });
+
+        });
+
+    var fromTemplate = function () {
+        var dialog = document.getElementById('initial-dialog');
+
+        if (dialog) {
+            dialog.show();
+        }
+        else {
+            ons.createDialog('dialog.html')
+                .then(function (dialog) {
+                    dialog.show();
+                });
+        }
     };
-  } else if (page.id === 'page2') {
-    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
-  }
+
+
 });
+

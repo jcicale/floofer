@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('loadImage', this.onDeviceReady.bind(this), false);
     },
 
     // deviceready Event Handler
@@ -27,8 +28,9 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        this.receivedEvent('loadImage');
     },
+
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
