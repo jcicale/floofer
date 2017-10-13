@@ -1,0 +1,255 @@
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/*--------------------------------------------------*/
+body {
+    text-transform: none;
+}
+/*settings general styles*/
+.settings-legend {
+    text-align: center;
+}
+
+#settings-fieldset, #settings-fieldset div.ui-controlgroup-controls {
+    width: 100%;
+}
+
+/*animal selection styles*/
+.inlineIcon {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: auto !important;
+}
+
+.NoDisk:after {
+    background-color: transparent;
+}
+
+.settings-icons:after {
+    width: 2.5em !important;
+    height: 2.5em !important;
+    margin: 0 !important;
+    position: unset !important;
+}
+
+span.settings-icons {
+    padding: 0 !important;
+}
+
+label.settings-icon-label {
+    border-radius: 100% !important;
+    margin: .5em !important;
+}
+
+div p.settings-label, p.centered {
+    text-align: center;
+    margin: 0;
+}
+
+.float-fix-main-container {
+    float: left;
+    position: relative;
+    left: 50%;
+}
+.float-fixer-container {
+    float: left;
+    position: relative;
+    left: -50%;
+}
+
+.ui-icon-dog:after {
+    background-image: url("../assets/icons/dog.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+
+}
+
+.ui-icon-cat:after {
+    background-image: url("../assets/icons/cat.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+}
+
+.ui-icon-rabbit:after {
+    background-image: url("../assets/icons/rabbit.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+}
+
+.ui-icon-horse:after {
+    background-image: url("../assets/icons/horse.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+}
+
+.ui-icon-bird:after {
+    background-image: url("../assets/icons/parrot.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+}
+
+.ui-icon-small-furry:after {
+    background-image: url("../assets/icons/guinea-pig.svg");
+    background-size: 40px 40px;
+    border-radius: 0;
+}
+/*unique active button style for animal select*/
+div.ui-radio label.settings-icon-label.ui-btn-active.ui-radio-on {
+    background-color: #ffffff;
+    border: 3px solid #25a5c7;
+}
+
+/*settings divider line*/
+div.divider {
+    height: 8px;
+    border-top: 1px solid #d0ad0d;
+    margin-top: 8px;
+}
+
+/*location settings*/
+div form label.location-flip-label {
+    font-size: .7em;
+    margin: 0;
+}
+
+form.location-switch-form {
+    margin-left: 20%;
+}
+
+p.centered {
+    margin-top: 13px;
+}
+
+/*drop down styles*/
+/*fixes drop down*/
+.ui-icon-carat-d:after{
+    background-color: #25a5c7 !important;
+}
+
+div div label.distance-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
+    display: inline-block;
+    float: left;
+    margin: 10px 10px 10px 2%;
+}
+
+div.ui-field-contain.distance-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.breed-select-dropdown div.ui-select.ui-mini {
+    width: 75%;
+}
+
+div.ui-field-contain.gender-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.age-select-dropdown div.ui-select.ui-mini {
+    width: 65%;
+}
+
+a#distance-select-button, a#gender-select-button, a#age-select-button, a#breed-select-button {
+    border-radius: 2em;
+}
+
+/*submit button*/
+div.floofer-button div.ui-btn.ui-input-btn{
+    background-color: #25a5c7;
+    color: #ffffff;
+    border-radius: 2em;
+}
+
+div.settings-submit div.ui-btn.ui-input-btn {
+    margin-top: 5%;
+}
