@@ -101,7 +101,16 @@ h1 {
 body {
     text-transform: none;
 }
+/*settings general styles*/
+.settings-legend {
+    text-align: center;
+}
 
+#settings-fieldset, #settings-fieldset div.ui-controlgroup-controls {
+    width: 100%;
+}
+
+/*animal selection styles*/
 .inlineIcon {
     display: inline-block;
     position: relative;
@@ -114,8 +123,8 @@ body {
 }
 
 .settings-icons:after {
-    width: 3em !important;
-    height: 3em !important;
+    width: 2.5em !important;
+    height: 2.5em !important;
     margin: 0 !important;
     position: unset !important;
 }
@@ -129,12 +138,9 @@ label.settings-icon-label {
     margin: .5em !important;
 }
 
-#settings-fieldset, #settings-fieldset div.ui-controlgroup-controls {
-    width: 100%;
-}
-
-div p.settings-label {
+div p.settings-label, p.centered {
     text-align: center;
+    margin: 0;
 }
 
 .float-fix-main-container {
@@ -150,37 +156,100 @@ div p.settings-label {
 
 .ui-icon-dog:after {
     background-image: url("../assets/icons/dog.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
 
 }
 
 .ui-icon-cat:after {
     background-image: url("../assets/icons/cat.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
 }
 
 .ui-icon-rabbit:after {
     background-image: url("../assets/icons/rabbit.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
 }
 
 .ui-icon-horse:after {
     background-image: url("../assets/icons/horse.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
 }
 
 .ui-icon-bird:after {
     background-image: url("../assets/icons/parrot.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
 }
 
 .ui-icon-small-furry:after {
     background-image: url("../assets/icons/guinea-pig.svg");
-    background-size: 50px 50px;
+    background-size: 40px 40px;
     border-radius: 0;
+}
+/*unique active button style for animal select*/
+div.ui-radio label.settings-icon-label.ui-btn-active.ui-radio-on {
+    background-color: #ffffff;
+    border: 3px solid #25a5c7;
+}
+
+/*settings divider line*/
+div.divider {
+    height: 8px;
+    border-top: 1px solid #d0ad0d;
+    margin-top: 8px;
+}
+
+/*location settings*/
+div form label.location-flip-label {
+    font-size: .7em;
+    margin: 0;
+}
+
+form.location-switch-form {
+    margin-left: 20%;
+}
+
+p.centered {
+    margin-top: 13px;
+}
+
+/*drop down styles*/
+/*fixes drop down*/
+.ui-icon-carat-d:after{
+    background-color: #25a5c7 !important;
+}
+
+div div label.distance-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
+    display: inline-block;
+    float: left;
+    margin: 10px 10px 10px 2%;
+}
+
+div.ui-field-contain.distance-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.breed-select-dropdown div.ui-select.ui-mini {
+    width: 75%;
+}
+
+div.ui-field-contain.gender-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.age-select-dropdown div.ui-select.ui-mini {
+    width: 65%;
+}
+
+a#distance-select-button, a#gender-select-button, a#age-select-button, a#breed-select-button {
+    border-radius: 2em;
+}
+
+/*submit button*/
+div.floofer-button div.ui-btn.ui-input-btn{
+    background-color: #25a5c7;
+    color: #ffffff;
+    border-radius: 2em;
+}
+
+div.settings-submit div.ui-btn.ui-input-btn {
+    margin-top: 5%;
 }
