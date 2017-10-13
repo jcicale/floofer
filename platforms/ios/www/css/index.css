@@ -214,7 +214,7 @@ form.location-switch-form {
 }
 
 p.centered {
-    margin-top: 20%;
+    margin-top: 13px;
 }
 
 /*drop down styles*/
@@ -223,8 +223,33 @@ p.centered {
     background-color: #25a5c7 !important;
 }
 
-label.distance-select-label {
+div div label.distance-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
     display: inline-block;
     float: left;
-    margin: 10px;
+    margin: 10px 10px 10px 2%;
+}
+
+div.ui-field-contain.distance-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.breed-select-dropdown div.ui-select.ui-mini {
+    width: 75%;
+}
+
+div.ui-field-contain.gender-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.age-select-dropdown div.ui-select.ui-mini {
+    width: 65%;
+}
+
+a#distance-select-button, a#gender-select-button, a#age-select-button, a#breed-select-button {
+    border-radius: 2em;
+}
+
+/*submit button*/
+div.floofer-button div.ui-btn.ui-input-btn{
+    background-color: #25a5c7;
+    color: #ffffff;
+    border-radius: 2em;
+}
+
+div.settings-submit div.ui-btn.ui-input-btn {
+    margin-top: 5%;
 }

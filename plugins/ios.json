@@ -16,6 +16,9 @@
         "cordova-plugin-geolocation": {
             "GEOLOCATION_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {

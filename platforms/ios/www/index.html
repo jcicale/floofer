@@ -116,16 +116,64 @@
                 </div>
                 <div class="ui-grid-solo">
                     <div class="ui-block-a">
-                        <div class="ui-field-contain">
+                        <div class="ui-field-contain distance-select-dropdown">
                             <label for="distance-select" class="distance-select-label">Within</label>
                             <select name="distance-select" id="distance-select" data-mini="true" data-native-menu="false">
+                                <option value="any">any distance</option>
                                 <option value="25">25 miles</option>
                                 <option value="50">50 miles</option>
                                 <option value="100">100 miles</option>
                                 <option value="250">250 miles</option>
-                                <option value="any">any distance</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div class="ui-field-contain age-select-dropdown">
+                            <label for="age-select" class="age-select-label">Age</label>
+                            <select name="age-select" id="age-select" data-mini="true" data-native-menu="false">
+                                <option value="any">any</option>
+                                <option value="baby">Baby</option>
+                                <option value="young">Young</option>
+                                <option value="adult">Adult</option>
+                                <option value="senior">Senior</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-field-contain gender-select-dropdown">
+                            <label for="gender-select" class="gender-select-label">Sex</label>
+                            <select name="gender-select" id="gender-select" data-mini="true" data-native-menu="false">
+                                <option value="any">any</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <div class="ui-field-contain breed-select-dropdown">
+                            <label for="breed-select" class="breed-select-label">Breed</label>
+                            <select name="breed-select" id="breed-select" data-mini="true" data-native-menu="false" class="filterable-select">
+                                <option value="any">any</option>
+                                <option value="australian-shepherd">Australian Shepherd</option>
+                                <option value="golden-retriever">Golden Retriever</option>
+                                <option value="labrador-retriever">Labrador Retriever</option>
+                                <option value="pug">Pug</option>
+                                <option value="siberian-husky">Siberian Husky</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <form>
+                            <div class="floofer-button settings-submit">
+                                <input type="button" value="Submit" data-mini="true">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </fieldset>
