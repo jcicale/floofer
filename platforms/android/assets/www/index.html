@@ -7,7 +7,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
-        <link rel="stylesheet" href="css/floof.min.css" />
+        <link rel="stylesheet" href="css/floofer.min.css" />
         <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
 
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -22,24 +22,78 @@
     <div data-role="page" id="page1">
         <div data-role="header">
             <h1>Settings</h1>
-
         </div>
         <div role="main" class="ui-content">
-
-            <fieldset data-role="controlgroup" data-type="horizontal">
-                <legend>I'm looking for a...</legend>
-                <label for="dog-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-dog ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="dog-select" value="dog" />
-                <label for="cat-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-cat ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="cat-select" value="cat" />
-                <label for="rabbit-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-rabbit ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="rabbit-select" value="rabbit" />
-                <label for="horse-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-horse ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="horse-select" value="horse" />
-                <label for="bird-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-bird ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="bird-select" value="bird" />
-                <label for="small-furry-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-small-furry ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                <input type="radio" name="favcolor" id="small-furry-select" value="small-furry" />
+            <fieldset data-role="controlgroup" data-type="horizontal" id="settings-fieldset">
+                <legend style="text-align: center;">I'm looking for a...</legend>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="dog-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-dog ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="dog-select" value="dog" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="cat-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-cat ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="cat-select" value="cat" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-c">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="rabbit-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-rabbit ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="rabbit-select" value="rabbit" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <p class="settings-label">Dog</p>
+                    </div>
+                    <div class="ui-block-b">
+                        <p class="settings-label">Cat</p>
+                    </div>
+                    <div class="ui-block-c">
+                        <p class="settings-label">Rabbit</p>
+                    </div>
+                    <div class="ui-block-a">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="horse-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-horse ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="horse-select" value="horse" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="bird-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-bird ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="bird-select" value="bird" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-c">
+                        <div class="float-fix-main-container">
+                            <div class="float-fixer-container">
+                                <label for="small-furry-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-small-furry ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="favcolor" id="small-furry-select" value="small-furry" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <p class="settings-label">Horse</p>
+                    </div>
+                    <div class="ui-block-b">
+                        <p class="settings-label">Bird</p>
+                    </div>
+                    <div class="ui-block-c">
+                        <p class="settings-label">Small & Furry</p>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
