@@ -55,9 +55,12 @@
         <icon height="58" src="res/icons/ios/AppIcon.appiconset/Icon-App-29x29@2x.png" width="58" />
         <icon height="167" src="res/icons/ios/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" width="167" />
     </platform>
+    <platform name="browser">
+        <preference name="ShowSplashScreen" value="false" />
+    </platform>
     <engine name="android" spec="^6.3.0" />
     <engine name="browser" spec="^4.1.0" />
-    <engine name="ios" spec="^4.5.1" />
+    <engine name="ios" spec="^4.5.2" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />

@@ -253,3 +253,23 @@ div.floofer-button div.ui-btn.ui-input-btn{
 div.settings-submit div.ui-btn.ui-input-btn {
     margin-top: 5%;
 }
+
+/*new user popup styles*/
+div#new-user-info {
+    max-width: 400px;
+    opacity: .95;
+}
+
+div.new-user-popup-container {
+    text-align: center;
+    padding: 30px;
+
+}
+
+a#new-user-info-x-button {
+    background-color: #25a5c7;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    margin: 0;
+}

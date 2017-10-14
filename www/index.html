@@ -20,9 +20,30 @@
     </head>
     <body>
     <div data-role="page" id="page1">
+
+        <div data-role="popup" id="new-user-info" data-dismissible="false">
+            <div class="new-user-popup-container">
+                <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all NoDisk" id="new-user-info-x-button"></a>
+                <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
+                    kind of floof you're looking for here! </p>
+                <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), how old it
+                    should be, whether you want a boy or a girl, and how far you're willing to travel. You can choose your
+                    location (we recommend this for the best accuracy!) or enter a zip code. Don't worry – you can change
+                    your settings at any time!</p>
+                <p> The only required field is the type of animal you're looking for. Other than that, be as broad or specific
+                    as you want! But keep in mind – the more filters you add, the less floofers you'll get in your matches.</p>
+                <form>
+                    <div class="floofer-button popup-close">
+                        <input type="button" value="Got it!" data-mini="true" id="new-user-info-close-button">
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div data-role="header">
             <h1>Settings</h1>
         </div>
+
         <div role="main" class="ui-content">
             <fieldset data-role="controlgroup" data-type="horizontal" id="settings-fieldset">
                 <legend class="settings-legend">I'm looking for a...</legend>
@@ -171,7 +192,7 @@
                     <div class="ui-block-a">
                         <form>
                             <div class="floofer-button settings-submit">
-                                <input type="button" value="Submit" data-mini="true">
+                                <input type="button" value="Submit" data-mini="true" id="settings-submit-button">
                             </div>
                         </form>
                     </div>
@@ -179,23 +200,5 @@
             </fieldset>
         </div>
     </div>
-    <!--<template id="dialog.html">-->
-        <!--<ons-dialog id="initial-dialog" material="quiet">-->
-            <!--<div style="text-align: center; padding: 10px;">-->
-            <!--<p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what-->
-                <!--kind of floof you're looking for here! </p>-->
-            <!--<p> In settings, you'll have the chance to pick what kind of animal you want (including breed), how old it-->
-                <!--should be, whether you want a boy or a girl, and how far you're willing to travel. You can choose your-->
-                <!--location (we recommend this for the best accuracy!) or enter a zip code. Don't worry – you can change-->
-                <!--your settings at any time!</p>-->
-            <!--<p> The only required field is the type of animal you're looking for. Other than that, be as broad or specific-->
-                <!--as you want! But keep in mind – the more filters you add, the less floofers you'll get in your matches.</p>-->
-            <!--<p>-->
-                <!--<ons-button onclick="hideDialog('initial-dialog')">Got it!</ons-button>-->
-            <!--</p>-->
-        <!--</div>-->
-      <!--</ons-dialog>-->
-    <!--</template>-->
-
     </body>
 </html>

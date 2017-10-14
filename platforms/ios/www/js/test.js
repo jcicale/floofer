@@ -1,8 +1,21 @@
-$(document).ready(function () {
+
+$(document).bind( "pagecreate", function() {
+
+    setTimeout(function() { $("#new-user-info").popup("open");}, 500);
+
+    $('#new-user-info-x-button').on('click', function () {
+        $('#new-user-info').popup("close");
+    });
+
+    $('#new-user-info-close-button').on('click', function () {
+        $('#new-user-info').popup("close");
+    });
+
     var url = "http://api.petfinder.com/pet.getRandom?format=json&key=3a62ece31719a64dcf6726980917d7ad&animal=dog&output=basic&callback=?"
 
-    $('#loadImage').on('click', function () {
-        $( ".inner" ).append( "<p>Test</p>" );
+    $('#settings-submit-button').on('click', function () {
+        console.log('hellooo');
+
 
         $.getJSON(url, function (data) {
             console.log(data);
