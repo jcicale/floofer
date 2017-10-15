@@ -167,8 +167,8 @@ div p.settings-label, p.centered {
     border-radius: 0;
 }
 
-.ui-icon-rabbit:after {
-    background-image: url("../assets/icons/rabbit.svg");
+.ui-icon-reptile:after {
+    background-image: url("../assets/icons/chameleon.svg");
     background-size: 40px 40px;
     border-radius: 0;
 }
@@ -223,13 +223,13 @@ p.centered {
     background-color: #25a5c7 !important;
 }
 
-div div label.distance-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
+div div label.size-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
     display: inline-block;
     float: left;
     margin: 10px 10px 10px 2%;
 }
 
-div.ui-field-contain.distance-select-dropdown div.ui-select.ui-mini,
+div.ui-field-contain.size-select-dropdown div.ui-select.ui-mini,
 div.ui-field-contain.breed-select-dropdown div.ui-select.ui-mini {
     width: 75%;
 }
@@ -239,7 +239,7 @@ div.ui-field-contain.age-select-dropdown div.ui-select.ui-mini {
     width: 65%;
 }
 
-a#distance-select-button, a#gender-select-button, a#age-select-button, a#breed-select-button {
+a#size-select-button, a#gender-select-button, a#age-select-button, div#breed-select-button {
     border-radius: 2em;
 }
 

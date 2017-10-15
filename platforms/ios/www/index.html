@@ -14,7 +14,6 @@
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/test.js"></script>
 
         <title>Floofer</title>
     </head>
@@ -26,12 +25,12 @@
                 <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all NoDisk" id="new-user-info-x-button"></a>
                 <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
                     kind of floof you're looking for here! </p>
-                <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), how old it
-                    should be, whether you want a boy or a girl, and how far you're willing to travel. You can choose your
-                    location (we recommend this for the best accuracy!) or enter a zip code. Don't worry – you can change
-                    your settings at any time!</p>
-                <p> The only required field is the type of animal you're looking for. Other than that, be as broad or specific
-                    as you want! But keep in mind – the more filters you add, the less floofers you'll get in your matches.</p>
+                <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
+                    should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the
+                    best accuracy!) or enter a zip code. Don't worry – you can change your settings at any time!</p>
+                <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
+                    to start up the search. Other than that, be as broad or specific as you want! But keep in mind – the
+                    more filters you add, the less floofers you'll get in your matches.</p>
                 <form>
                     <div class="floofer-button popup-close">
                         <input type="button" value="Got it!" data-mini="true" id="new-user-info-close-button">
@@ -52,7 +51,7 @@
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
                                 <label for="dog-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-dog ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="dog-select" value="dog" />
+                                <input type="radio" name="animal-type-select" id="dog-select" value="dog" />
                             </div>
                         </div>
                     </div>
@@ -60,15 +59,15 @@
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
                                 <label for="cat-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-cat ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="cat-select" value="cat" />
+                                <input type="radio" name="animal-type-select" id="cat-select" value="cat" />
                             </div>
                         </div>
                     </div>
                     <div class="ui-block-c">
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
-                                <label for="rabbit-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-rabbit ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="rabbit-select" value="rabbit" />
+                                <label for="reptile-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-reptile ui-btn-icon-notext inlineIcon settings-icons"></span></label>
+                                <input type="radio" name="animal-type-select" id="reptile-select" value="reptile" />
                             </div>
                         </div>
                     </div>
@@ -79,13 +78,13 @@
                         <p class="settings-label">Cat</p>
                     </div>
                     <div class="ui-block-c">
-                        <p class="settings-label">Rabbit</p>
+                        <p class="settings-label">Reptile</p>
                     </div>
                     <div class="ui-block-a">
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
                                 <label for="horse-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-horse ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="horse-select" value="horse" />
+                                <input type="radio" name="animal-type-select" id="horse-select" value="horse" />
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
                                 <label for="bird-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-bird ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="bird-select" value="bird" />
+                                <input type="radio" name="animal-type-select" id="bird-select" value="bird" />
                             </div>
                         </div>
                     </div>
@@ -101,7 +100,7 @@
                         <div class="float-fix-main-container">
                             <div class="float-fixer-container">
                                 <label for="small-furry-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-small-furry ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="favcolor" id="small-furry-select" value="small-furry" />
+                                <input type="radio" name="animal-type-select" id="small-furry-select" value="smallfurry" />
                             </div>
                         </div>
                     </div>
@@ -137,14 +136,14 @@
                 </div>
                 <div class="ui-grid-solo">
                     <div class="ui-block-a">
-                        <div class="ui-field-contain distance-select-dropdown">
-                            <label for="distance-select" class="distance-select-label">Within</label>
-                            <select name="distance-select" id="distance-select" data-mini="true" data-native-menu="false">
-                                <option value="any">any distance</option>
-                                <option value="25">25 miles</option>
-                                <option value="50">50 miles</option>
-                                <option value="100">100 miles</option>
-                                <option value="250">250 miles</option>
+                        <div class="ui-field-contain size-select-dropdown">
+                            <label for="size-select" class="size-select-label">Size</label>
+                            <select name="size-select" id="size-select" data-mini="true" data-native-menu="false">
+                                <option value="any">Any</option>
+                                <option value="S">Small</option>
+                                <option value="M">Medium</option>
+                                <option value="L">Large</option>
+                                <option value="XL">Extra Large</option>
                             </select>
                         </div>
                     </div>
@@ -154,11 +153,11 @@
                         <div class="ui-field-contain age-select-dropdown">
                             <label for="age-select" class="age-select-label">Age</label>
                             <select name="age-select" id="age-select" data-mini="true" data-native-menu="false">
-                                <option value="any">any</option>
-                                <option value="baby">Baby</option>
-                                <option value="young">Young</option>
-                                <option value="adult">Adult</option>
-                                <option value="senior">Senior</option>
+                                <option value="any">Any</option>
+                                <option value="Baby">Baby</option>
+                                <option value="Young">Young</option>
+                                <option value="Adult">Adult</option>
+                                <option value="Senior">Senior</option>
                             </select>
                         </div>
                     </div>
@@ -166,9 +165,9 @@
                         <div class="ui-field-contain gender-select-dropdown">
                             <label for="gender-select" class="gender-select-label">Sex</label>
                             <select name="gender-select" id="gender-select" data-mini="true" data-native-menu="false">
-                                <option value="any">any</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="any">Any</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
                             </select>
                         </div>
                     </div>
@@ -177,13 +176,8 @@
                     <div class="ui-block-a">
                         <div class="ui-field-contain breed-select-dropdown">
                             <label for="breed-select" class="breed-select-label">Breed</label>
-                            <select name="breed-select" id="breed-select" data-mini="true" data-native-menu="false" class="filterable-select">
-                                <option value="any">any</option>
-                                <option value="australian-shepherd">Australian Shepherd</option>
-                                <option value="golden-retriever">Golden Retriever</option>
-                                <option value="labrador-retriever">Labrador Retriever</option>
-                                <option value="pug">Pug</option>
-                                <option value="siberian-husky">Siberian Husky</option>
+                            <select name="breed-select" id="breed-select" data-mini="true">
+                                <option value="any">Any</option>
                             </select>
                         </div>
                     </div>
@@ -201,4 +195,6 @@
         </div>
     </div>
     </body>
+
+    <script type="text/javascript" src="js/test.js"></script>
 </html>
