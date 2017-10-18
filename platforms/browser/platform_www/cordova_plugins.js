@@ -53,7 +53,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-splashscreen": "4.0.3",
-    "cordova-plugin-dialogs": "1.3.3"
+    "cordova-plugin-dialogs": "1.3.3",
+    "cordova-plugin-browsersync": "0.1.7"
 }
 // BOTTOM OF METADATA
 });

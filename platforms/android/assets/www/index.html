@@ -15,7 +15,7 @@
         <title>Floofer</title>
     </head>
     <body>
-    <div data-role="page" id="page1">
+    <div data-role="page" id="settings-page">
 
         <div data-role="popup" id="new-user-info" data-dismissible="false">
             <div class="new-user-popup-container">
@@ -183,7 +183,7 @@
                     <div class="ui-block-a">
                         <form>
                             <div class="floofer-button settings-submit">
-                                <input type="button" value="Submit" data-mini="true" id="settings-submit-button">
+                                <a href="#matches-page" class="ui-btn" id="settings-submit-button">Submit</a>
                             </div>
                         </form>
                     </div>
@@ -191,10 +191,30 @@
             </fieldset>
         </div>
     </div>
+
+    <div data-role="page" id="matches-page">
+        <div data-role="header">
+            <h1>Floofer</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div class="ui-grid-solo profile-container">
+                <div class="ui-block-a pet-photo">
+                    <img src="" id="matches-pet-photo">
+                </div>
+                <div class="pet-description">
+                    <p id="matches-pet-info"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     </body>
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/test.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/matches.js"></script>
 </html>
