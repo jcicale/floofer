@@ -122,11 +122,11 @@ body {
     background-color: transparent;
 }
 
-.settings-icons:after {
+div div label span.settings-icons:after {
     width: 2.5em !important;
     height: 2.5em !important;
     margin: 0 !important;
-    position: unset !important;
+    position: initial !important;
 }
 
 span.settings-icons {

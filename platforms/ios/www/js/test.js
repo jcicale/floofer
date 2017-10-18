@@ -2,10 +2,10 @@
 $(document).bind( "pagecreate", function() {
 
     setTimeout(function() { $("#new-user-info").popup("open");}, 500);
-    setInitialBreedSelect();
-    $('#breed-select').append("test");
+    // setInitialBreedSelect();
     // var url = "http://api.petfinder.com/pet.getRandom?format=json&key=3a62ece31719a64dcf6726980917d7ad&animal=dog&output=basic&callback=?"
 
+    alert('android alerts work in page create');
 
     $('#settings-submit-button').on('click', function () {
         let settings = {
@@ -61,10 +61,10 @@ function buildQueryUrl(settings) {
 }
 
 //default to dog breeds, update if another animal is selected
-function setInitialBreedSelect() {
-    let url = "http://api.petfinder.com/breed.list?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&animal=dog&callback=?";
-    populateBreedList(url);
-}
+// function setInitialBreedSelect() {
+//     let url = "http://api.petfinder.com/breed.list?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&animal=dog&callback=?";
+//     populateBreedList(url);
+// }
 
 function updateBreedSelect(breed) {
     let url = "http://api.petfinder.com/breed.list?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&animal=" + breed + "&callback=?";
@@ -72,6 +72,7 @@ function updateBreedSelect(breed) {
 }
 
 function populateBreedList(queryUrl) {
+
     $.getJSON(queryUrl, function (data) {
         let breeds = data.petfinder.breeds.breed;
 

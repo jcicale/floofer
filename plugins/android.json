@@ -18,6 +18,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {

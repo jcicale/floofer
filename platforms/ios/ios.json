@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +54,9 @@
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
@@ -102,6 +109,14 @@
             "clobbers": [
                 "navigator.splashscreen"
             ]
+        },
+        {
+            "id": "cordova-plugin-dialogs.notification",
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -109,6 +124,7 @@
         "cordova-plugin-device": "1.1.6",
         "cordova-plugin-compat": "1.2.0",
         "cordova-plugin-geolocation": "2.4.3",
-        "cordova-plugin-splashscreen": "4.0.3"
+        "cordova-plugin-splashscreen": "4.0.3",
+        "cordova-plugin-dialogs": "1.3.3"
     }
 }

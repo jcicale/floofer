@@ -47,6 +47,14 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -56,7 +64,8 @@ module.exports.metadata =
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-splashscreen": "4.0.3"
+    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-plugin-dialogs": "1.3.3"
 };
 // BOTTOM OF METADATA
 });
