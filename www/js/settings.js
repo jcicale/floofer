@@ -20,11 +20,14 @@
             // var url = "http://api.petfinder.com/pet.getRandom?format=json&key=3a62ece31719a64dcf6726980917d7ad&animal=dog&output=basic&callback=?"
 
             $('#settings-submit-button').on('click', function () {
+                storage.clear();
+
                 var settings = {
                     animalType: null,
                     location: false,
                     zip: null,
                     age: "any",
+                    size: "any",
                     sex: "any",
                     breed: "any"
                 };
@@ -33,6 +36,7 @@
                 settings.location = $("#location-flip").val();
                 settings.zip = $("#zip-input").val();
                 settings.age = $("#age-select").val();
+                settings.size = $("#size-select").val();
                 settings.sex = $("#gender-select").val();
                 settings.breed = $("#breed-select").val();
 
@@ -41,9 +45,9 @@
                 $.getJSON(buildQueryUrl(settings), function (data) {
                     console.log(data);
 
-                    if (storage.getArray("petsArray")) {
-                        storage.removeItem("petsArray");
-                    }
+                    // if (storage.getArray("petsArray")) {
+                    //     storage.removeItem("petsArray");
+                    // }
 
                     var petsArray = [];
                     for (var i = 0; i < data.petfinder.pets.pet.length; i++) {
@@ -96,10 +100,10 @@
 
                     }
 
-                    window.localStorage.setArray("petsArray", petsArray);
+
+                    storage.setArray("petsArray", petsArray);
 
                     setInitialMatch();
-
 
                     function setInitialMatch() {
                         var cachedPetsArray = storage.getArray("petsArray");
@@ -191,6 +195,9 @@
                     if (settings.age !== "any") {
                         queryUrl += "&age=" + settings.age;
                     }
+                    if (settings.size !== "any") {
+                        queryUrl += "&size=" + settings.size;
+                    }
                     if (settings.sex !== "any") {
                         queryUrl += "&sex=" + settings.sex;
                     }
@@ -203,12 +210,6 @@
                 }
                 alert("You have to select type of animal and location!")
             }
-
-//default to dog breeds, update if another animal is selected
-// function setInitialBreedSelect() {
-//     var url = "http://api.petfinder.com/breed.list?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&animal=dog&callback=?";
-//     populateBreedList(url);
-// }
 
             function updateBreedSelect(breed) {
                 var url = "http://api.petfinder.com/breed.list?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&animal=" + breed + "&callback=?";
