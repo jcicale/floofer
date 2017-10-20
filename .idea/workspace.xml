@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/fonts/Lato-Light.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/fonts/beyond_the_mountains.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/cat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/chameleon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/dog.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/guinea-pig.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/horse.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/parrot.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/logo/floofer-logo-no-text-blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/logo/floofer-logo-no-text-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/logo/floofer-logo-small.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/geolocation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/bird-256.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/cat-256.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/dog-256.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/horse-256.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/reptile-256.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/icons/smallfurry-256.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -23,12 +17,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/Floofer.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/platforms/ios/Floofer.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/matches.js" afterPath="$PROJECT_DIR$/www/js/matches.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/settings.js" afterPath="$PROJECT_DIR$/www/js/settings.js" />
     </list>
@@ -74,21 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="238" column="90" lean-forward="false" selection-start-line="238" selection-start-column="90" selection-end-line="238" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="348" column="16" lean-forward="false" selection-start-line="348" selection-start-column="16" selection-end-line="348" selection-end-column="16" />
+            <state relative-caret-position="51">
+              <caret line="363" column="32" lean-forward="false" selection-start-line="363" selection-start-column="32" selection-end-line="363" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -97,8 +76,18 @@
       <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/settings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="208" column="61" lean-forward="false" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
+            <state relative-caret-position="-67">
+              <caret line="119" column="75" lean-forward="false" selection-start-line="119" selection-start-column="75" selection-end-line="119" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="225" column="55" lean-forward="false" selection-start-line="225" selection-start-column="55" selection-end-line="225" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -107,8 +96,8 @@
       <file leaf-file-name="matches.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/matches.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="16" column="67" lean-forward="true" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+            <state relative-caret-position="675">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,6 +130,7 @@
       <find>getArray</find>
       <find>storage.set</find>
       <find>onsole.log</find>
+      <find>matchindex++</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,11 +148,11 @@
         <option value="$PROJECT_DIR$/www/js/test.js" />
         <option value="$PROJECT_DIR$/www/js/floofer.js" />
         <option value="$PROJECT_DIR$/www/css/floofer.min.css" />
-        <option value="$PROJECT_DIR$/www/js/settings.js" />
         <option value="$PROJECT_DIR$/www/js/geolocation.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/js/matches.js" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
+        <option value="$PROJECT_DIR$/www/js/settings.js" />
+        <option value="$PROJECT_DIR$/www/js/matches.js" />
       </list>
     </option>
   </component>
@@ -184,7 +174,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1279" />
@@ -229,7 +219,7 @@
               <item name="floofer" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="logo" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="floofer" type="b2602c69:ProjectViewProjectNode" />
@@ -363,7 +353,7 @@
       <workItem from="1507582187615" duration="5371000" />
       <workItem from="1507598785594" duration="2238000" />
       <workItem from="1507743868007" duration="123306000" />
-      <workItem from="1508447507976" duration="14151000" />
+      <workItem from="1508447507976" duration="24218000" />
     </task>
     <task id="LOCAL-00001" summary="added some plugins, testing some onsen functionality">
       <created>1507602407586</created>
@@ -435,20 +425,28 @@
       <option name="project" value="LOCAL" />
       <updated>1508381294947</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="swipe both ways plus buttons">
+      <created>1508471073667</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1508471073667</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145066000" />
+    <option name="totallyTimeSpent" value="155133000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1279" height="726" extended-state="0" />
+    <frame x="1" y="25" width="1279" height="726" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2556685" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31908396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29312977" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28440368" sideWeight="0.496875" order="2" side_tool="false" content_ui="tabs" />
@@ -461,7 +459,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -482,7 +479,8 @@
     <MESSAGE value="dynamic breed list working on android" />
     <MESSAGE value="initial match page working on all platforms" />
     <MESSAGE value="implement swipe left through matches" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement swipe left through matches" />
+    <MESSAGE value="swipe both ways plus buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="swipe both ways plus buttons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -617,6 +615,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="360" column="36" lean-forward="true" selection-start-line="360" selection-start-column="36" selection-end-line="360" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -634,14 +633,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/floofer.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -654,6 +645,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
           <caret line="746" column="12" lean-forward="true" selection-start-line="746" selection-start-column="12" selection-end-line="746" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -670,34 +662,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
+    <entry file="file://$PROJECT_DIR$/www/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="348" column="16" lean-forward="false" selection-start-line="348" selection-start-column="16" selection-end-line="348" selection-end-column="16" />
+        <state relative-caret-position="195">
+          <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
+    <entry file="file://$PROJECT_DIR$/www/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="238" column="90" lean-forward="false" selection-start-line="238" selection-start-column="90" selection-end-line="238" selection-end-column="90" />
+        <state relative-caret-position="51">
+          <caret line="363" column="32" lean-forward="false" selection-start-line="363" selection-start-column="32" selection-end-line="363" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="208" column="61" lean-forward="false" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
+        <state relative-caret-position="-67">
+          <caret line="119" column="75" lean-forward="false" selection-start-line="119" selection-start-column="75" selection-end-line="119" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="225" column="55" lean-forward="false" selection-start-line="225" selection-start-column="55" selection-end-line="225" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/matches.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" column="67" lean-forward="true" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+        <state relative-caret-position="675">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>

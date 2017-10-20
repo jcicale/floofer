@@ -337,6 +337,25 @@ div.profile-container.swipe-right {
     transform: translateX(100%);
 }
 
+a#pass-button:after, a#want-button:after {
+    background-color: #25a5c7;
+    padding: 1em;
+    border-radius: 2em;
+    margin: 0 -1.6em;
+}
+
+a#pass-button:visited, a#want-button:visited {
+    border: none;
+    color: unset;
+ }
+
+a#pass-button, a#want-button {
+    background: none;
+    border: none;
+    white-space: normal;
+    padding-top: 5em;
+}
+
 /*match popup*/
 h1.match-header {
     font-family: "Beyond The Mountains";

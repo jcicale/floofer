@@ -3,6 +3,9 @@
     $("#matches-page").on("pagecreate", function(e) {
 
         e.preventDefault();
+        var matchIndex;
+        var petsList;
+        var direction;
 
         function onPageLoad () {
             //set up storage
@@ -11,81 +14,96 @@
             Storage.prototype.getArray = function(key) {
                 return JSON.parse(this.getItem(key))
             };
-            //set up match index
-            var matchIndex = 0;
 
-            $( "div.profile-container" ).on( "swipeleft", passPet);
+            setTimeout(populatePetsList, 700);
 
-            $( "div.profile-container" ).on( "swiperight", matchPet);
 
-            $("#pass-button").on("tap", passPet);
-            $("#want-button").on("tap", matchPet);
+            $( "div.profile-container" ).on( "swipeleft", function() {
+                direction = "swipe-left";
+                petFunction("swipe-left");
+            });
 
-            function passPet() {
-                $("div.profile-container").addClass("swipe-left")
-                // When the transition is done...
-                    .on("webkitTransitionEnd transitionend otransitionend", function () {
-                        // ...the list item will be removed
-                        $("div.profile-container").empty().removeClass("swipe-left");
-                    });
+            $( "div.profile-container" ).on( "swiperight", function() {
+                direction = "swipe-right";
+                petFunction("swipe-right");
+            });
 
-                matchIndex++;
-                //wait a second before popping in the next one
-                setTimeout(function () {
-                    $("div.profile-container").prepend("<div" +
+            $("#pass-button").on("tap", function() {
+                direction = "swipe-left";
+                petFunction("swipe-left");
+            });
+
+            $("#want-button").on("tap", function() {
+                direction = "swipe-right";
+                petFunction("swipe-right");
+            });
+
+
+            function populatePetsList() {
+                matchIndex = 0;
+                petsList = window.localStorage.getArray("petsArray");
+            }
+
+        $("div.profile-container").on("webkitTransitionEnd transitionend otransitionend", function() {
+                if(direction === "swipe-left") {
+                    $("div.profile-container").empty().removeClass("swipe-left").prepend("<div" +
                         " class='ui-block-a" +
                         " pet-photo'><img" +
                         " src=''" +
                         " id='matches-pet-photo'></div><div class='pet-description'><p" +
                         " id='matches-pet-info'></p></div>" +
                         "");
-                    populateNextMatch();
-                }, 500);
-            }
+                }
+                if (direction === "swipe-right") {
+                    $("#its-a-match").popup("open");
 
-            function matchPet() {
-                var currentPet = storage.getArray("petsArray")[matchIndex];
-
-                $("#match-popup-photo").attr("src", currentPet.photos[0]);
-                $("#likes-you-too").empty().prepend(currentPet.name + " likes you too! :)");
-                $("#pet-profile-icon").attr("src", getIconForAnimalType(storage.getItem("animalType")));
-
-                $("div.profile-container").addClass("swipe-right")
-                // When the transition is done...
-                    .on("webkitTransitionEnd transitionend otransitionend", function () {
-                        // ...the list item will be removed
-                        $("div.profile-container").empty().removeClass("swipe-right");
-                    });
-                $("#its-a-match").popup("open");
-
-                matchIndex++;
-                //wait a second before popping in the next one
-                setTimeout(function () {
-                    $("div.profile-container").prepend("<div" +
+                    $("div.profile-container").empty().removeClass("swipe-right").prepend("<div" +
                         " class='ui-block-a" +
                         " pet-photo'><img" +
                         " src=''" +
                         " id='matches-pet-photo'></div><div class='pet-description'><p" +
                         " id='matches-pet-info'></p></div>" +
                         "");
-                    populateNextMatch();
-                }, 500);
+                }
+            });
+
+            function petFunction(direction){
+                var currentPet = petsList[matchIndex];
+
+                if(direction === "swipe-right") {
+                    $("#match-popup-photo").attr("src", currentPet.photos[0]);
+                    $("#likes-you-too").empty().prepend(currentPet.name + " likes you too! :)");
+                    $("#pet-profile-icon").attr("src", getIconForAnimalType(storage.getItem("animalType")));
+                }
+
+                $("div.profile-container").addClass(direction);
+
+                matchIndex++;
+                setTimeout(populateNextMatch, 300);
             }
-
-
 
             function populateNextMatch() {
-                var cachedPetsArray = storage.getArray("petsArray");
-                if(cachedPetsArray[matchIndex].photos !== []) {
-                    $('#matches-pet-photo').attr("src", cachedPetsArray[matchIndex].photos[0]);
+
+                if (petsList[matchIndex]) {
+                    if (petsList[matchIndex].photos !== []) {
+                        $('#matches-pet-photo').attr("src", petsList[matchIndex].photos[0]);
+                    } else {
+                        $('#matches-pet-photo').attr("src", "assets/icons/" + storage.getItem("animalType") +"-256.png");
+                    }
+                    $('#matches-pet-info').empty();
+                    $('#matches-pet-info').append(petsList[matchIndex].name + " | " + petsList[matchIndex].age + " |" +
+                        " " + (petsList[matchIndex].gender === "M" ? "Male" : "Female") + " | " +
+                        petSizeAbbreviationToFull(petsList[matchIndex].size));
                 } else {
-                    $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
+                    $("#matches-pet-photo").attr("src", "assets/icons/" + storage.getItem("animalType") +"-256.png").addClass("no-more-matches");
+                    $("#matches-pet-info").empty();
+                    $("div.pet-photo").append("<p id='no-more-matches-text'>Uh oh! That's all the matches we could" +
+                        " find for you right" +
+                        " now. Why don't you try <a href='#settings-page'>adjusting your filters</a> or check out" +
+                        " your current <a href='#'>match map</a> to see if there are any winners?</p>");
                 }
-                $('#matches-pet-info').empty();
-                $('#matches-pet-info').append(cachedPetsArray[matchIndex].name + " | " + cachedPetsArray[matchIndex].age + " |" +
-                    " " + (cachedPetsArray[matchIndex].gender === "M" ? "Male" : "Female") + " | " +
-                    petSizeAbbreviationToFull(cachedPetsArray[matchIndex].size));
             }
+
 
 
             function petSizeAbbreviationToFull(abbreviation) {

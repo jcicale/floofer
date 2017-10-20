@@ -116,6 +116,8 @@
 
 
                 function setInitialMatch() {
+                    $("#no-more-matches-text").remove();
+                    $("#matches-pet-photo").removeClass("no-more-matches");
                     var cachedPetsArray = storage.getArray("petsArray");
                     var fullSizePhotos = cachedPetsArray[0].photos;
                     if(fullSizePhotos !== []) {
