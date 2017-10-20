@@ -12,6 +12,9 @@
             Storage.prototype.setArray = function(key, obj) {
                 return this.setItem(key, JSON.stringify(obj))
             };
+            Storage.prototype.getArray = function(key) {
+                return JSON.parse(this.getItem(key))
+            };
 
             setTimeout(function () {
                 $("#new-user-info").popup("open");
@@ -32,7 +35,7 @@
                     breed: "any"
                 };
 
-                settings.animalType = $("input[name=animal-type-select]:checked").val()
+                settings.animalType = $("input[name=animal-type-select]:checked").val();
                 settings.location = $("#location-flip").val();
                 settings.zip = $("#zip-input").val();
                 settings.age = $("#age-select").val();
@@ -52,6 +55,10 @@
                     var petsArray = [];
                     for (var i = 0; i < data.petfinder.pets.pet.length; i++) {
 
+                        if (data.petfinder.pets.pet[i].media.photos) {
+                            var fullSizePhotos = getFullSizePhotosForSinglePet(data.petfinder.pets.pet[i]);
+                        }
+
                         if (data.petfinder.pets.pet[i].options && data.petfinder.pets.pet[i].media.photos) {
                             petsArray.push({
                                 name:data.petfinder.pets.pet[i].name.$t,
@@ -61,7 +68,7 @@
                                 breed:data.petfinder.pets.pet[i].breeds.breed,
                                 id:data.petfinder.pets.pet[i].id.$t,
                                 options:data.petfinder.pets.pet[i].options.option,
-                                photos:data.petfinder.pets.pet[i].media.photos.photo
+                                photos:fullSizePhotos
                             });
                         } else if (data.petfinder.pets.pet[i].options) {
                             petsArray.push({
@@ -82,7 +89,7 @@
                                 size:data.petfinder.pets.pet[i].size.$t,
                                 breed:data.petfinder.pets.pet[i].breeds.breed,
                                 id:data.petfinder.pets.pet[i].id.$t,
-                                photos:data.petfinder.pets.pet[i].media.photos.photo,
+                                photos:fullSizePhotos,
                                 options:"null"
 
                             });
@@ -100,57 +107,60 @@
 
                     }
 
-
                     storage.setArray("petsArray", petsArray);
 
-                    setInitialMatch();
-
-                    function setInitialMatch() {
-                        var cachedPetsArray = storage.getArray("petsArray");
-                        var fullSizePhotos = getFullSizePhotosForSinglePet(0, cachedPetsArray);
-                        if(fullSizePhotos !== []) {
-                            $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
-                        } else {
-                            $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
-                        }
-                        $('#matches-pet-info').empty();
-                        $('#matches-pet-info').append(cachedPetsArray[0].name + " | " + cachedPetsArray[0].age + " |" +
-                            " " + (cachedPetsArray[0].gender === "M" ? "Male" : "Female") + " | " +
-                            petSizeAbbreviationToFull(cachedPetsArray[0].size));
-                    }
-
-                    function petSizeAbbreviationToFull(abbreviation) {
-                        switch (abbreviation) {
-                            case 'S':
-                                return "Small";
-                                break;
-                            case 'M':
-                                return "Medium";
-                                break;
-                            case 'L':
-                                return "Large";
-                                break;
-                            case 'XL':
-                                return "Extra Large";
-                                break;
-                        }
-                    }
-
-                    function getFullSizePhotosForSinglePet(petIndex, petsArray) {
-
-                        var fullSizePhotos = [];
-
-                        if (petsArray[petIndex].photos) {
-                            for (var i = 0; i < petsArray[petIndex].photos.length; i++) {
-                                if (petsArray[petIndex].photos[i]['@size'] === "pn") {
-                                    fullSizePhotos.push(petsArray[petIndex].photos[i].$t);
-                                }
-                            }
-
-                        }
-                        return fullSizePhotos;
-                    }
                 });
+
+                //make sure it's populated
+                setTimeout(setInitialMatch, 1000);
+
+
+                function setInitialMatch() {
+                    var cachedPetsArray = storage.getArray("petsArray");
+                    var fullSizePhotos = cachedPetsArray[0].photos;
+                    if(fullSizePhotos !== []) {
+                        $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
+                    } else {
+                        $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
+                    }
+                    $('#matches-pet-info').empty();
+                    $('#matches-pet-info').append(cachedPetsArray[0].name + " | " + cachedPetsArray[0].age + " |" +
+                        " " + (cachedPetsArray[0].gender === "M" ? "Male" : "Female") + " | " +
+                        petSizeAbbreviationToFull(cachedPetsArray[0].size));
+                }
+
+                function petSizeAbbreviationToFull(abbreviation) {
+                    switch (abbreviation) {
+                        case 'S':
+                            return "Small";
+                            break;
+                        case 'M':
+                            return "Medium";
+                            break;
+                        case 'L':
+                            return "Large";
+                            break;
+                        case 'XL':
+                            return "Extra Large";
+                            break;
+                    }
+                }
+
+                function getFullSizePhotosForSinglePet(pet) {
+
+                    var fullSizePhotos = [];
+
+                    if (pet.media.photos) {
+                        for (var i = 0; i < pet.media.photos.photo.length; i++) {
+                            if (pet.media.photos.photo[i]['@size'] === "pn") {
+                                fullSizePhotos.push(pet.media.photos.photo[i].$t);
+                            }
+                        }
+
+                    }
+                    return fullSizePhotos;
+                }
+
 
             });
 

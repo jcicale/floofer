@@ -98,8 +98,20 @@ h1 {
 }
 
 /*--------------------------------------------------*/
-body {
+@font-face {
+    font-family: "Lato-Light";
+    src: url("../assets/fonts/Lato-Light.ttf");
+}
+
+@font-face {
+    font-family: "Beyond The Mountains";
+    src: url("../assets/fonts/beyond_the_mountains.otf");
+}
+
+body, input, button, .ui-btn {
     text-transform: none;
+    font-family: "Lato-Light" !important;
+    font-size: .9em !important;
 }
 /*settings general styles*/
 .settings-legend {
@@ -123,8 +135,8 @@ body {
 }
 
 div div label span.settings-icons:after {
-    width: 2.5em !important;
-    height: 2.5em !important;
+    width: 2.7em !important;
+    height: 2.7em !important;
     margin: 0 !important;
     position: initial !important;
 }
@@ -312,4 +324,92 @@ div.profile-container.swipe-left {
     -o-transform: translateX(-100%);
     transition: transform 250ms ease;
     transform: translateX(-100%);
+}
+
+div.profile-container.swipe-right {
+    -webkit-transition: -webkit-transform 250ms ease;
+    -webkit-transform: translateX(100%);
+    -moz-transition: -moz-transform 250ms ease;
+    -moz-transform: translateX(100%);
+    -o-transition: -o-transform 250ms ease;
+    -o-transform: translateX(100%);
+    transition: transform 250ms ease;
+    transform: translateX(100%);
+}
+
+a#pass-button:after, a#want-button:after {
+    background-color: #25a5c7;
+    padding: 1em;
+    border-radius: 2em;
+    margin: 0 -1.6em;
+}
+
+a#pass-button:visited, a#want-button:visited {
+    border: none;
+    color: unset;
+ }
+
+a#pass-button, a#want-button {
+    background: none;
+    border: none;
+    white-space: normal;
+    padding-top: 5em;
+}
+
+/*match popup*/
+h1.match-header {
+    font-family: "Beyond The Mountains";
+    font-size: 2.7em;
+}
+
+div#its-a-match {
+    background-color: #25a5c7;
+    color: #ffffff;
+}
+
+p.match-tagline {
+    text-align: center;
+    margin: 0;
+    font-size: .9em;
+}
+
+#match-popup-photo {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+div.ui-block-a.match-photo {
+    margin: 1em auto;
+    display: block;
+    overflow: hidden;
+    height: 275px;
+    width: 100%;
+    border-radius: 1em;
+}
+
+div.its-a-match-popup-container {
+    padding: 2em;
+}
+
+img#keep-playing-icon {
+    width: 35px;
+    height: 100%;
+    border: 3px solid #ffffff;
+    padding: 1.4em .7em;
+    border-radius: 2em;
+    margin: 1em 2em;
+}
+
+img#pet-profile-icon {
+    width: 35px;
+    border: 3px solid #ffffff;
+    padding: .7em;
+    border-radius: 2em;
+    margin: 1em 2em;
+}
+
+
+p.button-label {
+    margin: 0em 1.4em;
 }

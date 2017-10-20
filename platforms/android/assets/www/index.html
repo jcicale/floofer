@@ -193,6 +193,29 @@
     </div>
 
     <div data-role="page" id="matches-page">
+        <div data-role="popup" id="its-a-match" data-transition="flip" data-dismissible="false">
+            <div class="its-a-match-popup-container">
+                <h1 class="match-header">It's a Match!</h1>
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a match-photo">
+                        <img src="" id="match-popup-photo" class="circle-profile-picture">
+                    </div>
+                    <p class="match-tagline"> What a surprise! </p>
+                    <p class="match-tagline" id="likes-you-too">likes you too ;)</p>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a keep-playing">
+                        <a href="#" class="custom-circle-button" data-rel="back"><img id="keep-playing-icon" src="assets/logo/floofer-logo-no-text-white.png"></a>
+                        <p class="button-label">Keep Playing</p>
+                    </div>
+                    <div class="ui-block-b see-profile">
+                        <a href="#" class="custom-circle-button" data-rel="back"><img id="pet-profile-icon"src=""></a>
+                        <p class="button-label">View Profile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div data-role="header">
             <h1>Floofer</h1>
         </div>

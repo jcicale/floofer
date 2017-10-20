@@ -12,16 +12,24 @@
                 return JSON.parse(this.getItem(key))
             };
             //set up match index
-            var matchIndex = 1;
+            var matchIndex = 0;
 
+            $( "div.profile-container" ).on( "swipeleft", passPet);
 
-            $( "div.profile-container" ).on( "swipeleft", function(  ) {
+            $( "div.profile-container" ).on( "swiperight", matchPet);
+
+            $("#pass-button").on("tap", passPet);
+            $("#want-button").on("tap", matchPet);
+
+            function passPet() {
                 $("div.profile-container").addClass("swipe-left")
                 // When the transition is done...
                     .on("webkitTransitionEnd transitionend otransitionend", function () {
                         // ...the list item will be removed
                         $("div.profile-container").empty().removeClass("swipe-left");
                     });
+
+                matchIndex++;
                 //wait a second before popping in the next one
                 setTimeout(function () {
                     $("div.profile-container").prepend("<div" +
@@ -33,17 +41,43 @@
                         "");
                     populateNextMatch();
                 }, 500);
+            }
 
+            function matchPet() {
+                var currentPet = storage.getArray("petsArray")[matchIndex];
+
+                $("#match-popup-photo").attr("src", currentPet.photos[0]);
+                $("#likes-you-too").empty().prepend(currentPet.name + " likes you too! :)");
+                $("#pet-profile-icon").attr("src", getIconForAnimalType(storage.getItem("animalType")));
+
+                $("div.profile-container").addClass("swipe-right")
+                // When the transition is done...
+                    .on("webkitTransitionEnd transitionend otransitionend", function () {
+                        // ...the list item will be removed
+                        $("div.profile-container").empty().removeClass("swipe-right");
+                    });
+                $("#its-a-match").popup("open");
 
                 matchIndex++;
-            });
+                //wait a second before popping in the next one
+                setTimeout(function () {
+                    $("div.profile-container").prepend("<div" +
+                        " class='ui-block-a" +
+                        " pet-photo'><img" +
+                        " src=''" +
+                        " id='matches-pet-photo'></div><div class='pet-description'><p" +
+                        " id='matches-pet-info'></p></div>" +
+                        "");
+                    populateNextMatch();
+                }, 500);
+            }
+
+
 
             function populateNextMatch() {
                 var cachedPetsArray = storage.getArray("petsArray");
-                var fullSizePhotos = getFullSizePhotosForSinglePet(matchIndex, cachedPetsArray);
-                console.log(fullSizePhotos);
-                if(fullSizePhotos !== []) {
-                    $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
+                if(cachedPetsArray[matchIndex].photos !== []) {
+                    $('#matches-pet-photo').attr("src", cachedPetsArray[matchIndex].photos[0]);
                 } else {
                     $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
                 }
@@ -53,32 +87,34 @@
                     petSizeAbbreviationToFull(cachedPetsArray[matchIndex].size));
             }
 
-            function getFullSizePhotosForSinglePet(petIndex, cachedPetsArray) {
-                var fullSizePhotos = [];
-                if (cachedPetsArray[petIndex].photos) {
-                    for (var i = 0; i < cachedPetsArray[petIndex].photos.length; i++) {
-                        if (cachedPetsArray[petIndex].photos[i]['@size'] === "pn") {
-                            fullSizePhotos.push(cachedPetsArray[petIndex].photos[i].$t);
-                        }
-                    }
-                }
-                return fullSizePhotos;
-            }
 
             function petSizeAbbreviationToFull(abbreviation) {
                 switch (abbreviation) {
                     case 'S':
                         return "Small";
-                        break;
                     case 'M':
                         return "Medium";
-                        break;
                     case 'L':
                         return "Large";
-                        break;
                     case 'XL':
                         return "Extra Large";
-                        break;
+                }
+            }
+
+            function getIconForAnimalType(animalType) {
+                switch (animalType) {
+                    case 'dog':
+                        return "assets/icons/dog.png";
+                    case 'cat':
+                        return "assets/icons/cat.png";
+                    case 'horse':
+                        return "assets/icons/horse.png";
+                    case 'reptile':
+                        return "assets/icons/chameleon.png";
+                    case 'bird':
+                        return "assets/icons/parrot.png";
+                    case 'smallfurry':
+                        return "assets/icons/guinea-pig.png"
                 }
             }
 
