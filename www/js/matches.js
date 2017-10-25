@@ -42,6 +42,9 @@
             function populatePetsList() {
                 matchIndex = 0;
                 petsList = window.localStorage.getArray("petsArray");
+                console.log(matchIndex);
+                console.log(petsList);
+
             }
 
         $("div.profile-container").on("webkitTransitionEnd transitionend otransitionend", function() {

@@ -296,6 +296,7 @@ div.ui-block-a.pet-photo {
     width: 100%;
     border-top-right-radius: 2em;
     border-top-left-radius: 2em;
+    background-color: #ffffff;
 }
 
 .pet-photo img {
@@ -335,6 +336,39 @@ div.profile-container.swipe-right {
     -o-transform: translateX(100%);
     transition: transform 250ms ease;
     transform: translateX(100%);
+}
+
+a#pass-button:after, a#want-button:after {
+    background-color: #25a5c7;
+    padding: 1em;
+    border-radius: 2em;
+    margin: 0 -1.6em;
+}
+
+a#pass-button:visited, a#want-button:visited {
+    border: none;
+    color: unset;
+ }
+
+a#pass-button, a#want-button {
+    background: none;
+    border: none;
+    white-space: normal;
+    padding-top: 5em;
+}
+
+img.no-more-matches {
+    width: 256px !important;
+    height: 256px !important;
+    margin: auto !important;
+    min-width: unset !important;
+    min-height: unset !important;
+}
+
+p#no-more-matches-text {
+    margin: 1em;
+    font-size: small;
+    text-align: center;
 }
 
 /*match popup*/

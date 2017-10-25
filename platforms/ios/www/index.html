@@ -24,9 +24,9 @@
                     kind of floof you're looking for here! </p>
                 <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
                     should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the
-                    best accuracy!) or enter a zip code. Don't worry – you can change your settings at any time!</p>
+                    best accuracy!) or enter a zip code. Don't worry, you can change your settings at any time!</p>
                 <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
-                    to start up the search. Other than that, be as broad or specific as you want! But keep in mind – the
+                    to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the
                     more filters you add, the less floofers you'll get in your matches.</p>
                 <form>
                     <div class="floofer-button popup-close">
@@ -201,7 +201,7 @@
                         <img src="" id="match-popup-photo" class="circle-profile-picture">
                     </div>
                     <p class="match-tagline"> What a surprise! </p>
-                    <p class="match-tagline" id="likes-you-too">likes you too ;)</p>
+                    <p class="match-tagline" id="likes-you-too"></p>
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a keep-playing">
@@ -229,6 +229,17 @@
                     <p id="matches-pet-info"></p>
                 </div>
             </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-top custom-buttons" id="pass-button">
+                        I'll leave this good floof for someone else :)</a>
+
+                </div>
+                <div class="ui-block-b">
+                    <a href="#" class="ui-btn ui-icon-heart ui-btn-icon-top custom-buttons" id="want-button">Want!</a>
+
+                </div>
+            </div>
         </div>
 
     </div>
@@ -240,4 +251,6 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/matches.js"></script>
+    <!--can't use geolocation until google API is implemented -->
+    <!--<script type="text/javascript" src="js/geolocation.js"></script>-->
 </html>

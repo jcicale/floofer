@@ -296,6 +296,7 @@ div.ui-block-a.pet-photo {
     width: 100%;
     border-top-right-radius: 2em;
     border-top-left-radius: 2em;
+    background-color: #ffffff;
 }
 
 .pet-photo img {
@@ -354,6 +355,20 @@ a#pass-button, a#want-button {
     border: none;
     white-space: normal;
     padding-top: 5em;
+}
+
+img.no-more-matches {
+    width: 256px !important;
+    height: 256px !important;
+    margin: auto !important;
+    min-width: unset !important;
+    min-height: unset !important;
+}
+
+p#no-more-matches-text {
+    margin: 1em;
+    font-size: small;
+    text-align: center;
 }
 
 /*match popup*/
