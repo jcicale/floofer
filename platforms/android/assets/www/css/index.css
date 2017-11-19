@@ -108,10 +108,10 @@ h1 {
     src: url("../assets/fonts/beyond_the_mountains.otf");
 }
 
-body, input, button, .ui-btn {
+body, div, p, button {
     text-transform: none;
-    font-family: "Lato-Light" !important;
-    font-size: .9em !important;
+    font-family: "Lato-Light", sans-serif !important;
+    font-size: .95em !important;
 }
 /*settings general styles*/
 .settings-legend {
@@ -123,85 +123,38 @@ body, input, button, .ui-btn {
 }
 
 /*animal selection styles*/
-.inlineIcon {
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    width: auto !important;
-}
-
-.NoDisk:after {
-    background-color: transparent;
-}
-
-div div label span.settings-icons:after {
-    width: 2.7em !important;
-    height: 2.7em !important;
-    margin: 0 !important;
-    position: initial !important;
-}
-
-span.settings-icons {
-    padding: 0 !important;
-}
-
-label.settings-icon-label {
-    border-radius: 100% !important;
-    margin: .5em !important;
-}
-
-div p.settings-label, p.centered {
+ons-list-header#animal-select-header {
+    text-transform: none;
+    background-color: #e5be0a;
     text-align: center;
-    margin: 0;
 }
 
-.float-fix-main-container {
-    float: left;
-    position: relative;
-    left: 50%;
-}
-.float-fixer-container {
-    float: left;
-    position: relative;
-    left: -50%;
+div.animal-buttons img {
+    width: 3.2em;
+    height: 3.2em;
+    padding: .9em;
 }
 
-.ui-icon-dog:after {
-    background-image: url("../assets/icons/dog.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
-
+div.animal-buttons {
+    display: inline-block;
+    margin: .5em 1.5em;
+    background-color: #ffffff;
+    width: 5em;
+    height: 5em;
+    border-radius: 3em;
 }
 
-.ui-icon-cat:after {
-    background-image: url("../assets/icons/cat.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
+div.animal-buttons.selected {
+    background-color: #25a5c7;
 }
 
-.ui-icon-reptile:after {
-    background-image: url("../assets/icons/chameleon.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
+div.animal-buttons label {
+    display: block;
+    font-size: .8em;
+    text-align: center;
+    padding-top: 5px;
 }
 
-.ui-icon-horse:after {
-    background-image: url("../assets/icons/horse.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
-}
-
-.ui-icon-bird:after {
-    background-image: url("../assets/icons/parrot.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
-}
-
-.ui-icon-small-furry:after {
-    background-image: url("../assets/icons/guinea-pig.svg");
-    background-size: 40px 40px;
-    border-radius: 0;
-}
 /*unique active button style for animal select*/
 div.ui-radio label.settings-icon-label.ui-btn-active.ui-radio-on {
     background-color: #ffffff;
@@ -263,24 +216,21 @@ div.floofer-button a#settings-submit-button, div.floofer-button div.ui-btn.ui-in
     border-radius: 2em;
 }
 
-/*new user popup styles*/
-div#new-user-info {
-    max-width: 400px;
-    opacity: .95;
+/*new user popup styles DONEEEEEEEE*/
+ons-dialog#new-user-info div.dialog {
+    width: 80%;
 }
 
-div.new-user-popup-container {
-    text-align: center;
+ons-dialog#new-user-info div.dialog div.dialog-container {
     padding: 30px;
-
+    text-align: center;
 }
 
-a#new-user-info-x-button {
+#got-it-button {
     background-color: #25a5c7;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    margin: 0;
+    border-radius: 2em;
+    text-align: center;
+    width: 90%;
 }
 
 /*matches page styles*/

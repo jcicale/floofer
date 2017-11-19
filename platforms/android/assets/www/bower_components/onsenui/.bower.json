@@ -1,0 +1,37 @@
+{
+  "name": "onsenui",
+  "homepage": "https://onsen.io",
+  "authors": [
+    "Kruy Vanna <kruyvanna@gmail.com>",
+    "Mitsunori KUBOTA <anatoo.jp@gmail.com>"
+  ],
+  "description": "Web Component inspired HTML5 UI framework for building modern mobile application",
+  "main": [
+    "js/onsenui.js",
+    "css/onsenui.css",
+    "css/onsen-css-components.css"
+  ],
+  "keywords": [
+    "onsenui",
+    "angular",
+    "html5",
+    "cordova",
+    "phonegap",
+    "web",
+    "component",
+    "monaca"
+  ],
+  "dependencies": {},
+  "license": "Apache License, Version 2.0",
+  "version": "2.8.1",
+  "_release": "2.8.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.8.1",
+    "commit": "26bfd78bdd2e36775d135f1b6cf7ab6f97c77bc0"
+  },
+  "_source": "https://github.com/OnsenUI/OnsenUI-dist.git",
+  "_target": "^2.8.1",
+  "_originalSource": "onsenui",
+  "_direct": true
+}

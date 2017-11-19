@@ -1,3 +1,21 @@
-# Floofer
-### Final project for COMP 422 - Mobile Development
-Floofer is a cross platform mobile app developed with Cordova and JQuery Mobile. The app is designed to match users with available adoptable pets in their area!
+# floofer
+
+> A hyrbid mobile app matching owners with adoptable pets, built with Cordova, Vue.js and OnsenUI
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

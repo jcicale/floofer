@@ -3,11 +3,15 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/cordova-android/spec/e2e/fixtures/cordova-plugin-fake/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/cordova-ios/tests/spec/unit/fixtures/dummyProj/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/cordova-ios/tests/spec/unit/fixtures/testProj/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="vue-onsenui" level="application" />
   </component>
 </module>

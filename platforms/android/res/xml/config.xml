@@ -14,9 +14,6 @@
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Notification">
-        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
-    </feature>
     <name>Floofer</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

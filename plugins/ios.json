@@ -7,7 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-browsersync": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
         "cordova-plugin-device": {
@@ -20,10 +20,7 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
-        "cordova-plugin-browsersync": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },

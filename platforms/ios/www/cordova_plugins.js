@@ -47,26 +47,17 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
-    },
-    {
-        "id": "cordova-plugin-dialogs.notification",
-        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-        "pluginId": "cordova-plugin-dialogs",
-        "merges": [
-            "navigator.notification"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-whitelist": "1.3.2",
-    "cordova-plugin-device": "1.1.6",
+    "cordova-plugin-browsersync": "0.1.7",
     "cordova-plugin-compat": "1.2.0",
+    "cordova-plugin-device": "1.1.6",
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-splashscreen": "4.0.3",
-    "cordova-plugin-dialogs": "1.3.3",
-    "cordova-plugin-browsersync": "0.1.7"
+    "cordova-plugin-whitelist": "1.3.2"
 };
 // BOTTOM OF METADATA
 });

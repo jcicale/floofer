@@ -5,21 +5,45 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
-        <link rel="stylesheet" href="css/floofer.min.css" />
-        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
-
-
 
         <title>Floofer</title>
     </head>
     <body>
-    <div data-role="page" id="settings-page">
+    <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+            <ons-page>
+                <ons-list>
+                    <ons-list-item id="menu-settings" tappable>
+                        Settings
+                    </ons-list-item>
+                    <ons-list-item id="menu-match" tappable>
+                        Match
+                    </ons-list-item>
+                    <ons-list-item id="menu-match-map" tappable>
+                        Match Map
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content>
+            <ons-navigator id="myNavigator" page="settings-page.html"></ons-navigator>
+        </ons-splitter-content>
+    </ons-splitter>
 
-        <div data-role="popup" id="new-user-info" data-dismissible="false">
-            <div class="new-user-popup-container">
-                <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all NoDisk" id="new-user-info-x-button"></a>
+    <template id="settings-page.html">
+        <ons-page id="settings-page">
+            <ons-dialog id="new-user-info" cancelable>
+                <ons-button
+                        id="x-button"
+                        style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px;">
+                    <ons-icon
+                            style="color: #25a5c7"
+                            icon="ion-close-circled"
+                            id="new-user-x-icon"></ons-icon>
+                </ons-button>
                 <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
                     kind of floof you're looking for here! </p>
                 <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
@@ -28,225 +52,332 @@
                 <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
                     to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the
                     more filters you add, the less floofers you'll get in your matches.</p>
-                <form>
-                    <div class="floofer-button popup-close">
-                        <input type="button" value="Got it!" data-mini="true" id="new-user-info-close-button">
-                    </div>
-                </form>
+                <ons-button id="got-it-button">Got it!</ons-button>
+            </ons-dialog>
+
+            <ons-toolbar>
+                <div class="center">
+                    Settings
+                </div>
+                <div class="left">
+                    <ons-toolbar-button class="hamburger-menu">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+
+            <div>
+                <ons-list-header id="animal-select-header">
+                    I'm looking for a...
+                </ons-list-header>
+                <ons-row>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="dog-button" tappable>
+                            <img src="./assets/icons/dog-256.png">
+                            <label>Dog</label>
+                        </div>
+                    </ons-col>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="cat-button" tappable>
+                            <img src="./assets/icons/cat-256.png">
+                            <label>Cat</label>
+                        </div>
+                    </ons-col>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="reptile-button" tappable>
+                            <img src="./assets/icons/reptile-256.png">
+                            <label>Reptile</label>
+                        </div>
+                    </ons-col>
+                </ons-row>
+                <ons-row>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="horse-button" tappable>
+                            <img src="./assets/icons/horse-256.png">
+                            <label>Horse</label>
+                        </div>
+                    </ons-col>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="bird-button" tappable>
+                            <img src="./assets/icons/bird-256.png">
+                            <label>Bird</label>
+                        </div>
+                    </ons-col>
+                    <ons-col width="33%">
+                        <div class="animal-buttons" id="smallfurry-button" tappable>
+                            <img src="./assets/icons/smallfurry-256.png">
+                            <label>Small & Furry</label>
+                        </div>
+                    </ons-col>
+                </ons-row>
             </div>
-        </div>
 
-        <div data-role="header">
-            <h1>Settings</h1>
-        </div>
+            <div class="divider"></div>
 
-        <div role="main" class="ui-content">
-            <fieldset data-role="controlgroup" data-type="horizontal" id="settings-fieldset">
-                <legend class="settings-legend">I'm looking for a...</legend>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="dog-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-dog ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="dog-select" value="dog" />
-                            </div>
+            <div>
+                <ons-row>
+                    <ons-col width="45%">
+                        <div class="form-input">
+                            <ons-switch id="location-services-switch"></ons-switch>
+                            <label style="display: block; text-align: center; padding-top: 5px;">Location Services</label>
                         </div>
-                    </div>
-                    <div class="ui-block-b">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="cat-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-cat ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="cat-select" value="cat" />
-                            </div>
+                    </ons-col>
+                    <ons-col width="10%">
+                        <p style="text-align: center; margin-top: 1.5em;">or</p>
+                    </ons-col>
+                    <ons-col width="45%">
+                        <div class="form-input">
+                            <ons-input id="zip-input" placeholder="Zipcode"></ons-input>
                         </div>
-                    </div>
-                    <div class="ui-block-c">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="reptile-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-reptile ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="reptile-select" value="reptile" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-a">
-                        <p class="settings-label">Dog</p>
-                    </div>
-                    <div class="ui-block-b">
-                        <p class="settings-label">Cat</p>
-                    </div>
-                    <div class="ui-block-c">
-                        <p class="settings-label">Reptile</p>
-                    </div>
-                    <div class="ui-block-a">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="horse-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-horse ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="horse-select" value="horse" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-b">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="bird-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-bird ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="bird-select" value="bird" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-c">
-                        <div class="float-fix-main-container">
-                            <div class="float-fixer-container">
-                                <label for="small-furry-select" class="settings-icon-label"><span class="ui-alt-icon ui-icon-small-furry ui-btn-icon-notext inlineIcon settings-icons"></span></label>
-                                <input type="radio" name="animal-type-select" id="small-furry-select" value="smallfurry" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-a">
-                        <p class="settings-label">Horse</p>
-                    </div>
-                    <div class="ui-block-b">
-                        <p class="settings-label">Bird</p>
-                    </div>
-                    <div class="ui-block-c">
-                        <p class="settings-label">Small & Furry</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">
-                        <form class="location-switch-form">
-                            <select name="location-flip" id="location-flip" data-role="flipswitch" data-mini="true">
-                                <option value="off">Off</option>
-                                <option value="on">On</option>
-                            </select>
-                            <label for="location-flip" class="location-flip-label">Use my location</label>
-                        </form>
-                    </div>
-                    <div class="ui-block-b">
-                        <p class="centered">or</p>
-                    </div>
-                    <div class="ui-block-c">
-                        <form>
-                            <input type="text" data-clear-btn="false" data-mini="true" name="zip-input" id="zip-input" placeholder="Enter Zip" value="">
-                        </form>
-                    </div>
-                </div>
-                <div class="ui-grid-solo">
-                    <div class="ui-block-a">
-                        <div class="ui-field-contain size-select-dropdown">
-                            <label for="size-select" class="size-select-label">Size</label>
-                            <select name="size-select" id="size-select" data-mini="true" data-native-menu="false">
-                                <option value="any">Any</option>
-                                <option value="S">Small</option>
-                                <option value="M">Medium</option>
-                                <option value="L">Large</option>
-                                <option value="XL">Extra Large</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <div class="ui-field-contain age-select-dropdown">
-                            <label for="age-select" class="age-select-label">Age</label>
-                            <select name="age-select" id="age-select" data-mini="true" data-native-menu="false">
-                                <option value="any">Any</option>
-                                <option value="Baby">Baby</option>
-                                <option value="Young">Young</option>
-                                <option value="Adult">Adult</option>
-                                <option value="Senior">Senior</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="ui-block-b">
-                        <div class="ui-field-contain gender-select-dropdown">
-                            <label for="gender-select" class="gender-select-label">Sex</label>
-                            <select name="gender-select" id="gender-select" data-mini="true" data-native-menu="false">
-                                <option value="any">Any</option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-solo">
-                    <div class="ui-block-a">
-                        <div class="ui-field-contain breed-select-dropdown">
-                            <label for="breed-select" class="breed-select-label">Breed</label>
-                            <select name="breed-select" id="breed-select" data-mini="true">
-                                <option value="any">Any</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-solo">
-                    <div class="ui-block-a">
-                        <form>
-                            <div class="floofer-button settings-submit">
-                                <a href="#matches-page" class="ui-btn" id="settings-submit-button">Submit</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-
-    <div data-role="page" id="matches-page">
-        <div data-role="popup" id="its-a-match" data-transition="flip" data-dismissible="false">
-            <div class="its-a-match-popup-container">
-                <h1 class="match-header">It's a Match!</h1>
-                <div class="ui-grid-solo">
-                    <div class="ui-block-a match-photo">
-                        <img src="" id="match-popup-photo" class="circle-profile-picture">
-                    </div>
-                    <p class="match-tagline"> What a surprise! </p>
-                    <p class="match-tagline" id="likes-you-too"></p>
-                </div>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a keep-playing">
-                        <a href="#" class="custom-circle-button" data-rel="back"><img id="keep-playing-icon" src="assets/logo/floofer-logo-no-text-white.png"></a>
-                        <p class="button-label">Keep Playing</p>
-                    </div>
-                    <div class="ui-block-b see-profile">
-                        <a href="#" class="custom-circle-button" data-rel="back"><img id="pet-profile-icon"src=""></a>
-                        <p class="button-label">View Profile</p>
-                    </div>
-                </div>
+                    </ons-col>
+                </ons-row>
             </div>
-        </div>
 
-        <div data-role="header">
-            <h1>Floofer</h1>
-        </div>
-
-        <div role="main" class="ui-content">
-            <div class="ui-grid-solo profile-container">
-                <div class="ui-block-a pet-photo">
-                    <img src="" id="matches-pet-photo">
-                </div>
-                <div class="pet-description">
-                    <p id="matches-pet-info"></p>
-                </div>
+            <div class="row-container">
+                <ons-row>
+                    <label class="form-label">Size</label>
+                    <ons-select id="size-select" class="full-length-dropdown">
+                        <option value="any">Any</option>
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">Extra Large</option>
+                    </ons-select>
+                </ons-row>
             </div>
-            <div class="ui-grid-a">
-                <div class="ui-block-a">
-                    <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-top custom-buttons" id="pass-button">
-                        I'll leave this good floof for someone else :)</a>
 
-                </div>
-                <div class="ui-block-b">
-                    <a href="#" class="ui-btn ui-icon-heart ui-btn-icon-top custom-buttons" id="want-button">Want!</a>
-
-                </div>
+            <div class="row-container">
+                <ons-row>
+                    <ons-col width="10%">
+                        <label class="small-form-label">Age</label>
+                    </ons-col>
+                    <ons-col width="40%">
+                        <ons-select id="age-select" class="half-length-dropdown">
+                            <option value="any">Any</option>
+                            <option value="baby">Baby</option>
+                            <option value="young">Young</option>
+                            <option value="adult">Adult</option>
+                            <option value="senior">Senior</option>
+                        </ons-select>
+                    </ons-col>
+                    <ons-col width="10%">
+                        <label class="small-form-label">Sex</label>
+                    </ons-col>
+                    <ons-col width="40%">
+                        <ons-select id="gender-select" class="half-length-dropdown">
+                            <option value="any">Any</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </ons-select>
+                    </ons-col>
+                </ons-row>
             </div>
-        </div>
 
-    </div>
+            <div class="row-container">
+                <ons-row>
+                    <label class="form-label">Breed</label>
+                    <ons-select id="breed-select" select-id="dynamic-breed-select" class="full-length-dropdown">
+                        <option value="any">Any</option>
+                    </ons-select>
+                </ons-row>
+            </div>
+
+            <div class="row-container">
+                <ons-row>
+                    <ons-button id="submit-button">Submit</ons-button>
+                </ons-row>
+            </div>
+
+            <!--<h2>Home</h2>-->
+            <!--<div style="text-align: center">-->
+                <!--<br>-->
+                <!--<ons-button onclick="myNavigator.pushPage('pageNav1.html')">-->
+                    <!--Push Page-->
+                <!--</ons-button>-->
+            <!--</div>-->
+
+            <!--<p style="text-align: center; opacity: 0.6; padding-top: 20px;">-->
+                <!--Swipe left to open the menu!-->
+            <!--</p>-->
+        </ons-page>
+    </template>
+
+    <template id="pageNav1.html">
+        <ons-page id="pageNav1">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center"></div>
+                <div class="right">
+                    <ons-toolbar-button class="hamburger-menu">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+
+            <div style="text-align: center">
+                <h1>Custom Page</h1>
+                <p>
+                    <ons-input modifier="underbar" placeholder="Title" float></ons-input>
+                </p>
+                <ons-button id="page1-push">
+                    Push Page
+                </ons-button>
+                <ons-button id="page1-pop">
+                    Pop Page
+                </ons-button>
+            </div>
+
+            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+                Swipe left to open the menu!
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="matches-page.html">
+        <ons-page id="matches-page">
+            <ons-toolbar>
+                <div class="center">
+                    <img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">
+                </div>
+                <div class="left">
+                    <ons-toolbar-button class="hamburger-menu">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+
+            <h2>Cards</h2>
+            <ons-list-title>Card List</ons-list-title>
+            <ons-list>
+                <ons-list-item class="page2-push">Card One</ons-list-item>
+                <ons-list-item class="page2-push">Card Two</ons-list-item>
+                <ons-list-item class="page2-push">Card Three</ons-list-item>
+            </ons-list>
+
+            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+                Swipe left to open the menu!
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="pageNav2.html">
+        <ons-page id="pageNav2">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="right">
+                    <ons-toolbar-button class="hamburger-menu">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+
+            <ons-card>
+                <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
+                <div class="title"></div>
+                <div class="content">
+                    <div>
+                        <ons-button>
+                            <ons-icon icon="ion-thumbsup"></ons-icon>
+                        </ons-button>
+                        <ons-button>
+                            <ons-icon icon="ion-share"></ons-icon>
+                        </ons-button>
+                    </div>
+                    <ons-list>
+                        <ons-list-header>Bindings</ons-list-header>
+                        <ons-list-item>Vue</ons-list-item>
+                        <ons-list-item>Angular</ons-list-item>
+                        <ons-list-item>React</ons-list-item>
+                    </ons-list>
+                </div>
+            </ons-card>
+
+            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+                Swipe left to open the menu!
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="match-map.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="center">
+                    Match Map
+                </div>
+                <div class="left">
+                    <ons-toolbar-button class="hamburger-menu">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+
+            <h2>Settings</h2>
+
+            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+                Swipe left to open the menu!
+            </p>
+        </ons-page>
+    </template>
+
+    <!--<div data-role="page" id="matches-page">-->
+        <!--<div data-role="popup" id="its-a-match" data-transition="flip" data-dismissible="false">-->
+            <!--<div class="its-a-match-popup-container">-->
+                <!--<h1 class="match-header">It's a Match!</h1>-->
+                <!--<div class="ui-grid-solo">-->
+                    <!--<div class="ui-block-a match-photo">-->
+                        <!--<img src="" id="match-popup-photo" class="circle-profile-picture">-->
+                    <!--</div>-->
+                    <!--<p class="match-tagline"> What a surprise! </p>-->
+                    <!--<p class="match-tagline" id="likes-you-too"></p>-->
+                <!--</div>-->
+                <!--<div class="ui-grid-a">-->
+                    <!--<div class="ui-block-a keep-playing">-->
+                        <!--<a href="#" class="custom-circle-button" data-rel="back"><img id="keep-playing-icon" src="assets/logo/floofer-logo-no-text-white.png"></a>-->
+                        <!--<p class="button-label">Keep Playing</p>-->
+                    <!--</div>-->
+                    <!--<div class="ui-block-b see-profile">-->
+                        <!--<a href="#" class="custom-circle-button" data-rel="back"><img id="pet-profile-icon"src=""></a>-->
+                        <!--<p class="button-label">View Profile</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div data-role="header">-->
+            <!--<h1>Floofer</h1>-->
+        <!--</div>-->
+
+        <!--<div role="main" class="ui-content">-->
+            <!--<div class="ui-grid-solo profile-container">-->
+                <!--<div class="ui-block-a pet-photo">-->
+                    <!--<img src="" id="matches-pet-photo">-->
+                <!--</div>-->
+                <!--<div class="pet-description">-->
+                    <!--<p id="matches-pet-info"></p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui-grid-a">-->
+                <!--<div class="ui-block-a">-->
+                    <!--<a href="#" class="ui-btn ui-icon-delete ui-btn-icon-top custom-buttons" id="pass-button">-->
+                        <!--I'll leave this good floof for someone else :)</a>-->
+
+                <!--</div>-->
+                <!--<div class="ui-block-b">-->
+                    <!--<a href="#" class="ui-btn ui-icon-heart ui-btn-icon-top custom-buttons" id="want-button">Want!</a>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
 
     </body>
+    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
