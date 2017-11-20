@@ -1,71 +1,272 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+    <!--<head>-->
+        <!--&lt;!&ndash;<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *; img-src 'self' data: content:;">&ndash;&gt;-->
+        <!--<meta name="format-detection" content="telephone=no">-->
+        <!--<meta name="msapplication-tap-highlight" content="no">-->
+        <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">-->
+        <!--<link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">-->
+        <!--<link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">-->
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+
+        <!--<title>Floofer</title>-->
+    <!--</head>-->
+    <!--<body>-->
+    <!--<ons-splitter>-->
+        <!--<ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>-->
+                <!--<ons-list>-->
+                    <!--<ons-list-item id="menu-settings" tappable>-->
+                        <!--Settings-->
+                    <!--</ons-list-item>-->
+                    <!--<ons-list-item id="menu-match" tappable>-->
+                        <!--Match-->
+                    <!--</ons-list-item>-->
+                    <!--<ons-list-item id="menu-match-map" tappable>-->
+                        <!--Match Map-->
+                    <!--</ons-list-item>-->
+                <!--</ons-list>-->
+        <!--</ons-splitter-side>-->
+        <!--<ons-splitter-content>-->
+            <!--<ons-navigator id="myNavigator" page="settings-page.html"></ons-navigator>-->
+        <!--</ons-splitter-content>-->
+    <!--</ons-splitter>-->
+
+    <!--<template id="settings-page.html">-->
+        <!--<ons-page id="settings-page">-->
+
+            <!--<ons-toolbar>-->
+                <!--<div class="center">-->
+                    <!--Settings-->
+                <!--</div>-->
+                <!--<div class="left">-->
+                    <!--<ons-toolbar-button class="hamburger-menu">-->
+                        <!--<ons-icon icon="md-menu"></ons-icon>-->
+                    <!--</ons-toolbar-button>-->
+                <!--</div>-->
+            <!--</ons-toolbar>-->
+
+
+        <!--</ons-page>-->
+    <!--</template>-->
+
+    <!--<template id="pageNav1.html">-->
+        <!--<ons-page id="pageNav1">-->
+            <!--<ons-toolbar>-->
+                <!--<div class="left">-->
+                    <!--<ons-back-button>Back</ons-back-button>-->
+                <!--</div>-->
+                <!--<div class="center"></div>-->
+                <!--<div class="right">-->
+                    <!--<ons-toolbar-button class="hamburger-menu">-->
+                        <!--<ons-icon icon="md-menu"></ons-icon>-->
+                    <!--</ons-toolbar-button>-->
+                <!--</div>-->
+            <!--</ons-toolbar>-->
+
+            <!--<div style="text-align: center">-->
+                <!--<h1>Custom Page</h1>-->
+                <!--<p>-->
+                    <!--<ons-input modifier="underbar" placeholder="Title" float></ons-input>-->
+                <!--</p>-->
+                <!--<ons-button id="page1-push">-->
+                    <!--Push Page-->
+                <!--</ons-button>-->
+                <!--<ons-button id="page1-pop">-->
+                    <!--Pop Page-->
+                <!--</ons-button>-->
+            <!--</div>-->
+
+            <!--<p style="text-align: center; opacity: 0.6; padding-top: 20px;">-->
+                <!--Swipe left to open the menu!-->
+            <!--</p>-->
+        <!--</ons-page>-->
+    <!--</template>-->
+
+    <!--<template id="matches-page.html">-->
+        <!--<ons-page id="matches-page">-->
+            <!--<ons-toolbar>-->
+                <!--<div class="center">-->
+                    <!--<img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">-->
+                <!--</div>-->
+                <!--<div class="left">-->
+                    <!--<ons-toolbar-button class="hamburger-menu">-->
+                        <!--<ons-icon icon="md-menu"></ons-icon>-->
+                    <!--</ons-toolbar-button>-->
+                <!--</div>-->
+            <!--</ons-toolbar>-->
+
+            <!--<h2>Matches</h2>-->
+            <!--<ons-list-title>Card List</ons-list-title>-->
+            <!--<ons-list>-->
+                <!--<ons-list-item class="page2-push">Card One</ons-list-item>-->
+                <!--<ons-list-item class="page2-push">Card Two</ons-list-item>-->
+                <!--<ons-list-item class="page2-push">Card Three</ons-list-item>-->
+            <!--</ons-list>-->
+
+            <!--<p style="text-align: center; opacity: 0.6; padding-top: 20px;">-->
+                <!--Swipe left to open the menu!-->
+            <!--</p>-->
+        <!--</ons-page>-->
+    <!--</template>-->
+
+    <!--<template id="pageNav2.html">-->
+        <!--<ons-page id="pageNav2">-->
+            <!--<ons-toolbar>-->
+                <!--<div class="left">-->
+                    <!--<ons-back-button>Back</ons-back-button>-->
+                <!--</div>-->
+                <!--<div class="right">-->
+                    <!--<ons-toolbar-button class="hamburger-menu">-->
+                        <!--<ons-icon icon="md-menu"></ons-icon>-->
+                    <!--</ons-toolbar-button>-->
+                <!--</div>-->
+            <!--</ons-toolbar>-->
+
+            <!--<ons-card>-->
+                <!--<img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">-->
+                <!--<div class="title"></div>-->
+                <!--<div class="content">-->
+                    <!--<div>-->
+                        <!--<ons-button>-->
+                            <!--<ons-icon icon="ion-thumbsup"></ons-icon>-->
+                        <!--</ons-button>-->
+                        <!--<ons-button>-->
+                            <!--<ons-icon icon="ion-share"></ons-icon>-->
+                        <!--</ons-button>-->
+                    <!--</div>-->
+                    <!--<ons-list>-->
+                        <!--<ons-list-header>Bindings</ons-list-header>-->
+                        <!--<ons-list-item>Vue</ons-list-item>-->
+                        <!--<ons-list-item>Angular</ons-list-item>-->
+                        <!--<ons-list-item>React</ons-list-item>-->
+                    <!--</ons-list>-->
+                <!--</div>-->
+            <!--</ons-card>-->
+
+            <!--<p style="text-align: center; opacity: 0.6; padding-top: 20px;">-->
+                <!--Swipe left to open the menu!-->
+            <!--</p>-->
+        <!--</ons-page>-->
+    <!--</template>-->
+
+    <!--<template id="match-map-page.html">-->
+        <!--<ons-page>-->
+            <!--<ons-toolbar>-->
+                <!--<div class="center">-->
+                    <!--Match Map-->
+                <!--</div>-->
+                <!--<div class="left">-->
+                    <!--<ons-toolbar-button class="hamburger-menu">-->
+                        <!--<ons-icon icon="md-menu"></ons-icon>-->
+                    <!--</ons-toolbar-button>-->
+                <!--</div>-->
+            <!--</ons-toolbar>-->
+
+            <!--<h2>Match Map</h2>-->
+
+            <!--<p style="text-align: center; opacity: 0.6; padding-top: 20px;">-->
+                <!--Swipe left to open the menu!-->
+            <!--</p>-->
+        <!--</ons-page>-->
+    <!--</template>-->
+
+    <!--</body>-->
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <!--<script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>-->
+    <!--<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+    <!--<script type="text/javascript" src="js/settings.js"></script>-->
+    <!--<script type="text/javascript" src="js/matches.js"></script>-->
+    <!--&lt;!&ndash;can't use geolocation until google API is implemented &ndash;&gt;-->
+    <!--&lt;!&ndash;<script type="text/javascript" src="js/geolocation.js"></script>&ndash;&gt;-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *; img-src 'self' data: content:;">-->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
-        <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsenui.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <!-- cordova and ui js -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- app scripts -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <title>Floofer</title>
+</head>
+<body>
+<!-- navigator for fab &c. -->
+<ons-navigator id="navigator" page="splitter.html"></ons-navigator>
 
-        <title>Floofer</title>
-    </head>
-    <body>
+<!-- splitter component for menu -->
+<ons-template id="splitter.html">
+    <ons-page>
     <ons-splitter>
         <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-            <ons-page id="splitter">
+            <ons-page id="menu.html">
+                <ons-toolbar>
+                    <div class="center">Menu</div>
+                </ons-toolbar>
                 <ons-list>
-                    <ons-list-item id="menu-settings" tappable>
-                        Settings
-                    </ons-list-item>
-                    <ons-list-item id="menu-match" tappable>
-                        Match
-                    </ons-list-item>
-                    <ons-list-item id="menu-match-map" tappable>
-                        Match Map
-                    </ons-list-item>
+                    <ons-list-item url="settings.html" class="menu-link" tappable>Settings</ons-list-item>
+                    <ons-list-item url="matches.html" class="menu-link" tappable>Matches</ons-list-item>
+                    <ons-list-item url="match-map.html" class="menu-link" tappable>Match Map</ons-list-item>
                 </ons-list>
             </ons-page>
         </ons-splitter-side>
-        <ons-splitter-content>
-            <ons-navigator id="myNavigator" page="settings-page.html"></ons-navigator>
-        </ons-splitter-content>
+        <ons-splitter-content id="content" page="settings.html"></ons-splitter-content>
     </ons-splitter>
+    </ons-page>
+</ons-template>
 
-    <template id="settings-page.html">
-        <ons-page id="settings-page">
-            <ons-dialog id="new-user-info" cancelable>
-                <ons-button
-                        id="x-button"
-                        style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px;">
-                    <ons-icon
-                            style="color: #25a5c7"
-                            icon="ion-close-circled"
-                            id="new-user-x-icon"></ons-icon>
-                </ons-button>
-                <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
-                    kind of floof you're looking for here! </p>
-                <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
-                    should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the
-                    best accuracy!) or enter a zip code. Don't worry, you can change your settings at any time!</p>
-                <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
-                    to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the
-                    more filters you add, the less floofers you'll get in your matches.</p>
-                <ons-button id="got-it-button">Got it!</ons-button>
-            </ons-dialog>
+<!-- settings page -->
+<ons-template id="settings.html">
+    <ons-page id="settings">
+        <!-- page toolbar -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button class="menu-open">
+                    <!-- hamburger menu -->
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">Settings</div>
+        </ons-toolbar>
+        <!-- define primary action button for page - md plus icon -->
+        <ons-fab position="bottom right">
+            <ons-icon id="fab-open" icon="md-plus"></ons-icon>
+        </ons-fab>
+        <!--dialog for new users-->
+        <ons-dialog id="new-user-info" cancelable>
+            <ons-button
+                    id="x-button"
+                    style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px;">
+                <ons-icon
+                        style="color: #25a5c7"
+                        icon="ion-close-circled"
+                        id="new-user-x-icon"></ons-icon>
+            </ons-button>
+            <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
+                kind of floof you're looking for here! </p>
+            <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
+                should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the
+                best accuracy!) or enter a zip code. Don't worry, you can change your settings at any time!</p>
+            <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
+                to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the
+                more filters you add, the less floofers you'll get in your matches.</p>
+            <ons-button id="got-it-button">Got it!</ons-button>
+        </ons-dialog>
 
-            <ons-toolbar>
-                <div class="center">
-                    Settings
-                </div>
-                <div class="left">
-                    <ons-toolbar-button class="hamburger-menu">
-                        <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-            </ons-toolbar>
-
+        <!-- settingsContent - settings content -->
+        <div id="settingsContent" class="page-content">
             <div>
                 <ons-list-header id="animal-select-header">
                     I'm looking for a...
@@ -187,137 +388,71 @@
                     <ons-button id="submit-button">Submit</ons-button>
                 </ons-row>
             </div>
-        </ons-page>
-    </template>
+        </div>
+    </ons-page>
+</ons-template>
 
-    <template id="pageNav1.html">
-        <ons-page id="pageNav1">
-            <ons-toolbar>
-                <div class="left">
-                    <ons-back-button>Back</ons-back-button>
-                </div>
-                <div class="center"></div>
-                <div class="right">
-                    <ons-toolbar-button class="hamburger-menu">
-                        <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-            </ons-toolbar>
-
-            <div style="text-align: center">
-                <h1>Custom Page</h1>
-                <p>
-                    <ons-input modifier="underbar" placeholder="Title" float></ons-input>
-                </p>
-                <ons-button id="page1-push">
-                    Push Page
-                </ons-button>
-                <ons-button id="page1-pop">
-                    Pop Page
-                </ons-button>
+<!-- matches page -->
+<ons-template id="matches.html">
+    <ons-page id="matches">
+        <!-- page toolbar -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button class="menu-open">
+                    <!-- hamburger menu -->
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
             </div>
+            <div class="center">
+                <img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">
+            </div>
+        </ons-toolbar>
+        <h4>Matches</h4>
+        <!-- matchesContent - matches content -->
+        <div id="matchesContent" class="page-content">
 
-            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-                Swipe left to open the menu!
-            </p>
-        </ons-page>
-    </template>
+        </div>
+    </ons-page>
+</ons-template>
 
-    <template id="matches-page.html">
-        <ons-page id="matches-page">
-            <ons-toolbar>
-                <div class="center">
-                    <img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">
-                </div>
-                <div class="left">
-                    <ons-toolbar-button class="hamburger-menu">
-                        <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-            </ons-toolbar>
+<!--match map page-->
+<ons-template id="match-map.html">
+    <ons-page id="match-map">
+        <!-- page toolbar -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button class="menu-open">
+                    <!-- hamburger menu -->
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">Match Map</div>
+        </ons-toolbar>
+        <h4>Match Map</h4>
+        <!-- matchMapContent - match map content -->
+        <div id="matchMapContent" class="page-content">
 
-            <h2>Matches</h2>
-            <ons-list-title>Card List</ons-list-title>
-            <ons-list>
-                <ons-list-item class="page2-push">Card One</ons-list-item>
-                <ons-list-item class="page2-push">Card Two</ons-list-item>
-                <ons-list-item class="page2-push">Card Three</ons-list-item>
-            </ons-list>
+        </div>
+    </ons-page>
+</ons-template>
 
-            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-                Swipe left to open the menu!
-            </p>
-        </ons-page>
-    </template>
+<!--
+* primary action page - page for fab
+-->
+<!-- fab page -->
+<ons-template id="fab.html">
+    <ons-page id="fab">
+        <ons-toolbar>
+            <div class="left"><ons-back-button>Back</ons-back-button></div>
+            <div class="center"></div>
+        </ons-toolbar>
+        <h4>fab page</h4>
+        <!-- fabContent - fab content -->
+        <div id="fabContent" class="page-content">
 
-    <template id="pageNav2.html">
-        <ons-page id="pageNav2">
-            <ons-toolbar>
-                <div class="left">
-                    <ons-back-button>Back</ons-back-button>
-                </div>
-                <div class="right">
-                    <ons-toolbar-button class="hamburger-menu">
-                        <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-            </ons-toolbar>
+        </div>
+    </ons-page>
+</ons-template>
 
-            <ons-card>
-                <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
-                <div class="title"></div>
-                <div class="content">
-                    <div>
-                        <ons-button>
-                            <ons-icon icon="ion-thumbsup"></ons-icon>
-                        </ons-button>
-                        <ons-button>
-                            <ons-icon icon="ion-share"></ons-icon>
-                        </ons-button>
-                    </div>
-                    <ons-list>
-                        <ons-list-header>Bindings</ons-list-header>
-                        <ons-list-item>Vue</ons-list-item>
-                        <ons-list-item>Angular</ons-list-item>
-                        <ons-list-item>React</ons-list-item>
-                    </ons-list>
-                </div>
-            </ons-card>
-
-            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-                Swipe left to open the menu!
-            </p>
-        </ons-page>
-    </template>
-
-    <template id="match-map.html">
-        <ons-page>
-            <ons-toolbar>
-                <div class="center">
-                    Match Map
-                </div>
-                <div class="left">
-                    <ons-toolbar-button class="hamburger-menu">
-                        <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-            </ons-toolbar>
-
-            <h2>Match Map</h2>
-
-            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-                Swipe left to open the menu!
-            </p>
-        </ons-page>
-    </template>
-
-    </body>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/matches.js"></script>
-    <!--can't use geolocation until google API is implemented -->
-    <!--<script type="text/javascript" src="js/geolocation.js"></script>-->
+</body>
 </html>

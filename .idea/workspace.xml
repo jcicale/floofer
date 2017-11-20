@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="">
+    <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="no more matches working">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/build/package.zip" afterPath="$PROJECT_DIR$/platforms/browser/build/package.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="-3166">
+              <caret line="225" column="23" lean-forward="false" selection-start-line="211" selection-start-column="8" selection-end-line="225" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/settings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-321">
-              <caret line="147" column="28" lean-forward="false" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+            <state relative-caret-position="2100">
+              <caret line="140" column="33" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -73,20 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>storage.set</find>
-      <find>onsole.log</find>
-      <find>matchindex++</find>
-      <find>click</find>
-      <find>vue</find>
-      <find>togglemenu</find>
-      <find>toggleMenu</find>
-      <find>#e4bd0a</find>
-      <find>background</find>
-      <find>background-</find>
-      <find>setinitial</find>
-      <find>setinitialbreedselect</find>
-      <find>&amp;key=</find>
-      <find>selectAnimal</find>
       <find>KEY</find>
       <find>breed.list</find>
       <find>&lt;</find>
@@ -103,6 +89,20 @@
       <find>onclick</find>
       <find>hamburger</find>
       <find>menu-settings</find>
+      <find>match</find>
+      <find>splitter.html</find>
+      <find>home</find>
+      <find>nav.html</find>
+      <find>nav</find>
+      <find>content</find>
+      <find>home page</find>
+      <find>navigator</find>
+      <find>.html</find>
+      <find>home.html</find>
+      <find>nav</find>
+      <find>settings.html</find>
+      <find>menu.html</find>
+      <find>push page</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,8 +140,8 @@
         <option value="$PROJECT_DIR$/src/components/MenuPage.vue" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/settings.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
       </list>
     </option>
   </component>
@@ -166,7 +166,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="724" />
@@ -321,7 +321,7 @@
       <workItem from="1510586692690" duration="19478000" />
       <workItem from="1510684356549" duration="31000" />
       <workItem from="1510684510040" duration="57385000" />
-      <workItem from="1511048653261" duration="13956000" />
+      <workItem from="1511048653261" duration="13921000" />
     </task>
     <task id="LOCAL-00001" summary="added some plugins, testing some onsen functionality">
       <created>1507602407586</created>
@@ -418,7 +418,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253611000" />
+    <option name="totallyTimeSpent" value="266036000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -430,13 +430,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="724" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16203336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31908396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29312977" sideWeight="0.503125" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28298888" sideWeight="0.5822081" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28298888" sideWeight="0.4177919" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941361" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -472,8 +473,7 @@
     <MESSAGE value="implement swipe left through matches" />
     <MESSAGE value="swipe both ways plus buttons" />
     <MESSAGE value="no more matches working" />
-    <MESSAGE value="onsen refactoring, still buggy" />
-    <option name="LAST_COMMIT_MESSAGE" value="onsen refactoring, still buggy" />
+    <option name="LAST_COMMIT_MESSAGE" value="no more matches working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -482,13 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/settings.js" />
     <entry file="file://$PROJECT_DIR$/www/js/index.js" />
     <entry file="file://$PROJECT_DIR$/www/js/app.js" />
@@ -581,6 +574,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/bower_components/onsenui/js/onsenui.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="720" column="4" lean-forward="false" selection-start-line="720" selection-start-column="4" selection-end-line="720" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -589,18 +590,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
+    <entry file="file://$PROJECT_DIR$/www/js/settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state relative-caret-position="2100">
+          <caret line="140" column="33" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/settings.js">
+    <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-321">
-          <caret line="147" column="28" lean-forward="false" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+        <state relative-caret-position="-3166">
+          <caret line="225" column="23" lean-forward="false" selection-start-line="211" selection-start-column="8" selection-end-line="225" selection-end-column="23" />
           <folding />
         </state>
       </provider>

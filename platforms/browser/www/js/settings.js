@@ -1,68 +1,46 @@
-const API_KEY = '2350ef4b4c00d28ac3a15bf88648b19e';
-
-//general navigation functions
-window.fn = {};
-
-window.fn.open = function () {
-    var menu = document.getElementById('menu');
-    menu.open();
-};
-
-window.fn.load = function (page) {
-    var menu = document.getElementById('menu');
-    var myNavigator = document.getElementById('myNavigator');
-
-    // if(page == 'matches-page.html' && settings.neverSet) {
-    //     alert('You have to choose settings first!');
-    //     menu.close();
-    //     myNavigator.resetToPage('settings-page.html', {animation: 'fade'});
-    // } else {
-    menu.close();
-    myNavigator.resetToPage(page, { animation: 'fade' });
-    // }
-
-};
-
-//setting up localStorage
-var storage = window.localStorage;
-
-Storage.prototype.setArray = function(key, obj) {
-    return this.setItem(key, JSON.stringify(obj))
-};
-Storage.prototype.getArray = function(key) {
-    return JSON.parse(this.getItem(key))
-};
-
-//global vars for settings
-var firstLoad = true;
-
-var animalType = null;
-
-var settings = {
-    animalType: null,
-    location: false,
-    zip: null,
-    age: "any",
-    size: "any",
-    sex: "any",
-    breed: "any",
-    neverSet: true
-};
-
-
 (function() {
-    document.addEventListener('deviceready', function (event) {
 
+    //cordova - add listener to DOM & check deviceready event
+    document.addEventListener('deviceready', function(event) {
+        //prevent any bound defaults
         event.preventDefault();
+        const API_KEY = '2350ef4b4c00d28ac3a15bf88648b19e';
+
+        //setting up localStorage
+        var storage = window.localStorage;
+
+        Storage.prototype.setArray = function(key, obj) {
+            return this.setItem(key, JSON.stringify(obj))
+        };
+        Storage.prototype.getArray = function(key) {
+            return JSON.parse(this.getItem(key))
+        };
+
+        //global vars for settings
+        var firstLoad = true;
+
+        var animalType = null;
+
+        var settings = {
+            animalType: null,
+            location: false,
+            zip: null,
+            age: "any",
+            size: "any",
+            sex: "any",
+            breed: "any",
+            neverSet: true
+        };
+        console.log("cordova checked...device ready");
 
         function onsInit(event) {
             //properties - initial page load
             var page = event.target;
             console.log("page-event="+page.id);
             //load main menu and navigation
-            onsMenu();
+            onsMenu(page);
             //check home page
-            if (page.id === 'splitter') {
+            if (page.id === 'settings') {
                 //set initial breed list to dog
                 updateBreedSelect('dog');
 
@@ -98,77 +76,78 @@ var settings = {
                 $("#submit-button").off().on("click", function() {
                     submitSettings();
                 });
-
             }
 
-            if (page.matches('matches-page')) {
-                function setInitialMatch() {
-                    $("#no-more-matches-text").remove();
-                    $("#matches-pet-photo").removeClass("no-more-matches");
-                    var cachedPetsArray = storage.getArray("petsArray");
-                    var fullSizePhotos = cachedPetsArray[0].photos;
-                    if(fullSizePhotos !== []) {
-                        $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
-                    } else {
-                        $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
-                    }
-                    $('#matches-pet-info').empty();
-                    $('#matches-pet-info').append(cachedPetsArray[0].name + " | " + cachedPetsArray[0].age + " |" +
-                        " " + (cachedPetsArray[0].gender === "M" ? "Male" : "Female") + " | " +
-                        petSizeAbbreviationToFull(cachedPetsArray[0].size));
+        }
+
+        /*
+        * ons menu - splitter and nav
+        */
+
+        //onsen - main menu
+        function onsMenu(page) {
+            //main menu
+            var menu = document.getElementById('menu');
+            //menu link - querySelectorAll due to more than one per page
+            var menuLink = document.querySelectorAll('.menu-link');
+            //splitter content
+            var content = document.getElementById('content');
+
+            //check initial page has actually loaded - forces script to wait before getting menu-open (otherwise returns null...)
+            if (page.id === 'settings' || page.id === 'matches' || page.id === 'match-map') {
+                console.log("page id = "+page.id);
+                //get menu icon - query selector OK due to one per ons page
+                var menuOpen = document.querySelector('.menu-open');
+                //check menu open is stored...
+                if (menuOpen) {
+                    console.log("menu open stored...");
                 }
 
-                function petSizeAbbreviationToFull(abbreviation) {
-                    switch (abbreviation) {
-                        case 'S':
-                            return "Small";
-                            break;
-                        case 'M':
-                            return "Medium";
-                            break;
-                        case 'L':
-                            return "Large";
-                            break;
-                        case 'XL':
-                            return "Extra Large";
-                            break;
-                    }
-                }
-
+                //add event listener for main menu
+                menuOpen.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    //open main menu for current page
+                    menu.open();
+                    console.log("menu opened...");
+                }, false);
             }
-            if (page.matches('pageNav1')) {
-                $("#page1-push").off().on("click", function() {
-                    $('#myNavigator').pushPage('pageNav1.html');
-                });
-                $("#page1-pop").off().on("click", function() {
-                    $('#myNavigator').popPage();
-                });
+            //add handler for menu links
+            onsMenuLink(page, menuLink, menu);
+            //set navigation
+            onsNav(page);
 
-            }
-            if (page.matches('pageNav2')) {
-                $(".page2-push").off().on("click", function() {
-                    $('#myNavigator').pushPage('pageNav2.html');
-                });
+        }
 
+        //onsen - menu links
+        function onsMenuLink(page, menuLink, menu) {
+            if (page.id === 'menu.html') {
+                console.log("menu target...");
+                //add listener per menu link
+                Array.from(menuLink).forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        var url = this.getAttribute('url');
+                        console.log("menu link = "+ url);
+                        content.load(url)
+                            .then(menu.close.bind(menu));
+                    }, false);
+                });
             }
         }
 
-        function onsMenu () {
-            $("#menu-settings").off().on("click", function () {
-                fn.load('settings-page.html');
-            });
-
-            $("#menu-match").off().on("click", function () {
-                fn.load('match-page.html');
-            });
-
-            $("#menu-match-map").off().on("click", function () {
-                fn.load('match-map-page.html');
-            });
-
-            $(".hamburger-menu").off().on("click", function() {
-                fn.open();
-            });
+        //onsen - set stack-based navigation
+        function onsNav(page) {
+            console.log('onsNav page.id='+page.id);
+            console.log(page.nodeName.toLowerCase());
+            if (page.id === 'settings') {
+                page.querySelector('#fab-open').onclick = function() {
+                    document.querySelector('#navigator').pushPage('fab.html', {data: {title: 'fab page'}});
+                    console.log("push page title");
+                };
+            } else if (page.id === 'fab') {
+                page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+                console.log("page title = "+page.data.title);
+            }
         }
 
         //settings helper functions
@@ -334,9 +313,89 @@ var settings = {
             // setInitialMatch();
         }
 
+        //onsen - init event is fired after ons-page attached to DOM...
         document.addEventListener('init', onsInit, false);
-        // setTimeout(onsInit, 1000);
 
     }, false);
 
 })();
+
+// (function() {
+//     document.addEventListener('deviceready', function (event) {
+//
+//         event.preventDefault();
+//
+//         function onsInit(event) {
+//             //properties - initial page load
+//             var page = event.target;
+//             console.log("page-event="+page.id);
+//             //load main menu and navigation
+//             onsMenu();
+//             //check home page
+//             if (page.id === 'settings') {
+//
+//
+//             }
+//
+//             if (page.id === ('matches-page')) {
+//                 function setInitialMatch() {
+//                     $("#no-more-matches-text").remove();
+//                     $("#matches-pet-photo").removeClass("no-more-matches");
+//                     var cachedPetsArray = storage.getArray("petsArray");
+//                     var fullSizePhotos = cachedPetsArray[0].photos;
+//                     if(fullSizePhotos !== []) {
+//                         $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
+//                     } else {
+//                         $('#matches-pet-photo').attr("src", "../assets/icons/dog.svg");
+//                     }
+//                     $('#matches-pet-info').empty();
+//                     $('#matches-pet-info').append(cachedPetsArray[0].name + " | " + cachedPetsArray[0].age + " |" +
+//                         " " + (cachedPetsArray[0].gender === "M" ? "Male" : "Female") + " | " +
+//                         petSizeAbbreviationToFull(cachedPetsArray[0].size));
+//                 }
+//
+//                 function petSizeAbbreviationToFull(abbreviation) {
+//                     switch (abbreviation) {
+//                         case 'S':
+//                             return "Small";
+//                             break;
+//                         case 'M':
+//                             return "Medium";
+//                             break;
+//                         case 'L':
+//                             return "Large";
+//                             break;
+//                         case 'XL':
+//                             return "Extra Large";
+//                             break;
+//                     }
+//                 }
+//
+//             }
+//             if (page.id === ('pageNav1')) {
+//                 $("#page1-push").off().on("click", function() {
+//                     $('#myNavigator').pushPage('pageNav1.html');
+//                 });
+//                 $("#page1-pop").off().on("click", function() {
+//                     $('#myNavigator').popPage();
+//                 });
+//
+//             }
+//             if (page.id === ('pageNav2')) {
+//                 $(".page2-push").off().on("click", function() {
+//                     $('#myNavigator').pushPage('pageNav2.html');
+//                 });
+//
+//             }
+//         }
+//
+//
+//
+//
+//
+//         document.addEventListener('init', onsInit, false);
+//
+//
+//     }, false);
+//
+// })();
