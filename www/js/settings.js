@@ -62,14 +62,14 @@ var settings = {
             //load main menu and navigation
             onsMenu();
             //check home page
-            if (page.id ==='#settings-page') {
+            if (page.id === 'settings') {
                 //set initial breed list to dog
                 updateBreedSelect('dog');
 
-                $(document).off().on("click", "#x-button", function() {
+                $("#x-button").off().on("click", function() {
                     closeModal();
                 });
-                $(document).off().on("click", "#got-it-button", function() {
+                $('#got-it-button').off().on("click", function() {
                     closeModal();
                 });
 
@@ -78,30 +78,30 @@ var settings = {
                     firstLoad = false;
                 }
 
-                $(document).off().on("click", "#dog-button", function() {
+                $("#dog-button").off().on("click", function() {
                     selectAnimal('dog');
                 });
-                $(document).off().on("click", "#cat-button", function() {
+                $("#cat-button").off().on("click", function() {
                     selectAnimal('cat');
                 });
-                $(document).off().on("click", "#reptile-button", function() {
+                $("#reptile-button").off().on("click", function() {
                     selectAnimal('reptile');
                 });
-                $(document).off().on("click", "#horse-button", function() {
+                $("#horse-button").off().on("click", function() {
                     selectAnimal('horse');
-                });$(document).off().on("click", "#bird-button", function() {
+                });$("#bird-button").off().on("click", function() {
                     selectAnimal('bird');
                 });
-                $(document).off().on("click", "#smallfurry-button", function() {
+                $("#smallfurry-button").off().on("click", function() {
                     selectAnimal('smallfurry');
                 });
-                $(document).off().on("click", "#submit-button", function() {
+                $("#submit-button").off().on("click", function() {
                     submitSettings();
                 });
 
             }
 
-            if (page.matches('#matches-page')) {
+            if (page.id === ('matches-page')) {
                 function setInitialMatch() {
                     $("#no-more-matches-text").remove();
                     $("#matches-pet-photo").removeClass("no-more-matches");
@@ -136,17 +136,17 @@ var settings = {
                 }
 
             }
-            if (page.matches('#pageNav1')) {
-                $(document).off().on("click", "#page1-push", function() {
+            if (page.id === ('pageNav1')) {
+                $("#page1-push").off().on("click", function() {
                     $('#myNavigator').pushPage('pageNav1.html');
                 });
-                $(document).off().on("click", "#page1-pop", function() {
+                $("#page1-pop").off().on("click", function() {
                     $('#myNavigator').popPage();
                 });
 
             }
-            if (page.matches('#pageNav2')) {
-                $(document).off().on("click", ".page2-push", function() {
+            if (page.id === ('pageNav2')) {
+                $(".page2-push").off().on("click", function() {
                     $('#myNavigator').pushPage('pageNav2.html');
                 });
 
@@ -154,19 +154,19 @@ var settings = {
         }
 
         function onsMenu () {
-            $(document).off().on("click", "#menu-settings", function () {
+            $("#menu-settings").off().on("click", function () {
                 fn.load('settings-page.html');
             });
 
-            $(document).off().on("click", "#menu-match", function () {
+            $("#menu-match").off().on("click", function () {
                 fn.load('match-page.html');
             });
 
-            $(document).off().on("click", "#menu-match-map", function () {
+            $("#menu-match-map").off().on("click", function () {
                 fn.load('match-map-page.html');
             });
 
-            $(document).off().on("click", ".hamburger-menu", function() {
+            $(".hamburger-menu").off().on("click", function() {
                 fn.open();
             });
         }
