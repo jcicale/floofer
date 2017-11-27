@@ -54,6 +54,8 @@
     </dict>
     <key>UILaunchStoryboardName</key>
     <string>CDVLaunchScreen</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array/>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
   </dict>

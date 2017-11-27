@@ -25,6 +25,9 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
     <name>Floofer</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

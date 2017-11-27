@@ -22,6 +22,10 @@
 		973230C5C14D481B81310F07 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9574A6CA9C6470BBFC9FBA0 /* CoreLocation.framework */; };
 		06E7A0F1F70847BE87964949 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C356862AEE4813B4CA7091 /* CDVSplashScreen.m */; };
 		4926CC88A25C49C9A5315EF8 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 55568757FBBE45B690FBD9EE /* CDVViewController+SplashScreen.m */; };
+		0C3E0C3690A5454590256A50 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806F2AEA93F46369E34CE5A /* CDVConnection.m */; };
+		15E8E2025CB5484F82ECC6DD /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B953789D4EB451BA0D8EB06 /* CDVReachability.m */; };
+		21F57C4A68934FD6AA3256F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E80ADD9105043A69E1F4528 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7B78A848F90F43EA8036B998 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CCD4B0E850488DAAAEF3A0 /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,12 @@
 		55568757FBBE45B690FBD9EE /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		26F84801F2854EC0A7AFC502 /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		41026D3DE82C4D23880848B7 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		2806F2AEA93F46369E34CE5A /* CDVConnection.m */ = {isa = PBXFileReference; name = "CDVConnection.m"; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		1B953789D4EB451BA0D8EB06 /* CDVReachability.m */ = {isa = PBXFileReference; name = "CDVReachability.m"; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		530269686D9349AAACC98491 /* CDVConnection.h */ = {isa = PBXFileReference; name = "CDVConnection.h"; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		166A36A33890465B92CD07BF /* CDVReachability.h */ = {isa = PBXFileReference; name = "CDVReachability.h"; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		2E80ADD9105043A69E1F4528 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		17CCD4B0E850488DAAAEF3A0 /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,8 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				9E902B87F667417EA70E2F46 /* libz.tbd in Frameworks */,
 				973230C5C14D481B81310F07 /* CoreLocation.framework in Frameworks */,
+				21F57C4A68934FD6AA3256F0 /* SystemConfiguration.framework in Frameworks */,
+				7B78A848F90F43EA8036B998 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +166,8 @@
 			children = (
 				5B26065CBD244AFEBA1953C7 /* libz.tbd */,
 				D9574A6CA9C6470BBFC9FBA0 /* CoreLocation.framework */,
+				2E80ADD9105043A69E1F4528 /* SystemConfiguration.framework */,
+				17CCD4B0E850488DAAAEF3A0 /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,6 +201,10 @@
 				55568757FBBE45B690FBD9EE /* CDVViewController+SplashScreen.m */,
 				26F84801F2854EC0A7AFC502 /* CDVSplashScreen.h */,
 				41026D3DE82C4D23880848B7 /* CDVViewController+SplashScreen.h */,
+				2806F2AEA93F46369E34CE5A /* CDVConnection.m */,
+				1B953789D4EB451BA0D8EB06 /* CDVReachability.m */,
+				530269686D9349AAACC98491 /* CDVConnection.h */,
+				166A36A33890465B92CD07BF /* CDVReachability.h */,
 			);
 			name = Plugins;
 			path = "Floofer/Plugins";
@@ -303,6 +321,8 @@
 				78DE3A0D112F4F69A322072C /* CDVLocation.m in Sources */,
 				06E7A0F1F70847BE87964949 /* CDVSplashScreen.m in Sources */,
 				4926CC88A25C49C9A5315EF8 /* CDVViewController+SplashScreen.m in Sources */,
+				0C3E0C3690A5454590256A50 /* CDVConnection.m in Sources */,
+				15E8E2025CB5484F82ECC6DD /* CDVReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +357,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "Floofer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+				);
 			};
 			name = Debug;
 		};
@@ -358,6 +384,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "Floofer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+					"\"Floofer/Plugins/com.googlemaps.ios\"",
+				);
 			};
 			name = Release;
 		};

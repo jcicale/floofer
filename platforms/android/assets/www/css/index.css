@@ -113,14 +113,6 @@ body, div, p, button {
     font-family: "Lato-Light", sans-serif !important;
     font-size: .95em !important;
 }
-/*settings general styles*/
-.settings-legend {
-    text-align: center;
-}
-
-#settings-fieldset, #settings-fieldset div.ui-controlgroup-controls {
-    width: 100%;
-}
 
 /*animal selection styles*/
 ons-list-header#animal-select-header {
@@ -136,8 +128,8 @@ div.animal-buttons img {
 }
 
 div.animal-buttons {
-    display: inline-block;
-    margin: .5em 1.5em;
+    display: block;
+    margin: 1.2em auto;
     background-color: #ffffff;
     width: 5em;
     height: 5em;
@@ -149,74 +141,97 @@ div.animal-buttons.selected {
 }
 
 div.animal-buttons label {
+    position: relative;
     display: block;
     font-size: .8em;
     text-align: center;
     padding-top: 5px;
 }
 
-/*unique active button style for animal select*/
-div.ui-radio label.settings-icon-label.ui-btn-active.ui-radio-on {
-    background-color: #ffffff;
-    border: 3px solid #25a5c7;
-}
-
 /*settings divider line*/
 div.divider {
     height: 8px;
     border-top: 1px solid #d0ad0d;
-    margin-top: 8px;
+    margin-top: 15px;
+}
+/*other form content*/
+div.form-input {
+    margin: .5em 2em;
 }
 
-/*location settings*/
-div form label.location-flip-label {
-    font-size: .7em;
-    margin: 0;
-}
-
-form.location-switch-form {
-    margin-left: 20%;
-}
-
-p.centered {
-    margin-top: 13px;
-}
-
-/*drop down styles*/
-/*fixes drop down*/
-.ui-icon-carat-d:after{
-    background-color: #25a5c7 !important;
-}
-
-div div label.size-select-label, div div label.age-select-label, div div label.gender-select-label, div div label.breed-select-label {
+div.form-input ons-switch {
     display: inline-block;
-    float: left;
-    margin: 10px 10px 10px 2%;
+    margin: 5px .7em 5px 1.2em;
 }
 
-div.ui-field-contain.size-select-dropdown div.ui-select.ui-mini,
-div.ui-field-contain.breed-select-dropdown div.ui-select.ui-mini {
-    width: 75%;
+ons-progress-circular#location-progress {
+    width: 20px;
+    height: 20px;
+    margin-top: 7px;
 }
 
-div.ui-field-contain.gender-select-dropdown div.ui-select.ui-mini,
-div.ui-field-contain.age-select-dropdown div.ui-select.ui-mini {
-    width: 65%;
+ons-progress-circular#location-progress circle.progress-circular__primary {
+    stroke: #25a5c7;
 }
 
-a#size-select-button, a#gender-select-button, a#age-select-button, div#breed-select-button {
+ons-input#zip-input,
+ons-select.full-length-dropdown,
+ons-select.half-length-dropdown {
+    background-color: #f1f1f1;
+    display: block;
+    margin: 0 auto;
+    padding-left: 10px;
     border-radius: 2em;
+    font-size: .95em;
 }
 
-/*submit button*/
-div.floofer-button a#settings-submit-button, div.floofer-button div.ui-btn.ui-input-btn.ui-corner-all {
-    background-color: #25a5c7;
-    color: #ffffff;
-    margin-top: 5%;
-    border-radius: 2em;
+div.form-input ons-input#zip-input{
+    margin-top: 1.1em;
 }
 
-/*new user popup styles DONEEEEEEEE*/
+div.form-input ons-input#zip-input span {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+ons-input#zip-input input {
+    font-family: Lato-Light, sans-serif;
+    height: 2em;
+}
+
+ons-select.full-length-dropdown {
+    width: 70%;
+    padding: 0 15px;
+}
+
+ons-select.half-length-dropdown {
+    width: 50%;
+    padding: 0 15px;
+}
+
+ons-select.full-length-dropdown select.select-input,
+ons-select.half-length-dropdown select.select-input {
+    font-size: 1em !important;
+    font-family: Lato-Light !important;
+}
+
+div.row-container {
+    margin-top: 1.5em;
+}
+
+label.form-label {
+    display: block;
+    margin: auto 0 auto auto;
+}
+
+label.small-form-label {
+    display: block;
+    margin: 0 50%;
+    padding-top: 8px;
+}
+
+
+/*new user popup styles*/
 ons-dialog#new-user-info div.dialog {
     width: 80%;
 }
@@ -226,47 +241,133 @@ ons-dialog#new-user-info div.dialog div.dialog-container {
     text-align: center;
 }
 
-#got-it-button {
+#got-it-button, #submit-button, #inquire-button {
     background-color: #25a5c7;
     border-radius: 2em;
     text-align: center;
     width: 90%;
+    margin: auto;
+    display: block;
 }
 
 /*matches page styles*/
 
-.pet-description {
-    background-color: #ffffff;
+/*it's a match popup*/
+h1.match-header {
+    font-family: "Beyond The Mountains", sans-serif !important;
+    font-size: 2.7em;
 }
 
-div.ui-block-a.pet-photo {
-    display: block;
-    overflow: hidden;
-    height: 350px;
+ons-dialog#its-a-match div.dialog div.dialog-container{
+    background-color: #25a5c7;
+    color: #ffffff;
+    padding: 2em;
+}
+
+ons-dialog#its-a-match div.dialog {
+    width: 90%;
+}
+
+p.match-tagline {
+    text-align: center;
+    margin: auto auto;
+    font-size: .9em;
     width: 100%;
-    border-top-right-radius: 2em;
-    border-top-left-radius: 2em;
-    background-color: #ffffff;
 }
 
-.pet-photo img {
+#match-popup-photo {
     display: block;
     min-width: 100%;
     min-height: 100%;
 }
 
-p#matches-pet-info {
-    margin: 0;
-    padding: .8em;
-    font-size: small;
+div.match-photo {
+    margin: 1em auto;
+    display: block;
+    overflow: hidden;
+    height: 275px;
+    width: 100%;
+    border-radius: 1em;
+}
+
+img#keep-playing-icon {
+    width: 35px;
+    border: 3px solid #ffffff;
+    padding: 1.3em .5em;
+    border-radius: 2em;
+    margin: 1em auto;
+    display: block;
+}
+
+img#pet-profile-icon {
+    width: 34px;
+    border: 3px solid #ffffff;
+    padding: .55em;
+    border-radius: 2em;
+    margin: 1em auto;
+    display: block;
+}
+
+p.button-label {
+    margin: auto;
+    text-align: center;
+}
+
+/*page styles*/
+div.center.toolbar__center img{
+    vertical-align: middle;
+    width: 30%;
+    margin: 0 25%;
+}
+
+ons-gesture-detector#swipe-detector {
+    width: 100%;
+}
+
+div.pet-photo {
+    overflow: hidden;
+    height: 300px;
+    border-top-right-radius: 2em;
+    border-top-left-radius: 2em;
+    background-color: #ffffff;
+    width: 90%;
+    margin: 1.5em auto;
+}
+
+img#matches-pet-photo {
+    min-width: 100%;
+    min-height: 100%;
 }
 
 div.pet-description {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
+    background-color: white;
+    width: 90%;
+    margin: -1.5em auto 1.5em auto;
 }
 
-div.profile-container.swipe-left {
+p#matches-pet-info {
+    margin: 0;
+    padding: .8em;
+}
+
+ons-fab#pass-button, ons-fab#want-button {
+    margin: auto;
+    display: block;
+    background-color: #25a5c7;
+}
+
+ons-icon#pass-icon, ons-icon#heart-icon {
+    vertical-align: -10%;
+    color: #ffffff;
+}
+
+p.want-pass-button-label {
+    text-align: center;
+}
+
+ons-row.profile-container.swipe-left {
     -webkit-transition: -webkit-transform 250ms ease;
     -webkit-transform: translateX(-100%);
     -moz-transition: -moz-transform 250ms ease;
@@ -277,7 +378,7 @@ div.profile-container.swipe-left {
     transform: translateX(-100%);
 }
 
-div.profile-container.swipe-right {
+ons-row.profile-container.swipe-right {
     -webkit-transition: -webkit-transform 250ms ease;
     -webkit-transform: translateX(100%);
     -moz-transition: -moz-transform 250ms ease;
@@ -288,93 +389,53 @@ div.profile-container.swipe-right {
     transform: translateX(100%);
 }
 
-a#pass-button:after, a#want-button:after {
-    background-color: #25a5c7;
+/*map styles*/
+#map {
+    height: 300px;
+}
+
+/*profile page styles*/
+div#description-container {
+    background-color: white;
+    border-radius: 1em;
+    margin: .7em;
     padding: 1em;
-    border-radius: 2em;
-    margin: 0 -1.6em;
 }
 
-a#pass-button:visited, a#want-button:visited {
-    border: none;
-    color: unset;
- }
-
-a#pass-button, a#want-button {
-    background: none;
-    border: none;
-    white-space: normal;
-    padding-top: 5em;
-}
-
-img.no-more-matches {
-    width: 256px !important;
-    height: 256px !important;
-    margin: auto !important;
-    min-width: unset !important;
-    min-height: unset !important;
-}
-
-p#no-more-matches-text {
-    margin: 1em;
-    font-size: small;
-    text-align: center;
-}
-
-/*match popup*/
-h1.match-header {
-    font-family: "Beyond The Mountains";
-    font-size: 2.7em;
-}
-
-div#its-a-match {
-    background-color: #25a5c7;
-    color: #ffffff;
-}
-
-p.match-tagline {
-    text-align: center;
+div#description-container p {
+    overflow: scroll;
+    height: 150px;
     margin: 0;
-    font-size: .9em;
 }
 
-#match-popup-photo {
-    display: block;
+ons-carousel ons-carousel-item.profile-carousel-item {
+    overflow: hidden;
+    height: 300px;
+}
+
+ons-carousel ons-carousel-item.profile-carousel-item img.profile-carousel {
     min-width: 100%;
     min-height: 100%;
 }
 
-div.ui-block-a.match-photo {
-    margin: 1em auto;
-    display: block;
-    overflow: hidden;
-    height: 275px;
-    width: 100%;
-    border-radius: 1em;
+span#dot0 {
+    margin-left: 40%;
 }
 
-div.its-a-match-popup-container {
-    padding: 2em;
+span.carousel-dots {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #ffffff;
+    margin: 1em 1em 0 0;
 }
 
-img#keep-playing-icon {
-    width: 35px;
-    height: 100%;
-    border: 3px solid #ffffff;
-    padding: 1.4em .7em;
-    border-radius: 2em;
-    margin: 1em 2em;
+span.carousel-dots.selected-dot {
+    background-color: #25a5c7;
 }
 
-img#pet-profile-icon {
-    width: 35px;
-    border: 3px solid #ffffff;
-    padding: .7em;
-    border-radius: 2em;
-    margin: 1em 2em;
-}
-
-
-p.button-label {
-    margin: 0em 1.4em;
+div#carousel-dots-container.dots-present {
+    position: relative;
+    margin-top: -2.5em;
 }

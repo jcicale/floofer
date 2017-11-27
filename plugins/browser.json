@@ -21,6 +21,9 @@
         },
         "cordova-plugin-browsersync": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {
