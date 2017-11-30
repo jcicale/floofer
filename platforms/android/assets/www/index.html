@@ -185,8 +185,8 @@
                     <ons-col width="40%">
                         <ons-select id="gender-select" class="half-length-dropdown">
                             <option value="any">Any</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </ons-select>
                     </ons-col>
                 </ons-row>
@@ -309,17 +309,22 @@
     <ons-page id="match-profile">
         <ons-toolbar>
             <div class="left"><ons-back-button>Back</ons-back-button></div>
-            <div class="center">Match Profile</div>
+            <div class="center" id="match-title">Match Profile</div>
         </ons-toolbar>
         <!-- matchProfileContent - matchProfile content -->
         <div id="matchProfileContent" class="page-content">
             <ons-carousel swipeable auto-scroll overscrollable id="profile-photo-carousel"></ons-carousel>
             <div id="carousel-dots-container"></div>
             <div class="divider"></div>
-            <ons-button id="inquire-button"></ons-button>
-            <div id="description-container">
-                <p id="profile-pet-description"></p>
+            <div id="profile-pet-info"></div>
+            <div class="profile-paragraph-container">
+                <div id="profile-pet-contact"></div>
             </div>
+            <div id="description-container" class="profile-paragraph-container">
+                <div id="profile-pet-description"></div>
+            </div>
+            <ons-button id="inquire-button"></ons-button>
+
 
 
         </div>

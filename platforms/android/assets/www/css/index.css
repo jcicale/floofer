@@ -367,6 +367,20 @@ p.want-pass-button-label {
     text-align: center;
 }
 
+img.no-more-matches {
+    width: 256px;
+    height: 256px;
+    display: block;
+    margin: 2em auto;
+    min-width: unset !important;
+    min-height: unset !important;
+}
+
+p#no-more-matches-text {
+    padding: 1em;
+    margin-top: -2.5em;
+}
+
 ons-row.profile-container.swipe-left {
     -webkit-transition: -webkit-transform 250ms ease;
     -webkit-transform: translateX(-100%);
@@ -395,14 +409,19 @@ ons-row.profile-container.swipe-right {
 }
 
 /*profile page styles*/
-div#description-container {
+ons-toolbar div#match-title {
+    font-weight: 700 !important;
+    font-size: 1.2em !important;
+}
+
+div.profile-paragraph-container {
     background-color: white;
     border-radius: 1em;
     margin: .7em;
     padding: 1em;
 }
 
-div#description-container p {
+div#description-container div {
     overflow: scroll;
     height: 150px;
     margin: 0;
@@ -438,4 +457,18 @@ span.carousel-dots.selected-dot {
 div#carousel-dots-container.dots-present {
     position: relative;
     margin-top: -2.5em;
+}
+
+div#profile-pet-contact {
+    white-space: pre-wrap;
+}
+
+div#profile-pet-info {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.15em !important;
+}
+
+ons-button#inquire-button {
+    margin-bottom: .7em;
 }

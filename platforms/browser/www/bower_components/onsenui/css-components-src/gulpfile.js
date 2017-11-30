@@ -165,7 +165,7 @@ gulp.task('preview-assets', () => {
 ////////////////////////////////////////
 gulp.task('preview-js', function() {
   return rollup({
-    input: 'previewer-src/app.js',
+    input: 'previewer-src/floofer.js',
     plugins: [
       commonjs,
       babel(babelrc)
