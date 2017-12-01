@@ -38,8 +38,10 @@
         //google maps/geolocation vars
         var latitude;
         var longitude;
-        var geolocation = 0;
+        var geolocatedZip = 0;
         var geocoder;
+        var markersList;
+        var infoWindowsList;
 
         //keeping track of our current pet search
         var matchIndex = 0;
@@ -47,8 +49,19 @@
         var evenArray;
         var direction;
 
+        //initialize these to any stored pets
         var likedPets = [];
+        if (storage.getItem('likedPets')){
+            likedPets = storage.getArray('likedPets');
+        }
         var likedPetIds = [];
+        if (storage.getItem('likedPetIds')) {
+            likedPetIds = storage.getArray('likedPetIds');
+        }
+        console.log('init liked pets: ');
+        console.log(likedPets);
+        console.log('init liked pet ids: ');
+        console.log(likedPetIds);
 
         var currentQueryUrl;
         var offset;
@@ -106,7 +119,8 @@
                    } else {
                        latitude = 0;
                        longitude = 0;
-                       geolocation = 0;
+                       geolocatedZip = 0;
+                       settings.location = 0;
                        console.log('slider off');
                    }
                 });
@@ -235,23 +249,12 @@
                 });
 
             } else if (page.id === "match-map") {
-                var savedPets = storage.getArray('likedPets');
-                storage.removeItem('likedPetIds');
-                storage.setArray('likedPetIds', likedPetIds)
-                if (savedPets) {
-                    for (var i = 0; i < savedPets.length; i++) {
-                        likedPets.push(savedPets[i]);
-                    }
-                }
-                storage.setArray('likedPets', likedPets);
-                var petsToPin = likedPets;
-                likedPets = [];
 
                 if(!geocoder) {
                     geocoder = new google.maps.Geocoder;
                 }
 
-                initMap(petsToPin);
+                initMap(likedPets);
 
             }
         }
@@ -343,8 +346,10 @@
             } else if (page.id === 'match-profile') {
                 var shelterUrl = 'http://api.petfinder.com/shelter.get?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&id='
                     + page.data.shelterId + '&callback=?';
+                console.log(shelterUrl);
                 var shelterName;
                 $.getJSON(shelterUrl, function (data) {
+                    console.log(data);
                     shelterName = data.petfinder.shelter.name.$t;
                     });
                 page.querySelector('ons-toolbar .center').innerHTML = page.data.title + "'s Profile";
@@ -365,12 +370,30 @@
                         "\nLocation: " + getAddressString(page.data.contact);
                 }
 
-                    $('#inquire-button').off().on('click', function () {
-                    window.open('https://www.petfinder.com/' + animalType.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
-                        + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
-                        + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
-                        + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
+                $('#inquire-button').off().on('click', function () {
+                window.open('https://www.petfinder.com/' + animalType.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
+                    + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
+                    + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
+                    + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
                 });
+                $('#unmatch-button').off().on('click', function () {
+                   likedPetIds = likedPetIds.filter(function (e) {
+                       return e !== page.data.id;
+                   });
+                    storage.removeItem('likedPets');
+                    storage.setArray('likedPets', likedPets);
+
+                    console.log(likedPetIds);
+                   likedPets = likedPets.filter(function (e) {
+                      return e.id !== page.data.id;
+                   });
+                    storage.removeItem('likedPetIds');
+                    storage.setArray('likedPetIds', likedPetIds);
+
+                    $('#its-a-match').hide();
+                    document.querySelector('#navigator').popPage();
+                });
+
                 var breedString = "";
                 if (page.data.breed.length > 1) {
                     for (var i = 0; i <page.data.breed.length; i++) {
@@ -383,17 +406,23 @@
                 $('#profile-pet-info').append(page.data.age + " | " + (page.data.gender === "M" ? "Male" : "Female")
                     + " | " + petSizeAbbreviationToFull(page.data.size) + " | " + breedString);
 
-                for (var i = 0; i < page.data.photos.length; i++) {
-                    $('#profile-photo-carousel').append("<ons-carousel-item class='profile-carousel-item'><img" +
-                        " class='profile-carousel' src='" + page.data.photos[i] + "'></ons-carousel-item>");
-                }
-                if (page.data.photos.length > 1) {
+                if (page.data.photos !== 'null') {
                     for (var i = 0; i < page.data.photos.length; i++) {
-                        $('#carousel-dots-container').append("<span id='dot" + i + "' class='carousel-dots'></span>");
+                        $('#profile-photo-carousel').append("<ons-carousel-item class='profile-carousel-item'><img" +
+                            " class='profile-carousel' src='" + page.data.photos[i] + "'></ons-carousel-item>");
                     }
-                    document.getElementById('carousel-dots-container').classList.add('dots-present');
-                    document.getElementById('dot0').classList.add('selected-dot');
+                    if (page.data.photos.length > 1) {
+                        for (var i = 0; i < page.data.photos.length; i++) {
+                            $('#carousel-dots-container').append("<span id='dot" + i + "' class='carousel-dots'></span>");
+                        }
+                        document.getElementById('carousel-dots-container').classList.add('dots-present');
+                        document.getElementById('dot0').classList.add('selected-dot');
+                    }
+                } else {
+                    $('#profile-photo-carousel').append("<ons-carousel-item class='profile-carousel-item'><img" +
+                        " class='profile-carousel' src='../assets/icons/" + animalType + "-256.png'></ons-carousel-item>");
                 }
+
 
                 document.addEventListener('postchange', function(event) {
                     document.getElementById('dot' + event.lastActiveIndex).classList.remove('selected-dot');
@@ -452,7 +481,7 @@
                     if (results[0]) {
                         for (j = 0; j < results[0].address_components.length; j++) {
                             if (results[0].address_components[j].types[0] === 'postal_code')
-                                geolocation = results[0].address_components[j].short_name;
+                                geolocatedZip = results[0].address_components[j].short_name;
                                 $('#location-progress').removeAttr('indeterminate');
                         }
                     } else {
@@ -542,7 +571,7 @@
             matchIndex = 0;
 
             settings.animalType = animalType;
-            settings.location = geolocation;
+            settings.location = geolocatedZip;
             settings.zip = $("#zip-input").val();
             settings.age = $("#age-select").val();
             settings.size = $("#size-select").val();
@@ -552,24 +581,31 @@
             if (settings.animalType && (settings.location || settings.zip)) {
                 settings.neverSet = false;
 
-                $.getJSON(buildQueryUrl(settings), function (data) {
-                    console.log(data);
-                    offset = data.petfinder.lastOffset.$t;
-                    populateTemporaryPetsArray(data, 0);
+                makePetfinderAPICall(petfinderAPICallback);
 
-                });
                 $('#want-button').disabled = false;
                 $('#pass-button').disabled = false;
-
-                setTimeout(function() {
-                    currentPetsList = petsArray0;
-                    setInitialMatch();
-                }, 1500);
 
                 content.load('matches.html');
             }
             else alert("You must select an animal type and either enable location services or enter a zip.");
 
+        }
+
+        //query Petfinder
+        function makePetfinderAPICall(callback) {
+            $.getJSON(buildQueryUrl(settings), function (data) {
+                console.log(data);
+                offset = data.petfinder.lastOffset.$t;
+                populateTemporaryPetsArray(data, 0);
+
+                callback();
+            });
+        }
+        //complete when API call finishes
+        function petfinderAPICallback() {
+            currentPetsList = petsArray0;
+            setInitialMatch();
         }
 
         function populateTemporaryPetsArray(petData, arrayId) {
@@ -649,12 +685,6 @@
             } else if (arrayId === 1) {
                 petsArray1 = [];
                 for (var i = 0; i < petData.petfinder.pets.pet.length; i++) {
-
-                    if (likedPetIds) {
-                        if (likedPetIds.includes(petData.petfinder.pets.pet[i].id.$t)) {
-                            continue;
-                        }
-                    }
 
                     if (petData.petfinder.pets.pet[i].media.photos) {
                         var fullSizePhotos = getFullSizePhotosForSinglePet(petData.petfinder.pets.pet[i]);
@@ -769,12 +799,19 @@
             var currentPet = currentPetsList[matchIndex];
 
             if (direction === "swipe-right") {
-                $("#match-popup-photo").attr("src", currentPet.photos[0]);
+                if (currentPet.photos !== 'null') {
+                    $("#match-popup-photo").attr("src", currentPet.photos[0]);
+                } else $("#match-popup-photo").attr("src", "../assets/icons/" + animalType +"-256.png");
                 $("#likes-you-too").empty().prepend(currentPet.name + " likes you too! :)");
                 $("#pet-profile-icon").attr("src", getIconForAnimalType(animalType));
 
                 likedPets.push(currentPet);
+                storage.removeItem('likedPets');
+                storage.setArray('likedPets', likedPets);
+
                 likedPetIds.push(currentPet.id);
+                storage.removeItem('likedPetIds');
+                storage.setArray('likedPetIds', likedPetIds);
                 console.log(likedPetIds);
             }
 
@@ -800,7 +837,7 @@
                 if (currentPetsList[matchIndex].photos !== "null") {
                     $('#matches-pet-photo').attr("src", currentPetsList[matchIndex].photos[0]);
                 } else {
-                    $('#matches-pet-photo').attr("src", "assets/icons/" + animalType +"-256.png");
+                    $('#matches-pet-photo').attr("src", "../assets/icons/" + animalType +"-256.png");
                 }
                 $('#matches-pet-info').empty();
                 var breedString = "";
@@ -817,7 +854,7 @@
                     " " + (currentPetsList[matchIndex].gender === "M" ? "Male" : "Female") + " | " +
                     petSizeAbbreviationToFull(currentPetsList[matchIndex].size) + " | " + breedString);
             } else {
-                $("#matches-pet-photo").attr("src", "assets/icons/" + animalType +"-256.png").addClass("no-more-matches");
+                $("#matches-pet-photo").attr("src", "../assets/icons/" + animalType +"-256.png").addClass("no-more-matches");
                 $("#matches-pet-info").empty();
                 $("div.pet-description").append("<p id='no-more-matches-text'>Uh oh! That's all the matches we could" +
                     " find for you right now. Why don't you try <a id='settings-link'>adjusting your" +
@@ -886,8 +923,18 @@
         //map helper
         function initMap(petsToPin) {
             var mapcenter;
-            var map;
-            var star = "/assets/icons/star.png";
+            var map = null;
+
+            markersList = [];
+            infoWindowsList = [];
+
+            var likedPetAddresses = [];
+            for (var i = 0; i < petsToPin.length; i++) {
+                likedPetAddresses.push({
+                    address: getAddressString(petsToPin[i].contact),
+                    petId: petsToPin[i].id
+                });
+            }
 
             if (settings.location !== 0) {
                 mapcenter = settings.location.toString();
@@ -895,46 +942,148 @@
                 mapcenter = settings.zip.toString();
             } else mapcenter = '60657';
 
+            console.log(likedPetAddresses);
+
+            createMapAndUserMarker(likedPetAddresses, mapcenter, map, createMapAndUserMarkerCallback);
+
+
+        }
+
+        function createMapAndUserMarker(likedPetAddresses, mapcenter, map, callback) {
             geocoder.geocode( {'address': mapcenter}, function(results, status){
                 if (status === "OK") {
                     map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 4,
                         center: results[0].geometry.location
                     });
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        icon: star
+                    var infowindow = new google.maps.InfoWindow({
+                        content: "Your location (as of your most recent search)",
                     });
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        icon: "./assets/icons/star.png",
+                        title: 'userLocation'
+                    });
+                    marker.addListener('click', function() {
+                        for (var i = 0; i < markersList.length; i++) {
+                            if (i !== 0){
+                                markersList[i].setIcon('./assets/icons/blue-dot.png');
+                            }
+                        }
+                        for (var i = 0; i <infoWindowsList.length; i++) {
+                            infoWindowsList[i].close();
+                        }
+                        infowindow.open(map, marker);
+                    });
+                    markersList.push(marker);
+                    infoWindowsList.push(infowindow);
+                    callback(likedPetAddresses, map);
                 } else {
-                    console.log('Geocode was not successful for the following reason: ' + status);
+                    console.log('Geocode of user location not sucessful: ' + status);
                 }
             });
+        }
 
-            var likedPetAddresses = [];
-            for (var i = 0; i < petsToPin.length; i++) {
-                likedPetAddresses.push(getAddressString(petsToPin[i].contact));
-            }
-
-            console.log(likedPetAddresses);
+        function createMapAndUserMarkerCallback(likedPetAddresses, map) {
             for (var i = 0; i < likedPetAddresses.length; i++) {
-                geocoder.geocode( { 'address': likedPetAddresses[i]}, function(results, status) {
-                    if (status === 'OK') {
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
+                geocodePetsAddress(likedPetAddresses[i], geocodePetsAddressCallback, map, i, likedPetAddresses.length);
+            }
+        }
+
+        function geocodePetsAddress(petAddress, callback, map, index, length) {
+            geocoder.geocode( { 'address': petAddress.address}, function(results, status) {
+                if (status === 'OK') {
+                    var flag = false;
+                    var sameMarker;
+
+                    for (var i = 0; i < markersList.length; i++) {
+                        if ((markersList[i].getPosition().lat() === results[0].geometry.location.lat()) &&
+                            (markersList[i].getPosition().lng() === results[0].geometry.location.lng())) {
+                            flag = true;
+                            sameMarker = i;
+                        }
                     }
-                });
+                    //if there's already a marker in this location, add to that marker's infowindow
+                    if (flag) {
+                        var windowToChange = infoWindowsList[sameMarker];
+                        var currentContent = windowToChange.getContent();
+                        var newContent = currentContent + '<p> Location of ' + getLikedPetNameById(petAddress.petId) + '</p>';
+                        windowToChange.setContent(newContent);
+                    }
+                    //else create a new marker
+                    else {
+                        var contentString = '<p>Location of ' + getLikedPetNameById(petAddress.petId) + '</p>';
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                            id: petAddress.petId
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            placeId: results[0].place_id,
+                            icon: "./assets/icons/blue-dot.png"
+                        });
+
+                        marker.addListener('click', function() {
+                            for (var i = 0; i < markersList.length; i++) {
+                                if (i !== 0){
+                                    markersList[i].setIcon('./assets/icons/blue-dot.png');
+                                }
+                            }
+                            for (var i = 0; i <infoWindowsList.length; i++) {
+                                infoWindowsList[i].close();
+                            }
+                            marker.setIcon('./assets/icons/pink-dot.png');
+                            infowindow.open(map, marker);
+                        });
+                    }
+
+
+                    callback(petAddress, map, marker, infowindow, index, length);
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        function geocodePetsAddressCallback(petAddress, map, marker, infowindow, index, length){
+            if(marker) {
+                marker.setTitle(petAddress.petId);
+                markersList.push(marker);
             }
 
+            if (infowindow) {
+                infoWindowsList.push(infowindow);
+            }
+
+            if (index === length-1) {
+                for (var j = 0; j < markersList.length; j++) {
+                    markersList[j].setMap(map);
+                }
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0; i < markersList.length; i++) {
+                    bounds.extend(markersList[i].getPosition());
+                }
+
+                map.fitBounds(bounds);
+            }
+        }
+
+        function getLikedPetNameById(petId) {
+            for (var i = 0; i < likedPets.length; i++) {
+                if (likedPets[i].id === petId) {
+                    return likedPets[i].name;
+                }
+            }
         }
 
         //onsen - init event is fired after ons-page attached to DOM...
         document.addEventListener('init', onsInit, false);
 
     }, false);
+
+
 
 })();

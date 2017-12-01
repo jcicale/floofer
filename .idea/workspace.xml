@@ -2,23 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/floofer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/build/package.zip" afterPath="$PROJECT_DIR$/platforms/browser/build/package.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/bower_components/onsenui/css-components-src/gulpfile.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/bower_components/onsenui/css-components-src/gulpfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/bower_components/onsenui/css/onsen-css-components.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/bower_components/onsenui/css/onsen-css-components.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/bower_components/onsenui/css-components-src/gulpfile.js" afterPath="$PROJECT_DIR$/platforms/browser/www/bower_components/onsenui/css-components-src/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/bower_components/onsenui/css/onsen-css-components.css" afterPath="$PROJECT_DIR$/platforms/browser/www/bower_components/onsenui/css/onsen-css-components.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/onsenui/css-components-src/gulpfile.js" afterPath="$PROJECT_DIR$/www/bower_components/onsenui/css-components-src/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css" afterPath="$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/floofer.js" afterPath="$PROJECT_DIR$/www/js/floofer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,8 +45,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1650">
-              <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+            <state relative-caret-position="408">
+              <caret line="326" column="35" lean-forward="false" selection-start-line="326" selection-start-column="35" selection-end-line="326" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -57,18 +55,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="onsen-css-components.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="294" column="21" lean-forward="false" selection-start-line="294" selection-start-column="21" selection-end-line="294" selection-end-column="21" />
+            <state relative-caret-position="328">
+              <caret line="477" column="0" lean-forward="false" selection-start-line="477" selection-start-column="0" selection-end-line="477" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -77,8 +65,8 @@
       <file leaf-file-name="floofer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/floofer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="371" column="24" lean-forward="false" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
+            <state relative-caret-position="238">
+              <caret line="1084" column="14" lean-forward="false" selection-start-line="1084" selection-start-column="14" selection-end-line="1084" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -106,27 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>likedPEts</find>
-      <find>getarray</find>
-      <find>$.getJSON(queryUrl, function (data) {</find>
-      <find>storage</find>
-      <find>setinitial</find>
-      <find>submitsettings</find>
-      <find>1000</find>
-      <find>=== &quot;mat</find>
-      <find>settings</find>
-      <find>currentPetsList</find>
-      <find>likedPetIds</find>
-      <find>25</find>
-      <find>matchindex ===</find>
-      <find>currentpetslist =</find>
-      <find>populateNextMatch</find>
-      <find>storage.</find>
-      <find>populate</find>
-      <find>matchindex =</find>
-      <find>api</find>
-      <find>submitSettings</find>
-      <find>getjson</find>
       <find>#d0ad0d</find>
       <find>#e5be0a</find>
       <find>color</find>
@@ -134,8 +101,29 @@
       <find>css</find>
       <find>e5be0a</find>
       <find>25a5c7</find>
-      <find>inquire</find>
       <find>e4bd0a</find>
+      <find>inquire</find>
+      <find>includes</find>
+      <find>fullsizephotos</find>
+      <find>its-</find>
+      <find>256.png</find>
+      <find>storage.</find>
+      <find>content</find>
+      <find>petId</find>
+      <find>setTImeout</find>
+      <find>setTimeout</find>
+      <find>likedpets</find>
+      <find>likedPetIds</find>
+      <find>onsNav</find>
+      <find>navigator</find>
+      <find>geolocation</find>
+      <find>its-a</find>
+      <find>storage</find>
+      <find>ettings.location</find>
+      <find>bounds</find>
+      <find>markersList</find>
+      <find>/assets</find>
+      <find>./</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -180,8 +168,8 @@
         <option value="$PROJECT_DIR$/www/js/geolocation.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css" />
-        <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/js/floofer.js" />
       </list>
     </option>
@@ -237,6 +225,17 @@
               <item name="floofer" type="b2602c69:ProjectViewProjectNode" />
               <item name="floofer" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="floofer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="floofer" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="floofer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="floofer" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -278,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PhoneGap/Cordova.Emulate Browser">
+  <component name="RunManager" selected="PhoneGap/Cordova.Emulate Android">
     <configuration name="Emulate Android" type="PhoneGap" factoryName="PhoneGap/Cordova" editBeforeRun="true">
       <option name="myExecutable" value="/usr/local/bin/cordova" />
       <option name="myWorkDir" value="$PROJECT_DIR$" />
@@ -464,11 +463,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511812364060</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactor to allow for continuous and smooth loading of matches">
+      <created>1512013252223</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1512013252223</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="387996000" />
+    <option name="totallyTimeSpent" value="424730000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -525,7 +531,8 @@
     <MESSAGE value="no more matches working" />
     <MESSAGE value="onsen refactoring" />
     <MESSAGE value="location services, match page, image carousel" />
-    <option name="LAST_COMMIT_MESSAGE" value="location services, match page, image carousel" />
+    <MESSAGE value="refactor to allow for continuous and smooth loading of matches" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor to allow for continuous and smooth loading of matches" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -658,22 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="453" column="23" lean-forward="false" selection-start-line="453" selection-start-column="23" selection-end-line="453" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1650">
-          <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -682,10 +673,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="326" column="35" lean-forward="false" selection-start-line="326" selection-start-column="35" selection-end-line="326" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="477" column="0" lean-forward="false" selection-start-line="477" selection-start-column="0" selection-end-line="477" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/floofer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="371" column="24" lean-forward="false" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
+        <state relative-caret-position="238">
+          <caret line="1084" column="14" lean-forward="false" selection-start-line="1084" selection-start-column="14" selection-end-line="1084" selection-end-column="14" />
           <folding />
         </state>
       </provider>

@@ -117,7 +117,7 @@ body, div, p, button {
 /*animal selection styles*/
 ons-list-header#animal-select-header {
     text-transform: none;
-    background-color: #e5be0a;
+    background-color: #e4bd0a;
     text-align: center;
 }
 
@@ -137,7 +137,7 @@ div.animal-buttons {
 }
 
 div.animal-buttons.selected {
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
 }
 
 div.animal-buttons label {
@@ -171,7 +171,7 @@ ons-progress-circular#location-progress {
 }
 
 ons-progress-circular#location-progress circle.progress-circular__primary {
-    stroke: #25a5c7;
+    stroke: #0aa6e4;
 }
 
 ons-input#zip-input,
@@ -242,7 +242,7 @@ ons-dialog#new-user-info div.dialog div.dialog-container {
 }
 
 #got-it-button, #submit-button, #inquire-button {
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
     border-radius: 2em;
     text-align: center;
     width: 90%;
@@ -259,7 +259,7 @@ h1.match-header {
 }
 
 ons-dialog#its-a-match div.dialog div.dialog-container{
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
     color: #ffffff;
     padding: 2em;
 }
@@ -355,7 +355,7 @@ p#matches-pet-info {
 ons-fab#pass-button, ons-fab#want-button {
     margin: auto;
     display: block;
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
 }
 
 ons-icon#pass-icon, ons-icon#heart-icon {
@@ -451,7 +451,7 @@ span.carousel-dots {
 }
 
 span.carousel-dots.selected-dot {
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
 }
 
 div#carousel-dots-container.dots-present {
@@ -469,6 +469,9 @@ div#profile-pet-info {
     font-size: 1.15em !important;
 }
 
-ons-button#inquire-button {
-    margin-bottom: .7em;
+ons-button#unmatch-button {
+    color: #494949;
+    display: block;
+    text-decoration: underline;
+    text-align: center;
 }

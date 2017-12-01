@@ -469,6 +469,9 @@ div#profile-pet-info {
     font-size: 1.15em !important;
 }
 
-ons-button#inquire-button {
-    margin-bottom: .7em;
+ons-button#unmatch-button {
+    color: #494949;
+    display: block;
+    text-decoration: underline;
+    text-align: center;
 }
