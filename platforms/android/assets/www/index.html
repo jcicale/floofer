@@ -292,12 +292,41 @@
             <div class="center">Match Map</div>
         </ons-toolbar>
         <!-- define primary action button for page - md plus icon -->
-        <ons-fab position="bottom right">
-            <ons-icon id="fab-open" icon="md-plus"></ons-icon>
-        </ons-fab>
+        <!--<ons-fab position="bottom right">-->
+            <!--<ons-icon id="fab-open" icon="md-plus"></ons-icon>-->
+        <!--</ons-fab>-->
         <!-- matchMapContent - match map content -->
         <div id="matchMapContent" class="page-content">
             <div id="map"></div>
+            <div id="map-key">
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/star.png">
+                    <span class="label">You</span>
+                </div>
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/blue-dot.png">
+                    <span class="label">Your Floof matches</span>
+                </div>
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/pink-dot.png">
+                    <span class="label">Currently Selected</span>
+                </div>
+            </div>
+            <ons-row id="mini-profile">
+                <ons-col width="50%">
+                    <div id="mini-profile-picture-container" class="frame">
+                        <span class="helper"></span>
+                        <img id="mini-profile-picture" src="">
+                    </div>
+                </ons-col>
+                <ons-col width="50%">
+                    <div id="mini-profile-description-container">
+                        <p id="mini-profile-name"></p>
+                        <p id="mini-profile-description"></p>
+                        <p style="color: #696969; text-decoration: underline; font-weight: 700; margin: 0;">Tap to read more...</p>
+                    </div>
+                </ons-col>
+            </ons-row>
         </div>
     </ons-page>
 </ons-template>

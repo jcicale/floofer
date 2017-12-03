@@ -408,6 +408,63 @@ ons-row.profile-container.swipe-right {
     height: 300px;
 }
 
+div#map-key{
+    background-color: #FFFFFF;
+}
+
+div.key-item {
+    display: inline-block;
+    padding: 4px 0;
+    margin-left: 1em;
+}
+
+img.key-image {
+    width: 20px;
+    padding: 0 4px;
+}
+
+span.label {
+    font-weight: 700;
+    float: right;
+    margin-top: 3px;
+}
+
+div#mini-profile-description-container {
+    padding: 0 1em;
+    color: #000000;
+}
+
+img#mini-profile-picture {
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.frame {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+p#mini-profile-name {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+p#mini-profile-description{
+    height: 213px;
+    overflow: hidden;
+    margin: 0;
+}
+
 /*profile page styles*/
 ons-toolbar div#match-title {
     font-weight: 700 !important;

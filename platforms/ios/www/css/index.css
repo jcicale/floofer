@@ -117,7 +117,7 @@ body, div, p, button {
 /*animal selection styles*/
 ons-list-header#animal-select-header {
     text-transform: none;
-    background-color: #e5be0a;
+    background-color: #e4bd0a;
     text-align: center;
 }
 
@@ -137,7 +137,7 @@ div.animal-buttons {
 }
 
 div.animal-buttons.selected {
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
 }
 
 div.animal-buttons label {
@@ -160,8 +160,18 @@ div.form-input {
 }
 
 div.form-input ons-switch {
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
+    margin: 5px .7em 5px 1.2em;
+}
+
+ons-progress-circular#location-progress {
+    width: 20px;
+    height: 20px;
+    margin-top: 7px;
+}
+
+ons-progress-circular#location-progress circle.progress-circular__primary {
+    stroke: #0aa6e4;
 }
 
 ons-input#zip-input,
@@ -231,12 +241,13 @@ ons-dialog#new-user-info div.dialog div.dialog-container {
     text-align: center;
 }
 
-#got-it-button, #submit-button {
-    background-color: #25a5c7;
+#got-it-button, #submit-button, #inquire-button {
+    background-color: #0aa6e4;
     border-radius: 2em;
     text-align: center;
     width: 90%;
     margin: auto;
+    display: block;
 }
 
 /*matches page styles*/
@@ -248,7 +259,7 @@ h1.match-header {
 }
 
 ons-dialog#its-a-match div.dialog div.dialog-container{
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
     color: #ffffff;
     padding: 2em;
 }
@@ -344,7 +355,7 @@ p#matches-pet-info {
 ons-fab#pass-button, ons-fab#want-button {
     margin: auto;
     display: block;
-    background-color: #25a5c7;
+    background-color: #0aa6e4;
 }
 
 ons-icon#pass-icon, ons-icon#heart-icon {
@@ -354,6 +365,20 @@ ons-icon#pass-icon, ons-icon#heart-icon {
 
 p.want-pass-button-label {
     text-align: center;
+}
+
+img.no-more-matches {
+    width: 256px;
+    height: 256px;
+    display: block;
+    margin: 2em auto;
+    min-width: unset !important;
+    min-height: unset !important;
+}
+
+p#no-more-matches-text {
+    padding: 1em;
+    margin-top: -2.5em;
 }
 
 ons-row.profile-container.swipe-left {
@@ -381,4 +406,129 @@ ons-row.profile-container.swipe-right {
 /*map styles*/
 #map {
     height: 300px;
+}
+
+div#map-key{
+    background-color: #FFFFFF;
+}
+
+div.key-item {
+    display: inline-block;
+    padding: 4px 0;
+    margin-left: 1em;
+}
+
+img.key-image {
+    width: 20px;
+    padding: 0 4px;
+}
+
+span.label {
+    font-weight: 700;
+    float: right;
+    margin-top: 3px;
+}
+
+div#mini-profile-description-container {
+    padding: 0 1em;
+    color: #000000;
+}
+
+img#mini-profile-picture {
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.frame {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+p#mini-profile-name {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+p#mini-profile-description{
+    height: 213px;
+    overflow: hidden;
+    margin: 0;
+}
+
+/*profile page styles*/
+ons-toolbar div#match-title {
+    font-weight: 700 !important;
+    font-size: 1.2em !important;
+}
+
+div.profile-paragraph-container {
+    background-color: white;
+    border-radius: 1em;
+    margin: .7em;
+    padding: 1em;
+}
+
+div#description-container div {
+    overflow: scroll;
+    height: 150px;
+    margin: 0;
+}
+
+ons-carousel ons-carousel-item.profile-carousel-item {
+    overflow: hidden;
+    height: 300px;
+}
+
+ons-carousel ons-carousel-item.profile-carousel-item img.profile-carousel {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+span#dot0 {
+    margin-left: 40%;
+}
+
+span.carousel-dots {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #ffffff;
+    margin: 1em 1em 0 0;
+}
+
+span.carousel-dots.selected-dot {
+    background-color: #0aa6e4;
+}
+
+div#carousel-dots-container.dots-present {
+    position: relative;
+    margin-top: -2.5em;
+}
+
+div#profile-pet-contact {
+    white-space: pre-wrap;
+}
+
+div#profile-pet-info {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.15em !important;
+}
+
+ons-button#unmatch-button {
+    color: #494949;
+    display: block;
+    text-decoration: underline;
+    text-align: center;
 }

@@ -42,6 +42,8 @@
         var geocoder;
         var markersList;
         var infoWindowsList;
+        var currentlySelectedPet;
+        var currentlySelectedPetIdsList;
 
         //keeping track of our current pet search
         var matchIndex = 0;
@@ -63,6 +65,8 @@
         console.log('init liked pet ids: ');
         console.log(likedPetIds);
 
+        //for making additional calls to API without changing settings
+        //only load 25 at a time into each array
         var currentQueryUrl;
         var offset;
         var petsArray0 = [];
@@ -113,16 +117,16 @@
 
                 $("#location-services-switch").off().on("change", function() {
                     if (document.getElementById("location-services-switch").checked) {
-                         geocoder = new google.maps.Geocoder;
+                        geocoder = new google.maps.Geocoder;
                         $('#location-progress').attr('indeterminate', true);
-                         getLocation();
-                   } else {
-                       latitude = 0;
-                       longitude = 0;
-                       geolocatedZip = 0;
-                       settings.location = 0;
-                       console.log('slider off');
-                   }
+                        getLocation();
+                    } else {
+                        latitude = 0;
+                        longitude = 0;
+                        geolocatedZip = 0;
+                        settings.location = 0;
+                        console.log('slider off');
+                    }
                 });
 
                 $("#submit-button").off().on("click", function() {
@@ -323,9 +327,19 @@
             console.log('onsNav page.id='+page.id);
             console.log(page.nodeName.toLowerCase());
             if (page.id === 'match-map') {
-                page.querySelector('#fab-open').onclick = function() {
-                    document.querySelector('#navigator').pushPage('match-profile.html', {data: {title: 'match profile' +
-                    ' page'}});
+                page.querySelector('#mini-profile').onclick = function() {
+                    document.querySelector('#navigator').pushPage('match-profile.html',
+                        {data:
+                            {title: currentlySelectedPet.name,
+                                photos: currentlySelectedPet.photos,
+                                id: currentlySelectedPet.id,
+                                description: currentlySelectedPet.description,
+                                contact: currentlySelectedPet.contact,
+                                shelterId: currentlySelectedPet.shelterId,
+                                age: currentlySelectedPet.age,
+                                gender: currentlySelectedPet.gender,
+                                size: currentlySelectedPet.size,
+                                breed: currentlySelectedPet.breed}});
                     console.log("push page title");
                 };
             }else if (page.id === 'matches') {
@@ -351,7 +365,7 @@
                 $.getJSON(shelterUrl, function (data) {
                     console.log(data);
                     shelterName = data.petfinder.shelter.name.$t;
-                    });
+                });
                 page.querySelector('ons-toolbar .center').innerHTML = page.data.title + "'s Profile";
                 page.querySelector('#inquire-button').innerHTML = "Inquire about " + page.data.title;
                 page.querySelector('#profile-pet-description').innerHTML = page.data.description;
@@ -371,22 +385,22 @@
                 }
 
                 $('#inquire-button').off().on('click', function () {
-                window.open('https://www.petfinder.com/' + animalType.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
-                    + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
-                    + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
-                    + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
+                    window.open('https://www.petfinder.com/' + animalType.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
+                        + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
+                        + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
+                        + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
                 });
                 $('#unmatch-button').off().on('click', function () {
-                   likedPetIds = likedPetIds.filter(function (e) {
-                       return e !== page.data.id;
-                   });
+                    likedPetIds = likedPetIds.filter(function (e) {
+                        return e !== page.data.id;
+                    });
                     storage.removeItem('likedPets');
                     storage.setArray('likedPets', likedPets);
 
                     console.log(likedPetIds);
-                   likedPets = likedPets.filter(function (e) {
-                      return e.id !== page.data.id;
-                   });
+                    likedPets = likedPets.filter(function (e) {
+                        return e.id !== page.data.id;
+                    });
                     storage.removeItem('likedPetIds');
                     storage.setArray('likedPetIds', likedPetIds);
 
@@ -482,7 +496,7 @@
                         for (j = 0; j < results[0].address_components.length; j++) {
                             if (results[0].address_components[j].types[0] === 'postal_code')
                                 geolocatedZip = results[0].address_components[j].short_name;
-                                $('#location-progress').removeAttr('indeterminate');
+                            $('#location-progress').removeAttr('indeterminate');
                         }
                     } else {
                         window.alert('No results found, please enter your zip code.');
@@ -1003,26 +1017,36 @@
                             sameMarker = i;
                         }
                     }
-                    //if there's already a marker in this location, add to that marker's infowindow
+                    //if there's already a marker in this location, add to that marker's infowindow and petIds
                     if (flag) {
-                        var windowToChange = infoWindowsList[sameMarker];
-                        var currentContent = windowToChange.getContent();
+                        var windowToUpdate = infoWindowsList[sameMarker];
+                        var currentContent = windowToUpdate.getContent();
                         var newContent = currentContent + '<p> Location of ' + getLikedPetNameById(petAddress.petId) + '</p>';
-                        windowToChange.setContent(newContent);
+                        windowToUpdate.setContent(newContent);
+                        var markerToUpdate = markersList[sameMarker];
+                        var currentPetIdsList = markerToUpdate.petIds;
+                        currentPetIdsList.push(petAddress.petId);
+                        markerToUpdate.petIds = currentPetIdsList;
+                        console.log('look here!');
+                        console.log(windowToUpdate);
+                        console.log(markerToUpdate);
                     }
                     //else create a new marker
                     else {
-                        var contentString = '<p>Location of ' + getLikedPetNameById(petAddress.petId) + '</p>';
+                        var contentString = '<p id="pet' + petAddress.petId + '">Location of ' + getLikedPetNameById(petAddress.petId) + '</p>';
 
                         var infowindow = new google.maps.InfoWindow({
-                            content: contentString,
-                            id: petAddress.petId
+                            content: contentString
                         });
+
+                        var petIds = [];
+                        petIds.push(petAddress.petId);
 
                         var marker = new google.maps.Marker({
                             position: results[0].geometry.location,
                             placeId: results[0].place_id,
-                            icon: "./assets/icons/blue-dot.png"
+                            icon: "./assets/icons/blue-dot.png",
+                            petIds: petIds
                         });
 
                         marker.addListener('click', function() {
@@ -1034,8 +1058,12 @@
                             for (var i = 0; i <infoWindowsList.length; i++) {
                                 infoWindowsList[i].close();
                             }
+                            currentlySelectedPet = getLikedPetById(marker.petIds[0]);
+                            currentlySelectedPetIdsList = marker.petIds;
                             marker.setIcon('./assets/icons/pink-dot.png');
                             infowindow.open(map, marker);
+                            updateMiniProfile();
+
                         });
                     }
 
@@ -1068,6 +1096,15 @@
                 }
 
                 map.fitBounds(bounds);
+
+                if (currentlySelectedPet) {
+                    updateMiniProfile();
+                } else {
+                    markersList[1].setIcon('./assets/icons/pink-dot.png');
+                    currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
+                    currentlySelectedPetIdsList = markersList[1].petIds;
+                    updateMiniProfile();
+                }
             }
         }
 
@@ -1077,6 +1114,83 @@
                     return likedPets[i].name;
                 }
             }
+        }
+
+        function getLikedPetById(petId) {
+            for (var i = 0; i < likedPets.length; i++) {
+                if (likedPets[i].id === petId) {
+                    return likedPets[i];
+                }
+            }
+        }
+
+        function updateMiniProfile() {
+            for (var idx = 1; idx < markersList.length; idx++) {
+                if (markersList[idx].petIds.includes(currentlySelectedPetIdsList[0].id)) {
+                    markersList[idx].setIcon('./assets/icons/pink-dot.png');
+                }
+            }
+
+            $('#mini-profile').empty();
+
+            console.log(currentlySelectedPetIdsList);
+
+            if (currentlySelectedPetIdsList.length === 1) {
+                $('#mini-profile').append(
+                    "<ons-col width=\"50%\">\n" +
+                    "    <div id=\"mini-profile-picture-container\" class=\"frame\">\n" +
+                    "        <span class=\"helper\"></span>\n" +
+                    "        <img id=\"mini-profile-picture\" src=\"\">\n" +
+                    "    </div>\n" +
+                    "</ons-col>\n" +
+                    "<ons-col width=\"50%\">\n" +
+                    "    <div id=\"mini-profile-description-container\">\n" +
+                    "        <p id=\"mini-profile-name\"></p>\n" +
+                    "        <p id=\"mini-profile-description\"></p>\n" +
+                    "        <p style=\"color: #696969; text-decoration: underline; font-weight: 700; margin: 0;\">Tap to read more...</p>\n" +
+                    "    </div>\n" +
+                    "</ons-col>")
+
+                if(currentlySelectedPet.photos !== 'null'){
+                    $('#mini-profile-picture').attr('src', currentlySelectedPet.photos[0]);
+                } else $('#mini-profile-picture').attr('src', '../assets/icons/' + animalType + '-256.png');
+
+                document.querySelector('#mini-profile-name').innerHTML = currentlySelectedPet.name + ", " + currentlySelectedPet.age;
+                document.querySelector('#mini-profile-description').innerHTML = currentlySelectedPet.description;
+            } else {
+                $('#mini-profile').append(
+                    "<ons-list id='pets-list'>\n" +
+                    "    <ons-list-header>Pets at this Location</ons-list-header>\n" +
+                    "</ons-list>");
+                for (var i = 0; i < currentlySelectedPetIdsList.length; i++) {
+                    $('#pets-list').append(
+                        "<ons-list-item id='pet" + i + "' modifier=\"chevron longdivider\" tappable>\n" +
+                        "    <div class=\"left\">\n" +
+                        "        <img class=\"list-item__thumbnail\" src='" + getLikedPetById(currentlySelectedPetIdsList[i]).photos[0] + "'>\n" +
+                        "    </div>\n" +
+                        "    <div class=\"center\">\n" +
+                        "        <span class=\"list-item__title\">" + getLikedPetNameById(currentlySelectedPetIdsList[i]) + "</span>" +
+                        "        <span class=\"list-item__subtitle\">" +
+                        getLikedPetById(currentlySelectedPetIdsList[i]).age + " | " +
+                        (getLikedPetById(currentlySelectedPetIdsList[i]).gender === "M" ? "Male" : "Female") + " | " +
+                        petSizeAbbreviationToFull(getLikedPetById(currentlySelectedPetIdsList[i]).size) +
+                        "</span>\n" +
+                        "    </div>\n" +
+                        "</ons-list-item>\n");
+                }
+                for (var j = 0; j < currentlySelectedPetIdsList.length; j++) {
+                    document.getElementById('pet' + j).addEventListener('click', function(event) {
+                        event.preventDefault();
+
+                        var id = $(this).attr('id');
+                        id = id.replace(/\D/g,'');
+
+                        currentlySelectedPet = getLikedPetById(currentlySelectedPetIdsList[id]);
+                    }, false);
+                }
+
+            }
+
         }
 
         //onsen - init event is fired after ons-page attached to DOM...

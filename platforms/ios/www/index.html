@@ -12,14 +12,15 @@
     <link rel="stylesheet" type="text/css" href="bower_components/onsenui/css/onsen-css-components.css">
     <!-- cordova and ui js -->
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
     <!-- app scripts -->
     <script type="text/javascript" src="js/index.js"></script>
     <!--<script type="text/javascript" src="js/plugin.js"></script>-->
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/floofer.js"></script>
     <!--can't use geolocation until google API is implemented -->
-    <!--<script type="text/javascript" src="js/geolocation.js"></script>-->
+    <script type="text/javascript" src="js/geolocation.js"></script>
     <title>Floofer</title>
 </head>
 <body>
@@ -67,7 +68,7 @@
                     id="x-button"
                     style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px; box-shadow: none;">
                 <ons-icon
-                        style="color: #25a5c7"
+                        style="color: #0aa6e4"
                         icon="ion-close-circled"
                         id="new-user-x-icon"></ons-icon>
             </ons-button>
@@ -134,13 +135,14 @@
 
             <div>
                 <ons-row>
-                    <ons-col width="45%">
+                    <ons-col width="47%">
                         <div class="form-input">
                             <ons-switch id="location-services-switch"></ons-switch>
-                            <label style="display: block; text-align: center; padding-top: 5px;">Location Services</label>
+                            <ons-progress-circular id="location-progress"></ons-progress-circular>
+                            <label style="display: block; padding-top: 5px;">Location Services</label>
                         </div>
                     </ons-col>
-                    <ons-col width="10%">
+                    <ons-col width="8%">
                         <p style="text-align: center; margin-top: 1.5em;">or</p>
                     </ons-col>
                     <ons-col width="45%">
@@ -184,8 +186,8 @@
                     <ons-col width="40%">
                         <ons-select id="gender-select" class="half-length-dropdown">
                             <option value="any">Any</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </ons-select>
                     </ons-col>
                 </ons-row>
@@ -291,13 +293,41 @@
             <div class="center">Match Map</div>
         </ons-toolbar>
         <!-- define primary action button for page - md plus icon -->
-        <ons-fab position="bottom right">
-            <ons-icon id="fab-open" icon="md-plus"></ons-icon>
-        </ons-fab>
-        <h4>Match Map</h4>
+        <!--<ons-fab position="bottom right">-->
+            <!--<ons-icon id="fab-open" icon="md-plus"></ons-icon>-->
+        <!--</ons-fab>-->
         <!-- matchMapContent - match map content -->
         <div id="matchMapContent" class="page-content">
             <div id="map"></div>
+            <div id="map-key">
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/star.png">
+                    <span class="label">You</span>
+                </div>
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/blue-dot.png">
+                    <span class="label">Your Floof matches</span>
+                </div>
+                <div class="key-item">
+                    <img class="key-image" src="./assets/icons/pink-dot.png">
+                    <span class="label">Currently Selected</span>
+                </div>
+            </div>
+            <ons-row id="mini-profile">
+                <ons-col width="50%">
+                    <div id="mini-profile-picture-container" class="frame">
+                        <span class="helper"></span>
+                        <img id="mini-profile-picture" src="">
+                    </div>
+                </ons-col>
+                <ons-col width="50%">
+                    <div id="mini-profile-description-container">
+                        <p id="mini-profile-name"></p>
+                        <p id="mini-profile-description"></p>
+                        <p style="color: #696969; text-decoration: underline; font-weight: 700; margin: 0;">Tap to read more...</p>
+                    </div>
+                </ons-col>
+            </ons-row>
         </div>
     </ons-page>
 </ons-template>
@@ -308,11 +338,24 @@
     <ons-page id="match-profile">
         <ons-toolbar>
             <div class="left"><ons-back-button>Back</ons-back-button></div>
-            <div class="center"></div>
+            <div class="center" id="match-title">Match Profile</div>
         </ons-toolbar>
-        <h4>Match Profile Page</h4>
         <!-- matchProfileContent - matchProfile content -->
         <div id="matchProfileContent" class="page-content">
+            <ons-carousel swipeable auto-scroll overscrollable id="profile-photo-carousel"></ons-carousel>
+            <div id="carousel-dots-container"></div>
+            <div class="divider"></div>
+            <div id="profile-pet-info"></div>
+            <div class="profile-paragraph-container">
+                <div id="profile-pet-contact"></div>
+            </div>
+            <div id="description-container" class="profile-paragraph-container">
+                <div id="profile-pet-description"></div>
+            </div>
+            <ons-button id="inquire-button"></ons-button>
+            <ons-button id="unmatch-button" modifier="quiet">
+                <strong>x</strong> unmatch
+            </ons-button>
 
         </div>
     </ons-page>
