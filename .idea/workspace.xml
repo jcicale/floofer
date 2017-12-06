@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/js/jquery-2.1.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/jquery-2.1.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/jquery-2.1.4.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+    <list default="true" id="5df2ade2-c55c-48a8-aba2-41b8a49a24be" name="Default" comment="solved list bug">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/build/package.zip" afterPath="$PROJECT_DIR$/platforms/browser/build/package.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/Floofer.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/platforms/ios/Floofer.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/bower_components/onsenui/css-components-src/gulpfile.js" afterPath="$PROJECT_DIR$/platforms/ios/www/bower_components/onsenui/css-components-src/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/bower_components/onsenui/css/onsen-css-components.css" afterPath="$PROJECT_DIR$/platforms/ios/www/bower_components/onsenui/css/onsen-css-components.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/geolocation.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/geolocation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/floofer.js" afterPath="$PROJECT_DIR$/www/js/floofer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -50,8 +35,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4770">
-              <caret line="318" column="14" lean-forward="false" selection-start-line="318" selection-start-column="14" selection-end-line="318" selection-end-column="14" />
+            <state relative-caret-position="125">
+              <caret line="282" column="27" lean-forward="false" selection-start-line="282" selection-start-column="18" selection-end-line="282" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -60,8 +45,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7125">
-              <caret line="475" column="1" lean-forward="false" selection-start-line="475" selection-start-column="1" selection-end-line="475" selection-end-column="1" />
+            <state relative-caret-position="302">
+              <caret line="487" column="23" lean-forward="false" selection-start-line="487" selection-start-column="23" selection-end-line="487" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -70,10 +55,12 @@
       <file leaf-file-name="floofer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/floofer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="1186" column="0" lean-forward="false" selection-start-line="1186" selection-start-column="0" selection-end-line="1186" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="10" lean-forward="true" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
               <folding>
-                <marker date="1512264952000" expanded="true" signature="52374:52446" ph="..." />
+                <marker date="1512582458000" expanded="true" signature="47254:47308" ph="..." />
+                <marker date="1512582458000" expanded="true" signature="52793:52847" ph="..." />
+                <marker date="1512582458000" expanded="true" signature="54955:55027" ph="..." />
               </folding>
             </state>
           </provider>
@@ -101,16 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inquire</find>
-      <find>fullsizephotos</find>
-      <find>its-</find>
-      <find>256.png</find>
-      <find>storage.</find>
-      <find>content</find>
-      <find>petId</find>
-      <find>setTImeout</find>
-      <find>setTimeout</find>
-      <find>likedpets</find>
       <find>likedPetIds</find>
       <find>navigator</find>
       <find>geolocation</find>
@@ -131,6 +108,16 @@
       <find>includes</find>
       <find>currentlySelectedPet</find>
       <find>onsNav</find>
+      <find>match-map</find>
+      <find>show</find>
+      <find>unmatch</find>
+      <find>idx</find>
+      <find>if (current</find>
+      <find>overfl</find>
+      <find>overf</find>
+      <find>\n</find>
+      <find>assets</find>
+      <find>fitBounds</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -175,8 +162,8 @@
         <option value="$PROJECT_DIR$/www/js/geolocation.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/bower_components/onsenui/css/onsen-css-components.css" />
-        <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/js/floofer.js" />
       </list>
     </option>
@@ -370,7 +357,7 @@
       <workItem from="1510684356549" duration="31000" />
       <workItem from="1510684510040" duration="57385000" />
       <workItem from="1511048653261" duration="13921000" />
-      <workItem from="1512261708161" duration="2430000" />
+      <workItem from="1512261708161" duration="17163000" />
     </task>
     <task id="LOCAL-00001" summary="added some plugins, testing some onsen functionality">
       <created>1507602407586</created>
@@ -491,11 +478,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512148967438</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="solved list bug">
+      <created>1512265519467</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1512265519467</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="460931000" />
+    <option name="totallyTimeSpent" value="475664000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -512,15 +506,15 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16203336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31908396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28229666" sideWeight="0.584591" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28229666" sideWeight="0.41540906" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28229666" sideWeight="0.41540906" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941361" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28229666" sideWeight="0.584591" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3974563" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31908396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -554,11 +548,12 @@
     <MESSAGE value="location services, match page, image carousel" />
     <MESSAGE value="refactor to allow for continuous and smooth loading of matches" />
     <MESSAGE value="mostly map updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="mostly map updates" />
+    <MESSAGE value="solved list bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="solved list bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -686,28 +681,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
+    <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7125">
-          <caret line="475" column="1" lean-forward="false" selection-start-line="475" selection-start-column="1" selection-end-line="475" selection-end-column="1" />
+        <state relative-caret-position="125">
+          <caret line="282" column="27" lean-forward="false" selection-start-line="282" selection-start-column="18" selection-end-line="282" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
+    <entry file="file://$PROJECT_DIR$/www/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4770">
-          <caret line="318" column="14" lean-forward="false" selection-start-line="318" selection-start-column="14" selection-end-line="318" selection-end-column="14" />
+        <state relative-caret-position="302">
+          <caret line="487" column="23" lean-forward="false" selection-start-line="487" selection-start-column="23" selection-end-line="487" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/floofer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="1186" column="0" lean-forward="false" selection-start-line="1186" selection-start-column="0" selection-end-line="1186" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="10" lean-forward="true" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
           <folding>
-            <marker date="1512264952000" expanded="true" signature="52374:52446" ph="..." />
+            <marker date="1512582458000" expanded="true" signature="47254:47308" ph="..." />
+            <marker date="1512582458000" expanded="true" signature="52793:52847" ph="..." />
+            <marker date="1512582458000" expanded="true" signature="54955:55027" ph="..." />
           </folding>
         </state>
       </provider>

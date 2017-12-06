@@ -465,6 +465,29 @@ p#mini-profile-description{
     margin: 0;
 }
 
+p.currently-selected-pet {
+    font-weight: 700;
+    color: #0aa6e4;
+}
+
+ons-list#pets-list {
+    width: 100%;
+    /*background-color: #e4bd0a;*/
+}
+
+.list-item--chevron:before {
+    border-right: 2px solid #0aa6e4 !important;
+    border-bottom: 2px solid #0aa6e4 !important;
+}
+
+/*.list-item__center {*/
+    /*background-image: linear-gradient(0deg, #ffffff, #ffffff 100%) !important;*/
+/*}*/
+
+/*ons-list#pets-list.list {*/
+    /*background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(#ffffff, #ffffff) !important;*/
+/*}*/
+
 /*profile page styles*/
 ons-toolbar div#match-title {
     font-weight: 700 !important;

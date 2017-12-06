@@ -258,8 +258,7 @@
                     geocoder = new google.maps.Geocoder;
                 }
 
-                initMap(likedPets);
-
+                initMap();
             }
         }
 
@@ -394,17 +393,48 @@
                     likedPetIds = likedPetIds.filter(function (e) {
                         return e !== page.data.id;
                     });
-                    storage.removeItem('likedPets');
-                    storage.setArray('likedPets', likedPets);
 
-                    console.log(likedPetIds);
                     likedPets = likedPets.filter(function (e) {
                         return e.id !== page.data.id;
                     });
+
+                    storage.removeItem('likedPets');
+                    storage.setArray('likedPets', likedPets);
+
                     storage.removeItem('likedPetIds');
                     storage.setArray('likedPetIds', likedPetIds);
 
+
+                    for (var i = 1; i < markersList.length; i++) {
+                        if (markersList[i].petIds.length === 1) {
+                            if (markersList[i].petIds[0] === page.data.id) {
+                                markersList[i].setMap(null);
+                                markersList[i] = null;
+                                markersList.splice(i, 1);
+                            }
+                        } else {
+                            for (var j = 0; j < markersList[i].petIds.length; j++) {
+                                if (markersList[i].petIds[j] === page.data.id) {
+                                    markersList[i].petIds.splice(j, i);
+                                }
+                            }
+                        }
+                    }
+                    if (markersList.length > 1) {
+                        markersList[1].setIcon('./assets/icons/pink-dot.png');
+                        currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
+                        currentlySelectedPetIdsList = markersList[1].petIds;
+                        updateMiniProfile();
+                    } else {
+                        currentlySelectedPet = null;
+                        currentlySelectedPetIdsList = [];
+                        $('#mini-profile').empty();
+                    }
+
+
+
                     $('#its-a-match').hide();
+
                     document.querySelector('#navigator').popPage();
                 });
 
@@ -935,7 +965,7 @@
         }
 
         //map helper
-        function initMap(petsToPin) {
+        function initMap() {
             var mapcenter;
             var map = null;
 
@@ -943,10 +973,10 @@
             infoWindowsList = [];
 
             var likedPetAddresses = [];
-            for (var i = 0; i < petsToPin.length; i++) {
+            for (var i = 0; i < likedPets.length; i++) {
                 likedPetAddresses.push({
-                    address: getAddressString(petsToPin[i].contact),
-                    petId: petsToPin[i].id
+                    address: getAddressString(likedPets[i].contact),
+                    petId: likedPets[i].id
                 });
             }
 
@@ -967,7 +997,7 @@
             geocoder.geocode( {'address': mapcenter}, function(results, status){
                 if (status === "OK") {
                     map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 4,
+                        zoom: 12,
                         center: results[0].geometry.location
                     });
                     var infowindow = new google.maps.InfoWindow({
@@ -999,9 +1029,21 @@
         }
 
         function createMapAndUserMarkerCallback(likedPetAddresses, map) {
-            for (var i = 0; i < likedPetAddresses.length; i++) {
-                geocodePetsAddress(likedPetAddresses[i], geocodePetsAddressCallback, map, i, likedPetAddresses.length);
+            if (likedPetAddresses.length === 0) {
+                markersList[0].setMap(map);
+
+                $('#mini-profile').append("<div>" +
+                    "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
+                    " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
+                    "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
+                    " your matches page or trying some new filters?</p>" +
+                    "</div>");
+            } else {
+                for (var i = 0; i < likedPetAddresses.length; i++) {
+                    geocodePetsAddress(likedPetAddresses[i], geocodePetsAddressCallback, map, i, likedPetAddresses.length);
+                }
             }
+
         }
 
         function geocodePetsAddress(petAddress, callback, map, index, length) {
@@ -1100,10 +1142,20 @@
                 if (currentlySelectedPet) {
                     updateMiniProfile();
                 } else {
-                    markersList[1].setIcon('./assets/icons/pink-dot.png');
-                    currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
-                    currentlySelectedPetIdsList = markersList[1].petIds;
-                    updateMiniProfile();
+                    if (markersList.length > 1) {
+                        markersList[1].setIcon('./assets/icons/pink-dot.png');
+                        currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
+                        currentlySelectedPetIdsList = markersList[1].petIds;
+                        updateMiniProfile();
+                    } else {
+                        $('#mini-profile').append("<div>" +
+                            "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
+                            " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
+                            "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
+                            " your matches page or trying some new filters?</p>" +
+                            "</div>");
+                    }
+
                 }
             }
         }
@@ -1126,7 +1178,7 @@
 
         function updateMiniProfile() {
             for (var idx = 1; idx < markersList.length; idx++) {
-                if (markersList[idx].petIds.includes(currentlySelectedPetIdsList[0].id)) {
+                if (markersList[idx].petIds.includes(currentlySelectedPet.id)) {
                     markersList[idx].setIcon('./assets/icons/pink-dot.png');
                 }
             }
@@ -1137,7 +1189,7 @@
 
             if (currentlySelectedPetIdsList.length === 1) {
                 $('#mini-profile').append(
-                    "<ons-col width=\"50%\">\n" +
+                    "<ons-col id='pet'" + currentlySelectedPetIdsList[0] + " width=\"50%\">\n" +
                     "    <div id=\"mini-profile-picture-container\" class=\"frame\">\n" +
                     "        <span class=\"helper\"></span>\n" +
                     "        <img id=\"mini-profile-picture\" src=\"\">\n" +
@@ -1164,7 +1216,8 @@
                     "</ons-list>");
                 for (var i = 0; i < currentlySelectedPetIdsList.length; i++) {
                     $('#pets-list').append(
-                        "<ons-list-item id='pet" + i + "' modifier=\"chevron longdivider\" tappable>\n" +
+                        "<ons-list-item id='pet" + currentlySelectedPetIdsList[i] + "' modifier=\"chevron" +
+                        " longdivider\" tappable>\n" +
                         "    <div class=\"left\">\n" +
                         "        <img class=\"list-item__thumbnail\" src='" + getLikedPetById(currentlySelectedPetIdsList[i]).photos[0] + "'>\n" +
                         "    </div>\n" +
@@ -1179,13 +1232,13 @@
                         "</ons-list-item>\n");
                 }
                 for (var j = 0; j < currentlySelectedPetIdsList.length; j++) {
-                    document.getElementById('pet' + j).addEventListener('click', function(event) {
+                    document.getElementById('pet' + currentlySelectedPetIdsList[j]).addEventListener('click', function(event) {
                         event.preventDefault();
 
                         var id = $(this).attr('id');
                         id = id.replace(/\D/g,'');
 
-                        currentlySelectedPet = getLikedPetById(currentlySelectedPetIdsList[id]);
+                        currentlySelectedPet = getLikedPetById(id);
                     }, false);
                 }
 
