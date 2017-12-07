@@ -18,5 +18,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <universal-links>
+        <host name="floofer-187121.app.goo.gl" scheme="https" />
+        <host name="floofer-187121.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <preference name="ShowSplashScreen" value="false" />
 </widget>

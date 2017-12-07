@@ -10,24 +10,24 @@
         "cordova-plugin-browsersync": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
+        "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-buildinfo": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "com.juliacicale.floofer",
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
-        "cordova-plugin-geolocation": {
-            "GEOLOCATION_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
-        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {
+        "com.googlemaps.ios": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         }

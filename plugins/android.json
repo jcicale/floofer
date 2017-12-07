@@ -24,6 +24,25 @@
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-buildinfo": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "com.juliacicale.floofer",
+            "ANDROID_SCHEME": " ",
+            "ANDROID_HOST": " ",
+            "ANDROID_PATHPREFIX": "/",
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-universal-links-plugin": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {

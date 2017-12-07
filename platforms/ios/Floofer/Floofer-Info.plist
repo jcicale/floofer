@@ -54,9 +54,14 @@
     </dict>
     <key>UILaunchStoryboardName</key>
     <string>CDVLaunchScreen</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array/>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string/>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.juliacicale.floofer</string>
+        </array>
+      </dict>
+    </array>
   </dict>
 </plist>

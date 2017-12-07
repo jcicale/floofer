@@ -1,72 +1,14 @@
 (function() {
-//
-//     //cordova - add listener to DOM & check deviceready event
-    //onsen - init event is fired after ons-page attached to DOM...
-    document.addEventListener('deviceready', function(event) {
-        //prevent any bound defaults
-        event.preventDefault();
 
-    // ons.ready(function () {
+    document.addEventListener('deviceready', function(event) {
+
+        event.preventDefault();
 
         const API_KEY_PF = '2350ef4b4c00d28ac3a15bf88648b19e';
         //initialize googlemaps api
         $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB2K5U_RRvqQVUF3GXSXmtLcugsIocZT4U");
 
         var firstLoad = true;
-
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var userId = user.uid;
-                var database = firebase.database();
-
-                function writeUserData(userId, displayName, email) {
-                    var userExists;
-                    var ref = firebase.database().ref("users/" + userId);
-                    ref.once("value")
-                        .then(function(snapshot) {
-                            userExists = snapshot.exists();
-                            if (!userExists) {
-                                firebase.database().ref('users/' + userId).set({
-                                    username: displayName,
-                                    email: email,
-                                    firstLoad: true,
-                                    likedPets: [],
-                                    likedPetIds: []
-                                });
-
-                                ons.ready(function() {
-                                    //hack because init and show are not calling on first load :(
-                                    onsShow();
-                                    document.addEventListener('show', onsShow, false);
-                                });
-
-                            } else {
-                                firebase.database().ref('users/' + userId + '/firstLoad').set(false);
-                                firstLoad = false;
-
-                                ons.ready(function() {
-                                    //hack because init and show are not calling on first load :(
-                                    onsShow();
-                                    document.addEventListener('show', onsShow, false);
-                                });
-                            }
-                        });
-                }
-                writeUserData(userId, displayName, email);
-
-
-            } else {
-                // User is signed out.
-                window.location = 'index.html';
-            }
-        }, function(error) {
-            console.log(error);
-        });
-
-
         //global vars for settings
         var animalType = null;
 
@@ -99,17 +41,7 @@
 
         //initialize these to any stored pets
         var likedPets = [];
-        // if (storage.getItem('likedPets')){
-        //     likedPets = storage.getArray('likedPets');
-        // }
         var likedPetIds = [];
-        // if (storage.getItem('likedPetIds')) {
-        //     likedPetIds = storage.getArray('likedPetIds');
-        // }
-        console.log('init liked pets: ');
-        console.log(likedPets);
-        console.log('init liked pet ids: ');
-        console.log(likedPetIds);
 
         //for making additional calls to API without changing settings
         //only load 25 at a time into each array
@@ -117,6 +49,77 @@
         var offset;
         var petsArray0 = [];
         var petsArray1 = [];
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var userId = user.uid;
+                var database = firebase.database();
+
+                function writeUserData(userId, displayName, email) {
+                    var userExists;
+                    var ref = database.ref("users/" + userId);
+                    ref.once("value")
+                        .then(function(snapshot) {
+                            userExists = snapshot.exists();
+                            if (!userExists) {
+                                firebase.database().ref('users/' + userId).set({
+                                    username: displayName,
+                                    email: email,
+                                    firstLoad: true
+                                });
+
+                                ons.ready(function() {
+                                    //hack because init and show are not calling on load :(
+                                    onsShow();
+                                    document.addEventListener('show', onsShow, false);
+                                });
+
+                            } else {
+                                firebase.database().ref('users/' + userId + '/firstLoad').set(false);
+                                firstLoad = false;
+
+                                var petListRef = database.ref("users/" + userId).child("likedPets");
+                                petListRef.once('value', function(snapshot) {
+                                    snapshot.forEach(function(childSnapshot) {
+                                        var childData = childSnapshot.val();
+                                        likedPets.push(childData);
+                                    });
+                                    console.log('init liked pets: ');
+                                    console.log(likedPets);
+                                });
+
+                                var petIdsListRef = database.ref("users/" + userId).child("likedPetIds");
+                                petIdsListRef.once('value', function(snapshot) {
+                                    snapshot.forEach(function(childSnapshot) {
+                                        var childData = childSnapshot.val();
+                                        likedPetIds.push(childData);
+                                    })
+                                    console.log('init liked pet ids: ');
+                                    console.log(likedPetIds);
+                                });
+
+                                ons.ready(function() {
+                                    console.log('ons ready firing');
+                                    //hack because init and show are not calling on load :(
+                                    onsShow();
+                                    document.addEventListener('show', onsShow, false);
+                                });
+                            }
+                        });
+                }
+                writeUserData(userId, displayName, email);
+
+
+            } else {
+                // User is signed out.
+                window.location = 'index.html';
+            }
+        }, function(error) {
+            console.log(error);
+        });
 
         console.log("cordova checked...device ready");
 
@@ -145,7 +148,7 @@
                 //set initial breed list to dog
                 updateBreedSelect('dog');
 
-                $("#settings-logout").on("click", function() {
+                $("#settings-logout").off().on("click", function() {
                     firebase.auth().signOut().then(function() {
                         // Sign-out successful.
                         window.location = "index.html";
@@ -233,7 +236,7 @@
                     tabbar.setActiveTab(0);
                 }
 
-                $("#matches-logout").on("click", function() {
+                $("#matches-logout").off().on("click", function() {
                     firebase.auth().signOut().then(function() {
                         // Sign-out successful.
                         window.location = "index.html";
@@ -247,23 +250,63 @@
                     populateNextMatch();
                 }
 
-                $('#keep-playing-icon').on('tap', function() {
+                $('#keep-playing-icon').off().on('tap', function() {
                     $('#its-a-match').hide();
                 });
 
-                ons.GestureDetector(document.querySelector('#pet-swipe')).on('swipeleft swiperight', function(event) {
-                    if (event.type === 'swipeleft') {
-                        console.log('swipe left');
-                        direction = "swipe-left";
-                        addDirectionTransitionAndSaveMatches ("swipe-left");
-                    } else if (event.type === 'swiperight') {
-                        console.log ('drag left');
-                        direction = "swipe-right";
-                        addDirectionTransitionAndSaveMatches ("swipe-right");
+                document.addEventListener('swipeleft swiperight', function(event) {
+                    if (event.target.matches('#pet-swipe')) {
+                        if (event.type === 'swipeleft') {
+                            if (matchIndex === currentPetsList.length - 6) {
+                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
+                                console.log(queryUrl);
+                                $.getJSON(queryUrl, function (data) {
+                                    console.log(data);
+                                    offset = data.petfinder.lastOffset.$t;
+                                    if (evenArray) {
+                                        populateTemporaryPetsArray(data, 1);
+                                    } else populateTemporaryPetsArray(data, 0);
+
+                                });
+                            }
+                            if (matchIndex === currentPetsList.length - 1) {
+                                if (evenArray) {
+                                    currentPetsList = petsArray1;
+                                    evenArray = !evenArray;
+                                } else {
+                                    currentPetsList = petsArray0;
+                                    evenArray = !evenArray;
+                                }
+                            }
+                            direction = "swipe-left";
+                            addDirectionTransitionAndSaveMatches ("swipe-left");
+                        } else if (event.type === 'swiperight') {
+                            if (matchIndex === currentPetsList.length - 6) {
+                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
+                                $.getJSON(queryUrl, function (data) {
+                                    offset = data.petfinder.lastOffset.$t;
+                                    if (evenArray) {
+                                        populateTemporaryPetsArray(data, 1);
+                                    } else populateTemporaryPetsArray(data, 0);
+
+                                });
+                            }
+                            if (matchIndex === currentPetsList.length -1) {
+                                if (evenArray) {
+                                    currentPetsList = petsArray1;
+                                    evenArray = !evenArray;
+                                } else {
+                                    currentPetsList = petsArray0;
+                                    evenArray = !evenArray;
+                                }
+                            }
+                            direction = "swipe-right";
+                            addDirectionTransitionAndSaveMatches("swipe-right");
+                        }
                     }
                 });
 
-                $("#pass-button").on("tap", function() {
+                $("#pass-button").off().on("tap", function() {
                     if (matchIndex === currentPetsList.length - 6) {
                         var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
                         console.log(queryUrl);
@@ -289,7 +332,7 @@
                     addDirectionTransitionAndSaveMatches ("swipe-left");
                 });
 
-                $("#want-button").on("tap", function() {
+                $("#want-button").off().on("tap", function() {
                     if (matchIndex === currentPetsList.length - 6) {
                         var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
                         $.getJSON(queryUrl, function (data) {
@@ -354,11 +397,13 @@
 
         //onsen - set stack-based navigation
         function onsNav(page) {
-            // console.log('onsNav page.id='+page.id);
-            // console.log(page.nodeName.toLowerCase());
+            console.log('onsen nav bullshit garbage');
+            console.log(page);
+            console.log('onsNav page.id='+page.id);
+            console.log(page.nodeName.toLowerCase());
             if (page.id === 'match-map') {
-                if (likedPetIds && currentlySelectedPet) {
-                    page.querySelector('#mini-profile').onclick = function() {
+                if (likedPetIds) {
+                    document.querySelector('#mini-profile').onclick = function() {
                         document.querySelector('#navigator').pushPage('match-profile.html',
                             {data:
                                 {   title: currentlySelectedPet.name,
@@ -377,7 +422,7 @@
                 }
 
             }else if (page.id === 'matches') {
-                page.querySelector("#pet-profile-icon").onclick = function() {
+                document.querySelector("#pet-profile-icon").onclick = function() {
                     document.querySelector('#navigator').pushPage('match-profile.html',
                         {data:
                             {   title: currentPetsList[matchIndex-1].name,
@@ -393,96 +438,88 @@
                                 breed: currentPetsList[matchIndex-1].breed}});
                 }
             } else if (page.id === 'match-profile') {
-                var shelterUrl = 'http://api.petfinder.com/shelter.get?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&id='
-                    + page.data.shelterId.toLowerCase() + '&callback=?';
-                console.log(shelterUrl);
-                var shelterName;
-                $.getJSON(shelterUrl, function (data) {
-                    console.log(data);
-                    shelterName = data.petfinder.shelter.name.$t;
-                });
+                //stupid petfinder broke their stupid api
+
+                // var shelterUrl = 'http://api.petfinder.com/shelter.get?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&id='
+                //     + page.data.shelterId + '&callback=?';
+                // console.log(shelterUrl);
+                // var shelterName;
+                // $.getJSON(shelterUrl, function (data) {
+                //     console.log(data);
+                //     shelterName = data.petfinder.shelter.name.$t;
+                // });
                 page.querySelector('ons-toolbar .center').innerHTML = page.data.title + "'s Profile";
                 page.querySelector('#inquire-button').innerHTML = "Inquire about " + page.data.title;
                 page.querySelector('#profile-pet-description').innerHTML = page.data.description;
-                if (page.data.contact.phone.$t && page.data.contact.email.$t) {
+                if (page.data.contact.phone && page.data.contact.email) {
                     page.querySelector('#profile-pet-contact').innerHTML = "<strong>Contact Information</strong>" +
                         "\nLocation: " + getAddressString(page.data.contact) +
-                        "\nPhone: " + page.data.contact.phone.$t + "\nEmail: " + page.data.contact.email.$t;
-                } else if (page.data.contact.phone.$t) {
+                        "\nPhone: " + page.data.contact.phone + "\nEmail: " + page.data.contact.email;
+                } else if (page.data.contact.phone) {
                     page.querySelector('#profile-pet-contact').innerHTML = "<strong>Contact Information</strong>" +
-                        "\nLocation: " + getAddressString(page.data.contact) + "\nPhone: " + page.data.contact.phone.$t;
-                } else if (page.data.contact.email.$t)  {
+                        "\nLocation: " + getAddressString(page.data.contact) + "\nPhone: " + page.data.contact.phone;
+                } else if (page.data.contact.email)  {
                     page.querySelector('#profile-pet-contact').innerHTML = "<strong>Contact Information</strong>" +
-                        "\nLocation: " + getAddressString(page.data.contact) +"\nEmail: " + page.data.contact.email.$t;
+                        "\nLocation: " + getAddressString(page.data.contact) +"\nEmail: " + page.data.contact.email;
                 } else {
                     page.querySelector('#profile-pet-contact').innerHTML = "<strong>Contact Information</strong>" +
                         "\nLocation: " + getAddressString(page.data.contact);
                 }
 
-                $('#inquire-button').off().on('click', function () {
-                    window.open('https://www.petfinder.com/' + page.data.type.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
-                        + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
-                        + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
-                        + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
-                });
+                // $('#inquire-button').off().on('click', function () {
+                //     window.open('https://www.petfinder.com/' + page.data.type.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
+                //         + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.toLowerCase() + "/"
+                //         + page.data.contact.city.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
+                //         + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
+                // });
                 $('#unmatch-button').off().on('click', function () {
                     likedPetIds = likedPetIds.filter(function (e) {
                         return e !== page.data.id;
                     });
+                    var likedPetIdsRef = firebase.database().ref("users/" + firebase.auth().currentUser.uid).child("likedPetIds");
+                    var likedPetIdsQuery = likedPetIdsRef.orderByValue().equalTo(page.data.id);
+                    likedPetIdsQuery.once("value", function(snapshot) {
+                        snapshot.ref.remove();
+                    });
+
 
                     likedPets = likedPets.filter(function (e) {
                         return e.id !== page.data.id;
                     });
+                    var likedPetsRef = firebase.database().ref("users/" + firebase.auth().currentUser.uid).child("likedPets");
+                    var likedPetsQuery = likedPetsRef.orderByChild('id').equalTo(page.data.id);
+                    likedPetsQuery.once("value", function(snapshot) {
+                        snapshot.ref.remove();
+                    });
 
-                    // storage.removeItem('likedPets');
-                    // storage.setArray('likedPets', likedPets);
-                    //
-                    // storage.removeItem('likedPetIds');
-                    // storage.setArray('likedPetIds', likedPetIds);
 
-
-                    for (var i = 1; i < markersList.length; i++) {
-                        if (markersList[i].petIds.length === 1) {
-                            if (markersList[i].petIds[0] === page.data.id) {
-                                markersList[i].setMap(null);
-                                markersList[i] = null;
-                                markersList.splice(i, 1);
-                            }
-                        } else {
-                            for (var j = 0; j < markersList[i].petIds.length; j++) {
-                                if (markersList[i].petIds[j] === page.data.id) {
-                                    markersList[i].petIds.splice(j, i);
+                    if (markersList) {
+                        for (var i = 1; i < markersList.length; i++) {
+                            if (markersList[i].petIds.length === 1) {
+                                if (markersList[i].petIds[0] === page.data.id) {
+                                    markersList[i].setMap(null);
+                                    markersList[i] = null;
+                                    markersList.splice(i, 1);
+                                }
+                            } else {
+                                for (var j = 0; j < markersList[i].petIds.length; j++) {
+                                    if (markersList[i].petIds[j] === page.data.id) {
+                                        markersList[i].petIds.splice(j, i);
+                                    }
                                 }
                             }
                         }
+                        if (markersList.length > 1) {
+                            markersList[1].setIcon('./assets/icons/pink-dot.png');
+                            currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
+                            currentlySelectedPetIdsList = markersList[1].petIds;
+                            updateMiniProfile();
+                        } else {
+                            currentlySelectedPet = null;
+                            currentlySelectedPetIdsList = [];
+                            $('#mini-profile').empty();
+                        }
                     }
-                    if (markersList.length > 1) {
-                        markersList[1].setIcon('./assets/icons/pink-dot.png');
-                        currentlySelectedPet = getLikedPetById(markersList[1].petIds[0]);
-                        currentlySelectedPetIdsList = markersList[1].petIds;
-                        updateMiniProfile();
-                    } else {
-                        currentlySelectedPet = null;
-                        currentlySelectedPetIdsList = [];
-                        $('#mini-profile').empty();
-
-                        $('#mini-profile').append("<div id='no-pets-container'>" +
-                            "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
-                            " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
-                            "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
-                            " your <span id='matches-link'>matches page</span> or trying some new" +
-                            " <span id='settings-link'>filters?</span></p>" +
-                            "</div>");
-
-                        document.getElementById("matches-link").addEventListener('click', function() {
-                            document.getElementById('tabbar').setActiveTab(1);
-                        });
-                        document.getElementById("settings-link").addEventListener('click', function() {
-                            document.getElementById('tabbar').setActiveTab(0);
-                        });
-                    }
-
-
 
                     $('#its-a-match').hide();
 
@@ -520,8 +557,10 @@
 
 
                 document.addEventListener('postchange', function(event) {
-                    document.getElementById('dot' + event.lastActiveIndex).classList.remove('selected-dot');
-                    document.getElementById('dot' + event.activeIndex).classList.add('selected-dot');
+                    if (event.target.id === 'profile-photo-carousel') {
+                        document.getElementById('dot' + event.lastActiveIndex).classList.remove('selected-dot');
+                        document.getElementById('dot' + event.activeIndex).classList.add('selected-dot');
+                    }
                 });
 
             }
@@ -718,6 +757,29 @@
                         }
                     } else breedList.push(petData.petfinder.pets.pet[i].breeds.breed.$t);
 
+                    var contactObject = {};
+                    if(petData.petfinder.pets.pet[i].contact.address1.$t) {
+                        contactObject.address1 = petData.petfinder.pets.pet[i].contact.address1.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.address2.$t) {
+                        contactObject.address2 = petData.petfinder.pets.pet[i].contact.address2.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.city.$t) {
+                        contactObject.city = petData.petfinder.pets.pet[i].contact.city.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.email.$t) {
+                        contactObject.email = petData.petfinder.pets.pet[i].contact.email.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.phone.$t) {
+                        contactObject.phone = petData.petfinder.pets.pet[i].contact.phone.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.state.$t) {
+                        contactObject.state = petData.petfinder.pets.pet[i].contact.state.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.zip.$t) {
+                        contactObject.zip = petData.petfinder.pets.pet[i].contact.zip.$t
+                    }
+
                     if (petData.petfinder.pets.pet[i].options && petData.petfinder.pets.pet[i].media.photos) {
                         petsArray0.push({
                             name: petData.petfinder.pets.pet[i].name.$t,
@@ -727,9 +789,8 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
-                            options: petData.petfinder.pets.pet[i].options.option,
                             photos: fullSizePhotos
                         });
                     } else if (petData.petfinder.pets.pet[i].options) {
@@ -741,9 +802,8 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
-                            options: petData.petfinder.pets.pet[i].options.option,
                             photos: "null"
                         });
                     } else if (petData.petfinder.pets.pet[i].media.photos) {
@@ -755,10 +815,9 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
                             photos: fullSizePhotos,
-                            options: "null"
 
                         });
                     } else {
@@ -770,10 +829,9 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
                             photos: "null",
-                            options: "null"
                         });
                     }
                 }
@@ -791,6 +849,29 @@
                         }
                     } else breedList.push(petData.petfinder.pets.pet[i].breeds.breed.$t);
 
+                    var contactObject = {};
+                    if(petData.petfinder.pets.pet[i].contact.address1.$t) {
+                        contactObject.address1 = petData.petfinder.pets.pet[i].contact.address1.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.address2.$t) {
+                        contactObject.address2 = petData.petfinder.pets.pet[i].contact.address2.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.city.$t) {
+                        contactObject.city = petData.petfinder.pets.pet[i].contact.city.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.email.$t) {
+                        contactObject.email = petData.petfinder.pets.pet[i].contact.email.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.phone.$t) {
+                        contactObject.phone = petData.petfinder.pets.pet[i].contact.phone.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.state.$t) {
+                        contactObject.state = petData.petfinder.pets.pet[i].contact.state.$t
+                    }
+                    if(petData.petfinder.pets.pet[i].contact.zip.$t) {
+                        contactObject.zip = petData.petfinder.pets.pet[i].contact.zip.$t
+                    }
+
                     if (petData.petfinder.pets.pet[i].options && petData.petfinder.pets.pet[i].media.photos) {
                         petsArray1.push({
                             name: petData.petfinder.pets.pet[i].name.$t,
@@ -800,8 +881,7 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
-                            options: petData.petfinder.pets.pet[i].options.option,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
                             photos: fullSizePhotos
                         });
@@ -814,9 +894,8 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
-                            options: petData.petfinder.pets.pet[i].options.option,
                             photos: "null"
                         });
                     } else if (petData.petfinder.pets.pet[i].media.photos) {
@@ -828,11 +907,9 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
                             photos: fullSizePhotos,
-                            options: "null"
-
                         });
                     } else {
                         petsArray1.push({
@@ -843,10 +920,9 @@
                             breed: breedList,
                             id: petData.petfinder.pets.pet[i].id.$t,
                             description: petData.petfinder.pets.pet[i].description.$t,
-                            contact: petData.petfinder.pets.pet[i].contact,
+                            contact: contactObject,
                             shelterId: petData.petfinder.pets.pet[i].shelterId.$t,
                             photos: "null",
-                            options: "null"
                         });
                     }
 
@@ -903,12 +979,13 @@
                 currentPet.animalType = animalType;
 
                 likedPets.push(currentPet);
-                // storage.removeItem('likedPets');
-                // storage.setArray('likedPets', likedPets);
+                var likedPetsRef = firebase.database().ref("users/" + firebase.auth().currentUser.uid).child("likedPets");
+                likedPetsRef.push(currentPet);
 
                 likedPetIds.push(currentPet.id);
-                // storage.removeItem('likedPetIds');
-                // storage.setArray('likedPetIds', likedPetIds);
+                var likedPetIdsRef = firebase.database().ref("users/" + firebase.auth().currentUser.uid).child("likedPetIds");
+                likedPetIdsRef.push(currentPet.id);
+
                 console.log(likedPetIds);
             }
 
@@ -999,20 +1076,20 @@
         //match profile helper functions
         function getAddressString(contactInfo) {
             var addressString = ""
-            if(contactInfo.address1.$t) {
-                addressString += contactInfo.address1.$t;
+            if(contactInfo.address1) {
+                addressString += contactInfo.address1;
             }
-            if (contactInfo.address2.$t) {
-                addressString += ", " + contactInfo.address2.$t;
+            if (contactInfo.address2) {
+                addressString += ", " + contactInfo.address2;
             }
-            if (contactInfo.city.$t) {
-                addressString += " " + contactInfo.city.$t;
+            if (contactInfo.city) {
+                addressString += " " + contactInfo.city;
             }
-            if (contactInfo.state.$t) {
-                addressString += ", " + contactInfo.state.$t;
+            if (contactInfo.state) {
+                addressString += ", " + contactInfo.state;
             }
-            if (contactInfo.zip.$t) {
-                addressString += " " + contactInfo.zip.$t;
+            if (contactInfo.zip) {
+                addressString += " " + contactInfo.zip;
             }
             return addressString;
         }
@@ -1315,10 +1392,5 @@
 
         }
 
-
-
     }, false);
-//
-//     });
-//
 })();
