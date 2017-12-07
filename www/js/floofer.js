@@ -1,9 +1,12 @@
 (function() {
-
-    //cordova - add listener to DOM & check deviceready event
+//
+//     //cordova - add listener to DOM & check deviceready event
+    //onsen - init event is fired after ons-page attached to DOM...
     document.addEventListener('deviceready', function(event) {
         //prevent any bound defaults
         event.preventDefault();
+
+    // ons.ready(function () {
 
         const API_KEY_PF = '2350ef4b4c00d28ac3a15bf88648b19e';
         //initialize googlemaps api
@@ -18,6 +21,56 @@
         Storage.prototype.getArray = function(key) {
             return JSON.parse(this.getItem(key))
         };
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var userId = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function(accessToken) {
+                    console.log(JSON.stringify({
+                        displayName: displayName,
+                        email: email,
+                        emailVerified: emailVerified,
+                        phoneNumber: phoneNumber,
+                        photoURL: photoURL,
+                        uid: userId,
+                        accessToken: accessToken,
+                        providerData: providerData
+                    }, null, '  '));
+
+                    var database = firebase.database();
+
+                    function writeUserData(userId, displayName, email) {
+                        firebase.database().ref('users/' + userId).set({
+                            username: displayName,
+                            email: email,
+                        });
+                    }
+                    writeUserData(userId, displayName, email);
+
+                });
+
+            } else {
+                // User is signed out.
+                window.location = 'index.html';
+            }
+        }, function(error) {
+            console.log(error);
+        });
+
+
+
+        ons.ready(function() {
+            //hack because init and show are not calling on first load :(
+            onsShow();
+            document.addEventListener('show', onsShow, false);
+        });
 
         //global vars for settings
         var firstLoad = true;
@@ -74,16 +127,40 @@
 
         console.log("cordova checked...device ready");
 
-        function onsInit(event) {
+        function onsShow(event) {
             //properties - initial page load
-            var page = event.target;
-            console.log("page-event="+page.id);
+            var page;
+            var id;
+            if (event) {
+                page = event.target;
+                id = page.id;
+                onsNav(page);
+            } else {
+                page = {};
+                page.id = 'settings';
+            }
+
+            // console.log("page-event="+page.id);
+
+            var tabbar = document.getElementById("tabbar");
+
             //load main menu and navigation
-            onsMenu(page);
+
+
             //check home page
             if (page.id === 'settings') {
                 //set initial breed list to dog
                 updateBreedSelect('dog');
+
+                $("#settings-logout").on("click", function() {
+                    firebase.auth().signOut().then(function() {
+                        // Sign-out successful.
+                        window.location = "index.html";
+                    }, function(error) {
+                        // An error happened.
+                        console.log('oops');
+                    });
+                });
 
                 $("#x-button").off().on("click", function() {
                     closeModal();
@@ -160,7 +237,7 @@
             } else if (page.id === 'matches') {
                 if (settings.neverSet) {
                     alert('You must choose settings first!');
-                    content.load('settings.html');
+                    tabbar.setActiveTab(0);
                 }
 
                 if (matchIndex != 0) {
@@ -262,90 +339,36 @@
             }
         }
 
-        /*
-        * ons menu - splitter and nav
-        */
-
-        //onsen - main menu
-        function onsMenu(page) {
-            //main menu
-            var menu = document.getElementById('menu');
-            //menu link - querySelectorAll due to more than one per page
-            var menuLink = document.querySelectorAll('.menu-link');
-            console.log(menuLink);
-            //splitter content
-            var content = document.getElementById('content');
-
-            //check initial page has actually loaded - forces script to wait before getting menu-open (otherwise returns null...)
-            if (page.id === 'settings' || page.id === 'matches' || page.id === 'match-map') {
-                console.log("page id = "+page.id);
-                //get menu icon - query selector OK due to one per ons page
-                var menuOpen = document.querySelector('.menu-open');
-                //check menu open is stored...
-                if (menuOpen) {
-                    console.log("menu open stored...");
-                }
-
-                //add event listener for main menu
-                menuOpen.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    //open main menu for current page
-                    menu.open();
-                    console.log("menu opened...");
-                }, false);
-            }
-            //add handler for menu links
-            onsMenuLink(page, menuLink, menu);
-            //set navigation
-            onsNav(page);
-
-        }
-
-        //onsen - menu links
-        function onsMenuLink(page, menuLink, menu) {
-            if (page.id === 'menu.html') {
-                console.log("menu target...");
-                //add listener per menu link
-                console.log(menuLink);
-                // var menuArray = Array.from(menuLink);
-                for (var i = 0; i <menuLink.length; i++) {
-                    var link = menuLink[i];
-                    link.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        var url = this.getAttribute('url');
-                        console.log("menu link = "+ url);
-                        content.load(url)
-                            .then(menu.close.bind(menu));
-                    });
-                }
-            }
-        }
-
         //onsen - set stack-based navigation
         function onsNav(page) {
-            console.log('onsNav page.id='+page.id);
-            console.log(page.nodeName.toLowerCase());
+            // console.log('onsNav page.id='+page.id);
+            // console.log(page.nodeName.toLowerCase());
             if (page.id === 'match-map') {
-                page.querySelector('#mini-profile').onclick = function() {
-                    document.querySelector('#navigator').pushPage('match-profile.html',
-                        {data:
-                            {title: currentlySelectedPet.name,
-                                photos: currentlySelectedPet.photos,
-                                id: currentlySelectedPet.id,
-                                description: currentlySelectedPet.description,
-                                contact: currentlySelectedPet.contact,
-                                shelterId: currentlySelectedPet.shelterId,
-                                age: currentlySelectedPet.age,
-                                gender: currentlySelectedPet.gender,
-                                size: currentlySelectedPet.size,
-                                breed: currentlySelectedPet.breed}});
-                    console.log("push page title");
-                };
+                if (likedPetIds && currentlySelectedPet) {
+                    page.querySelector('#mini-profile').onclick = function() {
+                        document.querySelector('#navigator').pushPage('match-profile.html',
+                            {data:
+                                {   title: currentlySelectedPet.name,
+                                    type: currentlySelectedPet.animalType,
+                                    photos: currentlySelectedPet.photos,
+                                    id: currentlySelectedPet.id,
+                                    description: currentlySelectedPet.description,
+                                    contact: currentlySelectedPet.contact,
+                                    shelterId: currentlySelectedPet.shelterId,
+                                    age: currentlySelectedPet.age,
+                                    gender: currentlySelectedPet.gender,
+                                    size: currentlySelectedPet.size,
+                                    breed: currentlySelectedPet.breed}});
+                        console.log("push page title");
+                    };
+                }
+
             }else if (page.id === 'matches') {
                 page.querySelector("#pet-profile-icon").onclick = function() {
                     document.querySelector('#navigator').pushPage('match-profile.html',
                         {data:
                             {   title: currentPetsList[matchIndex-1].name,
+                                type: currentPetsList[matchIndex-1].animalType,
                                 photos: currentPetsList[matchIndex-1].photos,
                                 id: currentPetsList[matchIndex-1].id,
                                 description: currentPetsList[matchIndex-1].description,
@@ -358,7 +381,7 @@
                 }
             } else if (page.id === 'match-profile') {
                 var shelterUrl = 'http://api.petfinder.com/shelter.get?format=json&key=2350ef4b4c00d28ac3a15bf88648b19e&id='
-                    + page.data.shelterId + '&callback=?';
+                    + page.data.shelterId.toLowerCase() + '&callback=?';
                 console.log(shelterUrl);
                 var shelterName;
                 $.getJSON(shelterUrl, function (data) {
@@ -384,7 +407,7 @@
                 }
 
                 $('#inquire-button').off().on('click', function () {
-                    window.open('https://www.petfinder.com/' + animalType.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
+                    window.open('https://www.petfinder.com/' + page.data.type.toLowerCase() + "/" + page.data.title.replace(/[^A-Z0-9]+/ig, "-").toLowerCase()
                         + "-" + page.data.id.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/" + page.data.contact.state.$t.toLowerCase() + "/"
                         + page.data.contact.city.$t.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "/"
                         + shelterName.replace(/[^A-Z0-9]+/ig, "-").toLowerCase() + "-" + page.data.shelterId.toLowerCase() + "/#petInquiry");
@@ -429,6 +452,21 @@
                         currentlySelectedPet = null;
                         currentlySelectedPetIdsList = [];
                         $('#mini-profile').empty();
+
+                        $('#mini-profile').append("<div id='no-pets-container'>" +
+                            "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
+                            " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
+                            "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
+                            " your <span id='matches-link'>matches page</span> or trying some new" +
+                            " <span id='settings-link'>filters?</span></p>" +
+                            "</div>");
+
+                        document.getElementById("matches-link").addEventListener('click', function() {
+                            document.getElementById('tabbar').setActiveTab(1);
+                        });
+                        document.getElementById("settings-link").addEventListener('click', function() {
+                            document.getElementById('tabbar').setActiveTab(0);
+                        });
                     }
 
 
@@ -464,7 +502,7 @@
                     }
                 } else {
                     $('#profile-photo-carousel').append("<ons-carousel-item class='profile-carousel-item'><img" +
-                        " class='profile-carousel' src='../assets/icons/" + animalType + "-256.png'></ons-carousel-item>");
+                        " class='profile-carousel' src='../assets/icons/" + page.data.animalType + "-256.png'></ons-carousel-item>");
                 }
 
 
@@ -630,7 +668,7 @@
                 $('#want-button').disabled = false;
                 $('#pass-button').disabled = false;
 
-                content.load('matches.html');
+                document.getElementById('tabbar').setActiveTab(1);
             }
             else alert("You must select an animal type and either enable location services or enter a zip.");
 
@@ -849,6 +887,8 @@
                 $("#likes-you-too").empty().prepend(currentPet.name + " likes you too! :)");
                 $("#pet-profile-icon").attr("src", getIconForAnimalType(animalType));
 
+                currentPet.animalType = animalType;
+
                 likedPets.push(currentPet);
                 storage.removeItem('likedPets');
                 storage.setArray('likedPets', likedPets);
@@ -1032,12 +1072,20 @@
             if (likedPetAddresses.length === 0) {
                 markersList[0].setMap(map);
 
-                $('#mini-profile').append("<div>" +
+                $('#mini-profile').append("<div id='no-pets-container'>" +
                     "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
                     " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
                     "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
-                    " your matches page or trying some new filters?</p>" +
+                    " your <span id='matches-link'>matches page</span> or trying some new" +
+                    " <span id='settings-link'>filters?</span></p>" +
                     "</div>");
+
+                document.getElementById("matches-link").addEventListener('click', function() {
+                    document.getElementById('tabbar').setActiveTab(1);
+                });
+                document.getElementById("settings-link").addEventListener('click', function() {
+                    document.getElementById('tabbar').setActiveTab(0);
+                });
             } else {
                 for (var i = 0; i < likedPetAddresses.length; i++) {
                     geocodePetsAddress(likedPetAddresses[i], geocodePetsAddressCallback, map, i, likedPetAddresses.length);
@@ -1148,12 +1196,20 @@
                         currentlySelectedPetIdsList = markersList[1].petIds;
                         updateMiniProfile();
                     } else {
-                        $('#mini-profile').append("<div>" +
+                        $('#mini-profile').append("<div id='no-pets-container'>" +
                             "<img style='margin: 1em auto 0 auto; display: block; width: 175px;'" +
                             " src='../assets/icons/" + (animalType ? animalType : "dog") + "-256.png'>" +
                             "<p id='no-pets-map-text'>Hmmm, there doesn't seem to be anything here. Why don't you try checking" +
-                            " your matches page or trying some new filters?</p>" +
+                            " your <span id='matches-link'>matches page</span> or trying some new" +
+                            " <span id='settings-link'>filters?</span></p>" +
                             "</div>");
+
+                        document.getElementById("matches-link").addEventListener('click', function() {
+                            document.getElementById('tabbar').setActiveTab(1);
+                        });
+                        document.getElementById("settings-link").addEventListener('click', function() {
+                            document.getElementById('tabbar').setActiveTab(0);
+                        });
                     }
 
                 }
@@ -1246,11 +1302,10 @@
 
         }
 
-        //onsen - init event is fired after ons-page attached to DOM...
-        document.addEventListener('init', onsInit, false);
+
 
     }, false);
-
-
-
+//
+//     });
+//
 })();

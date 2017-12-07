@@ -14,340 +14,388 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="bower_components/onsenui/js/onsenui.js"></script>
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBm3C3dbNajgF8mRyJEF9qgNKxLZDnmfk0",
+            authDomain: "floofer-187121.firebaseapp.com",
+            databaseURL: "https://floofer-187121.firebaseio.com",
+            projectId: "floofer-187121",
+            storageBucket: "floofer-187121.appspot.com",
+            messagingSenderId: "887152181521"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    <script type="text/javascript">
+        // FirebaseUI config.
+        var uiConfig = {
+            signInSuccessUrl: 'app.html',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+            // Terms of service url.
+            tosUrl: '<your-tos-url>'
+        };
 
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+    <!--<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>-->
+    <!--<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>-->
+    <!--<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>-->
     <!-- app scripts -->
     <script type="text/javascript" src="js/index.js"></script>
-    <!--<script type="text/javascript" src="js/plugin.js"></script>-->
-    <script type="text/javascript" src="js/floofer.js"></script>
-    <!--can't use geolocation until google API is implemented -->
-    <script type="text/javascript" src="js/geolocation.js"></script>
+    <!--<script type="text/javascript" src="js/floofer.js"></script>-->
+
     <title>Floofer</title>
 </head>
 <body>
-<!-- navigator for pet profile pages -->
-<ons-navigator id="navigator" page="splitter.html" animation="lift"></ons-navigator>
 
-<!-- splitter component for menu -->
-<ons-template id="splitter.html">
-    <ons-page>
-        <ons-splitter>
-            <ons-splitter-side id="menu" side="left" width="220px" collapse >
-                <ons-page id="menu.html">
-                    <ons-toolbar>
-                        <div class="center">Menu</div>
-                    </ons-toolbar>
-                    <ons-list>
-                        <ons-list-item url="settings.html" class="menu-link" tappable>Settings</ons-list-item>
-                        <ons-list-item url="matches.html" class="menu-link" tappable>Matches</ons-list-item>
-                        <ons-list-item url="match-map.html" class="menu-link" tappable>Match Map</ons-list-item>
-                    </ons-list>
-                </ons-page>
-            </ons-splitter-side>
-            <ons-splitter-content id="content" page="settings.html"></ons-splitter-content>
-        </ons-splitter>
-    </ons-page>
-</ons-template>
+<h1>Welcome to My Awesome App</h1>
+<div id="firebaseui-auth-container"></div>
 
-<!-- settings page -->
-<ons-template id="settings.html">
-    <ons-page id="settings">
-        <!-- page toolbar -->
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button class="menu-open">
-                    <!-- hamburger menu -->
-                    <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-            <div class="center">Settings</div>
-        </ons-toolbar>
-
-        <!--dialog for new users-->
-        <ons-dialog id="new-user-info" cancelable>
-            <ons-button
-                    id="x-button"
-                    style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px; box-shadow: none;">
-                <ons-icon
-                        style="color: #0aa6e4"
-                        icon="ion-close-circled"
-                        id="new-user-x-icon"></ons-icon>
-            </ons-button>
-            <p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what
-                kind of floof you're looking for here! </p>
-            <p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it
-                should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the
-                best accuracy!) or enter a zip code. Don't worry, you can change your settings at any time!</p>
-            <p> The only required fields are the type of animal you're looking for, and either a zip code or a location
-                to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the
-                more filters you add, the less floofers you'll get in your matches.</p>
-            <ons-button id="got-it-button">Got it!</ons-button>
-        </ons-dialog>
-
-        <!-- settingsContent - settings content -->
-        <div id="settingsContent" class="page-content">
-            <div>
-                <ons-list-header id="animal-select-header">
-                    I'm looking for a...
-                </ons-list-header>
-                <ons-row>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="dog-button" tappable>
-                            <img src="./assets/icons/dog-256.png">
-                            <label>Dog</label>
-                        </div>
-                    </ons-col>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="cat-button" tappable>
-                            <img src="./assets/icons/cat-256.png">
-                            <label>Cat</label>
-                        </div>
-                    </ons-col>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="reptile-button" tappable>
-                            <img src="./assets/icons/reptile-256.png">
-                            <label>Reptile</label>
-                        </div>
-                    </ons-col>
-                </ons-row>
-                <ons-row>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="horse-button" tappable>
-                            <img src="./assets/icons/horse-256.png">
-                            <label>Horse</label>
-                        </div>
-                    </ons-col>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="bird-button" tappable>
-                            <img src="./assets/icons/bird-256.png">
-                            <label>Bird</label>
-                        </div>
-                    </ons-col>
-                    <ons-col width="33%">
-                        <div class="animal-buttons" id="smallfurry-button" tappable>
-                            <img src="./assets/icons/smallfurry-256.png">
-                            <label>Small & Furry</label>
-                        </div>
-                    </ons-col>
-                </ons-row>
-            </div>
-
-            <div class="divider"></div>
-
-            <div>
-                <ons-row>
-                    <ons-col width="47%">
-                        <div class="form-input">
-                            <ons-switch id="location-services-switch"></ons-switch>
-                            <ons-progress-circular id="location-progress"></ons-progress-circular>
-                            <label style="display: block; padding-top: 5px;">Location Services</label>
-                        </div>
-                    </ons-col>
-                    <ons-col width="8%">
-                        <p style="text-align: center; margin-top: 1.5em;">or</p>
-                    </ons-col>
-                    <ons-col width="45%">
-                        <div class="form-input">
-                            <ons-input id="zip-input" placeholder="Zipcode"></ons-input>
-                        </div>
-                    </ons-col>
-                </ons-row>
-            </div>
-
-            <div class="row-container">
-                <ons-row>
-                    <label class="form-label">Size</label>
-                    <ons-select id="size-select" class="full-length-dropdown">
-                        <option value="any">Any</option>
-                        <option value="S">Small</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Large</option>
-                        <option value="XL">Extra Large</option>
-                    </ons-select>
-                </ons-row>
-            </div>
-
-            <div class="row-container">
-                <ons-row>
-                    <ons-col width="10%">
-                        <label class="small-form-label">Age</label>
-                    </ons-col>
-                    <ons-col width="40%">
-                        <ons-select id="age-select" class="half-length-dropdown">
-                            <option value="any">Any</option>
-                            <option value="baby">Baby</option>
-                            <option value="young">Young</option>
-                            <option value="adult">Adult</option>
-                            <option value="senior">Senior</option>
-                        </ons-select>
-                    </ons-col>
-                    <ons-col width="10%">
-                        <label class="small-form-label">Sex</label>
-                    </ons-col>
-                    <ons-col width="40%">
-                        <ons-select id="gender-select" class="half-length-dropdown">
-                            <option value="any">Any</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </ons-select>
-                    </ons-col>
-                </ons-row>
-            </div>
-
-            <div class="row-container">
-                <ons-row>
-                    <label class="form-label">Breed</label>
-                    <ons-select id="breed-select" select-id="dynamic-breed-select" class="full-length-dropdown">
-                        <option value="any">Any</option>
-                    </ons-select>
-                </ons-row>
-            </div>
-
-            <div class="row-container">
-                <ons-row>
-                    <ons-button id="submit-button">Submit</ons-button>
-                </ons-row>
-            </div>
-        </div>
-    </ons-page>
-</ons-template>
-
-<!-- matches page -->
-<ons-template id="matches.html">
-    <ons-page id="matches">
-        <!-- page toolbar -->
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button class="menu-open">
-                    <!-- hamburger menu -->
-                    <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-            <div class="center">
-                <img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">
-            </div>
-        </ons-toolbar>
-        <!--it's a match dialog-->
-        <ons-dialog id="its-a-match" cancelable>
-            <h1 class="match-header">It's a Match!</h1>
-            <ons-row>
-                <div class="match-photo">
-                    <img src="" id="match-popup-photo" class="circle-profile-picture">
-                </div>
-                <p class="match-tagline"> What a surprise! </p>
-                <p class="match-tagline" id="likes-you-too"></p>
-            </ons-row>
-            <ons-row>
-                <ons-col width="50%">
-                    <a href="#" class="custom-circle-button"><img id="keep-playing-icon" src="assets/logo/floofer-logo-no-text-white.png"></a>
-                    <p class="button-label">Keep Playing</p>
-                </ons-col>
-                <ons-col width="50%">
-                    <a href="#" class="custom-circle-button" ><img id="pet-profile-icon" src=""></a>
-                    <p class="button-label">View Profile</p>
-                </ons-col>
-            </ons-row>
-        </ons-dialog>
-        <!-- matchesContent - matches content -->
-        <div id="matchesContent" class="page-content">
-            <ons-row class="profile-container">
-                <ons-gesture-detector id="swipe-detector">
-                    <div id="pet-swipe" class="pet-photo">
-                        <img src="" id="matches-pet-photo">
-                    </div>
-                    <div class="pet-description">
-                        <p id="matches-pet-info"></p>
-                    </div>
-                </ons-gesture-detector>
-            </ons-row>
-
-            <ons-row >
-                <ons-col width="50%">
-                    <ons-fab id="pass-button">
-                        <ons-icon id="pass-icon" icon="ion-close-round"></ons-icon>
-                    </ons-fab>
-                    <p class="want-pass-button-label">I'll leave this good floof for someone else :)</p>
-                </ons-col>
-                <ons-col width="50%">
-                    <ons-fab id="want-button">
-                        <ons-icon id="heart-icon" icon="ion-heart"></ons-icon>
-                    </ons-fab>
-                    <p class="want-pass-button-label">Want!</p>
-                </ons-col>
-            </ons-row>
-
-        </div>
-    </ons-page>
-</ons-template>
-
-<!--match map page-->
-<ons-template id="match-map.html">
-    <ons-page id="match-map">
-        <!-- page toolbar -->
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button class="menu-open">
-                    <!-- hamburger menu -->
-                    <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-            <div class="center">Match Map</div>
-        </ons-toolbar>
-        <!-- define primary action button for page - md plus icon -->
-        <!--<ons-fab position="bottom right">-->
-            <!--<ons-icon id="fab-open" icon="md-plus"></ons-icon>-->
-        <!--</ons-fab>-->
-        <!-- matchMapContent - match map content -->
-        <div id="matchMapContent" class="page-content">
-            <div id="map"></div>
-            <div id="map-key">
-                <div class="key-item">
-                    <img class="key-image" src="./assets/icons/star.png">
-                    <span class="label">You</span>
-                </div>
-                <div class="key-item">
-                    <img class="key-image" src="./assets/icons/blue-dot.png">
-                    <span class="label">Your Floof matches</span>
-                </div>
-                <div class="key-item">
-                    <img class="key-image" src="./assets/icons/pink-dot.png">
-                    <span class="label">Currently Selected</span>
-                </div>
-            </div>
-            <ons-row id="mini-profile">
-
-            </ons-row>
-        </div>
-    </ons-page>
-</ons-template>
+<!--&lt;!&ndash; navigator for pet profile pages &ndash;&gt;-->
+<!--<ons-navigator id="navigator" page="settings.html" animation="lift">-->
+    <!--<ons-page>-->
+        <!--<ons-tabbar id="tabbar" position="auto" animation="none">-->
+            <!--<ons-tab page="settings.html" active icon="ion-gear-a" label="Settings"></ons-tab>-->
+            <!--<ons-tab icon="ion-ios-paw" label="Matches" page="matches.html"></ons-tab>-->
+            <!--<ons-tab icon="ion-heart" label="Match Map" page="match-map.html"></ons-tab>-->
+        <!--</ons-tabbar>-->
+    <!--</ons-page>-->
+<!--</ons-navigator>-->
 
 
-<!-- match-profile page -->
-<ons-template id="match-profile.html">
-    <ons-page id="match-profile">
-        <ons-toolbar>
-            <div class="left"><ons-back-button>Back</ons-back-button></div>
-            <div class="center" id="match-title">Match Profile</div>
-        </ons-toolbar>
-        <!-- matchProfileContent - matchProfile content -->
-        <div id="matchProfileContent" class="page-content">
-            <ons-carousel swipeable auto-scroll overscrollable id="profile-photo-carousel"></ons-carousel>
-            <div id="carousel-dots-container"></div>
-            <div class="divider"></div>
-            <div id="profile-pet-info"></div>
-            <div class="profile-paragraph-container">
-                <div id="profile-pet-contact"></div>
-            </div>
-            <div id="description-container" class="profile-paragraph-container">
-                <div id="profile-pet-description"></div>
-            </div>
-            <ons-button id="inquire-button"></ons-button>
-            <ons-button id="unmatch-button" modifier="quiet">
-                <strong>x</strong> unmatch
-            </ons-button>
+<!--&lt;!&ndash; splitter component for menu &ndash;&gt;-->
+<!--&lt;!&ndash;<ons-template id="splitter.html">&ndash;&gt;-->
+    <!--&lt;!&ndash;<ons-page>&ndash;&gt;-->
+        <!--&lt;!&ndash;<ons-splitter>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ons-splitter-side id="menu" side="left" width="220px" collapse >&ndash;&gt;-->
+                <!--&lt;!&ndash;<ons-page id="menu.html">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ons-toolbar>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="center">Menu</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ons-toolbar>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ons-list>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ons-list-item id="settings-menu" url="settings.html" class="menu-link" tappable>Settings</ons-list-item>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ons-list-item id="matches-menu" url="matches.html" class="menu-link" tappable>Matches</ons-list-item>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ons-list-item id="match-map-menu" url="match-map.html" class="menu-link" tappable>Match Map</ons-list-item>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ons-list>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ons-page>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ons-splitter-side>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ons-splitter-content id="content" page="settings.html"></ons-splitter-content>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ons-splitter>&ndash;&gt;-->
+    <!--&lt;!&ndash;</ons-page>&ndash;&gt;-->
+<!--&lt;!&ndash;</ons-template>&ndash;&gt;-->
 
-        </div>
-    </ons-page>
-</ons-template>
+<!--&lt;!&ndash; settings page &ndash;&gt;-->
+<!--<ons-template id="settings.html">-->
+    <!--<ons-page id="settings">-->
+        <!--&lt;!&ndash; page toolbar &ndash;&gt;-->
+        <!--<ons-toolbar>-->
+            <!--&lt;!&ndash;<div class="left">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ons-toolbar-button class="menu-open">&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; hamburger menu &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ons-icon icon="md-menu"></ons-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ons-toolbar-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="center">Settings</div>-->
+        <!--</ons-toolbar>-->
+
+        <!--&lt;!&ndash;dialog for new users&ndash;&gt;-->
+        <!--<ons-dialog id="new-user-info" cancelable>-->
+            <!--<ons-button-->
+                    <!--id="x-button"-->
+                    <!--style="background-color: transparent; font-size: 1.6em; float: right; margin-top: -25px; margin-right: -25px; box-shadow: none;">-->
+                <!--<ons-icon-->
+                        <!--style="color: #0aa6e4"-->
+                        <!--icon="ion-close-circled"-->
+                        <!--id="new-user-x-icon"></ons-icon>-->
+            <!--</ons-button>-->
+            <!--<p> Welcome to Floofer! Before we get started, you just need to answer a teeny bit of information about what-->
+                <!--kind of floof you're looking for here! </p>-->
+            <!--<p> In settings, you'll have the chance to pick what kind of animal you want (including breed), what size, how old it-->
+                <!--should be, and whether you want a boy or a girl. You can choose your location (we recommend this for the-->
+                <!--best accuracy!) or enter a zip code. Don't worry, you can change your settings at any time!</p>-->
+            <!--<p> The only required fields are the type of animal you're looking for, and either a zip code or a location-->
+                <!--to start up the search. Other than that, be as broad or specific as you want! But keep in mind: the-->
+                <!--more filters you add, the less floofers you'll get in your matches.</p>-->
+            <!--<ons-button id="got-it-button">Got it!</ons-button>-->
+        <!--</ons-dialog>-->
+
+        <!--&lt;!&ndash; settingsContent - settings content &ndash;&gt;-->
+        <!--<div id="settingsContent" class="page-content">-->
+            <!--<div>-->
+                <!--<ons-list-header id="animal-select-header">-->
+                    <!--I'm looking for a...-->
+                <!--</ons-list-header>-->
+                <!--<ons-row>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="dog-button" tappable>-->
+                            <!--<img src="./assets/icons/dog-256.png">-->
+                            <!--<label>Dog</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="cat-button" tappable>-->
+                            <!--<img src="./assets/icons/cat-256.png">-->
+                            <!--<label>Cat</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="reptile-button" tappable>-->
+                            <!--<img src="./assets/icons/reptile-256.png">-->
+                            <!--<label>Reptile</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                <!--</ons-row>-->
+                <!--<ons-row>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="horse-button" tappable>-->
+                            <!--<img src="./assets/icons/horse-256.png">-->
+                            <!--<label>Horse</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="bird-button" tappable>-->
+                            <!--<img src="./assets/icons/bird-256.png">-->
+                            <!--<label>Bird</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="33%">-->
+                        <!--<div class="animal-buttons" id="smallfurry-button" tappable>-->
+                            <!--<img src="./assets/icons/smallfurry-256.png">-->
+                            <!--<label>Small & Furry</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+
+            <!--<div class="divider"></div>-->
+
+            <!--<div>-->
+                <!--<ons-row>-->
+                    <!--<ons-col width="47%">-->
+                        <!--<div class="form-input">-->
+                            <!--<ons-switch id="location-services-switch"></ons-switch>-->
+                            <!--<ons-progress-circular id="location-progress"></ons-progress-circular>-->
+                            <!--<label style="display: block; padding-top: 5px;">Location Services</label>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="8%">-->
+                        <!--<p style="text-align: center; margin-top: 1.5em;">or</p>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="45%">-->
+                        <!--<div class="form-input">-->
+                            <!--<ons-input id="zip-input" placeholder="Zipcode"></ons-input>-->
+                        <!--</div>-->
+                    <!--</ons-col>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+
+            <!--<div class="row-container">-->
+                <!--<ons-row>-->
+                    <!--<label class="form-label">Size</label>-->
+                    <!--<ons-select id="size-select" class="full-length-dropdown">-->
+                        <!--<option value="any">Any</option>-->
+                        <!--<option value="S">Small</option>-->
+                        <!--<option value="M">Medium</option>-->
+                        <!--<option value="L">Large</option>-->
+                        <!--<option value="XL">Extra Large</option>-->
+                    <!--</ons-select>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+
+            <!--<div class="row-container">-->
+                <!--<ons-row>-->
+                    <!--<ons-col width="10%">-->
+                        <!--<label class="small-form-label">Age</label>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="40%">-->
+                        <!--<ons-select id="age-select" class="half-length-dropdown">-->
+                            <!--<option value="any">Any</option>-->
+                            <!--<option value="Baby">Baby</option>-->
+                            <!--<option value="Young">Young</option>-->
+                            <!--<option value="Adult">Adult</option>-->
+                            <!--<option value="Senior">Senior</option>-->
+                        <!--</ons-select>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="10%">-->
+                        <!--<label class="small-form-label">Sex</label>-->
+                    <!--</ons-col>-->
+                    <!--<ons-col width="40%">-->
+                        <!--<ons-select id="gender-select" class="half-length-dropdown">-->
+                            <!--<option value="any">Any</option>-->
+                            <!--<option value="M">Male</option>-->
+                            <!--<option value="F">Female</option>-->
+                        <!--</ons-select>-->
+                    <!--</ons-col>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+
+            <!--<div class="row-container">-->
+                <!--<ons-row>-->
+                    <!--<label class="form-label">Breed</label>-->
+                    <!--<ons-select id="breed-select" select-id="dynamic-breed-select" class="full-length-dropdown">-->
+                        <!--<option value="any">Any</option>-->
+                    <!--</ons-select>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+
+            <!--<div class="row-container">-->
+                <!--<ons-row>-->
+                    <!--<ons-button id="submit-button">Submit</ons-button>-->
+                <!--</ons-row>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</ons-page>-->
+<!--</ons-template>-->
+
+<!--&lt;!&ndash; matches page &ndash;&gt;-->
+<!--<ons-template id="matches.html">-->
+    <!--<ons-page id="matches">-->
+        <!--&lt;!&ndash; page toolbar &ndash;&gt;-->
+        <!--&lt;!&ndash;<ons-toolbar>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="left">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ons-toolbar-button class="menu-open">&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; hamburger menu &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ons-icon icon="md-menu"></ons-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ons-toolbar-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="center">-->
+                <!--<img src="./assets/logo/floofer-logo-small.png" style="vertical-align: middle; width: 35%;">-->
+            <!--</div>-->
+        <!--</ons-toolbar>-->
+        <!--&lt;!&ndash;it's a match dialog&ndash;&gt;-->
+        <!--<ons-dialog id="its-a-match" cancelable>-->
+            <!--<h1 class="match-header">It's a Match!</h1>-->
+            <!--<ons-row>-->
+                <!--<div class="match-photo">-->
+                    <!--<img src="" id="match-popup-photo" class="circle-profile-picture">-->
+                <!--</div>-->
+                <!--<p class="match-tagline"> What a surprise! </p>-->
+                <!--<p class="match-tagline" id="likes-you-too"></p>-->
+            <!--</ons-row>-->
+            <!--<ons-row>-->
+                <!--<ons-col width="50%">-->
+                    <!--<a href="#" class="custom-circle-button"><img id="keep-playing-icon" src="assets/logo/floofer-logo-no-text-white.png"></a>-->
+                    <!--<p class="button-label">Keep Playing</p>-->
+                <!--</ons-col>-->
+                <!--<ons-col width="50%">-->
+                    <!--<a href="#" class="custom-circle-button" ><img id="pet-profile-icon" src=""></a>-->
+                    <!--<p class="button-label">View Profile</p>-->
+                <!--</ons-col>-->
+            <!--</ons-row>-->
+        <!--</ons-dialog>-->
+        <!--&lt;!&ndash; matchesContent - matches content &ndash;&gt;-->
+        <!--<div id="matchesContent" class="page-content">-->
+            <!--<ons-row class="profile-container">-->
+                <!--<ons-gesture-detector id="swipe-detector">-->
+                    <!--<div id="pet-swipe" class="pet-photo">-->
+                        <!--<img src="" id="matches-pet-photo">-->
+                    <!--</div>-->
+                    <!--<div class="pet-description">-->
+                        <!--<p id="matches-pet-info"></p>-->
+                    <!--</div>-->
+                <!--</ons-gesture-detector>-->
+            <!--</ons-row>-->
+
+            <!--<ons-row >-->
+                <!--<ons-col width="50%">-->
+                    <!--<ons-fab id="pass-button">-->
+                        <!--<ons-icon id="pass-icon" icon="ion-close-round"></ons-icon>-->
+                    <!--</ons-fab>-->
+                    <!--<p class="want-pass-button-label">I'll leave this good floof for someone else :)</p>-->
+                <!--</ons-col>-->
+                <!--<ons-col width="50%">-->
+                    <!--<ons-fab id="want-button">-->
+                        <!--<ons-icon id="heart-icon" icon="ion-heart"></ons-icon>-->
+                    <!--</ons-fab>-->
+                    <!--<p class="want-pass-button-label">Want!</p>-->
+                <!--</ons-col>-->
+            <!--</ons-row>-->
+
+        <!--</div>-->
+    <!--</ons-page>-->
+<!--</ons-template>-->
+
+<!--&lt;!&ndash;match map page&ndash;&gt;-->
+<!--<ons-template id="match-map.html">-->
+    <!--<ons-page id="match-map">-->
+        <!--&lt;!&ndash; page toolbar &ndash;&gt;-->
+        <!--<ons-toolbar>-->
+            <!--&lt;!&ndash;<div class="left">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ons-toolbar-button class="menu-open">&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; hamburger menu &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ons-icon icon="md-menu"></ons-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ons-toolbar-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="center">Match Map</div>-->
+        <!--</ons-toolbar>-->
+        <!--&lt;!&ndash; define primary action button for page - md plus icon &ndash;&gt;-->
+        <!--&lt;!&ndash;<ons-fab position="bottom right">&ndash;&gt;-->
+            <!--&lt;!&ndash;<ons-icon id="fab-open" icon="md-plus"></ons-icon>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ons-fab>&ndash;&gt;-->
+        <!--&lt;!&ndash; matchMapContent - match map content &ndash;&gt;-->
+        <!--<div id="matchMapContent" class="page-content">-->
+            <!--<div id="map"></div>-->
+            <!--<div id="map-key">-->
+                <!--<div class="key-item">-->
+                    <!--<img class="key-image" src="./assets/icons/star.png">-->
+                    <!--<span class="label">You</span>-->
+                <!--</div>-->
+                <!--<div class="key-item">-->
+                    <!--<img class="key-image" src="./assets/icons/blue-dot.png">-->
+                    <!--<span class="label">Your Floof matches</span>-->
+                <!--</div>-->
+                <!--<div class="key-item">-->
+                    <!--<img class="key-image" src="./assets/icons/pink-dot.png">-->
+                    <!--<span class="label">Currently Selected</span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<ons-row id="mini-profile">-->
+
+            <!--</ons-row>-->
+        <!--</div>-->
+    <!--</ons-page>-->
+<!--</ons-template>-->
+
+
+<!--&lt;!&ndash; match-profile page &ndash;&gt;-->
+<!--<ons-template id="match-profile.html">-->
+    <!--<ons-page id="match-profile">-->
+        <!--<ons-toolbar>-->
+            <!--<div class="left"><ons-back-button>Back</ons-back-button></div>-->
+            <!--<div class="center" id="match-title">Match Profile</div>-->
+        <!--</ons-toolbar>-->
+        <!--&lt;!&ndash; matchProfileContent - matchProfile content &ndash;&gt;-->
+        <!--<div id="matchProfileContent" class="page-content">-->
+            <!--<ons-carousel swipeable auto-scroll overscrollable id="profile-photo-carousel"></ons-carousel>-->
+            <!--<div id="carousel-dots-container"></div>-->
+            <!--<div class="divider"></div>-->
+            <!--<div id="profile-pet-info"></div>-->
+            <!--<div class="profile-paragraph-container">-->
+                <!--<div id="profile-pet-contact"></div>-->
+            <!--</div>-->
+            <!--<div id="description-container" class="profile-paragraph-container">-->
+                <!--<div id="profile-pet-description"></div>-->
+            <!--</div>-->
+            <!--<ons-button id="inquire-button"></ons-button>-->
+            <!--<ons-button id="unmatch-button" modifier="quiet">-->
+                <!--<strong>x</strong> unmatch-->
+            <!--</ons-button>-->
+
+        <!--</div>-->
+    <!--</ons-page>-->
+<!--</ons-template>-->
 
 </body>
 </html>

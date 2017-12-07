@@ -483,9 +483,22 @@ ons-list#pets-list {
 p#no-pets-map-text{
     display: block;
     margin: auto;
-    width: 70%;
+    width: 90%;
     font-weight: 700;
     text-align: center;
+}
+
+div#no-pets-container {
+    width: 80%;
+    margin: 1em auto;
+    background-color: #ffffff;
+    border-radius: 2em;
+    padding-bottom: 1em;
+}
+
+span#matches-link, span#settings-link {
+    color: #0aa6e4;
+    text-decoration: underline;
 }
 
 /*.list-item__center {*/

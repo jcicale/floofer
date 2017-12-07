@@ -480,6 +480,27 @@ ons-list#pets-list {
     border-bottom: 2px solid #0aa6e4 !important;
 }
 
+p#no-pets-map-text{
+    display: block;
+    margin: auto;
+    width: 90%;
+    font-weight: 700;
+    text-align: center;
+}
+
+div#no-pets-container {
+    width: 80%;
+    margin: 1em auto;
+    background-color: #ffffff;
+    border-radius: 2em;
+    padding-bottom: 1em;
+}
+
+span#matches-link, span#settings-link {
+    color: #0aa6e4;
+    text-decoration: underline;
+}
+
 /*.list-item__center {*/
     /*background-image: linear-gradient(0deg, #ffffff, #ffffff 100%) !important;*/
 /*}*/
