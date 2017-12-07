@@ -576,3 +576,50 @@ ons-button#unmatch-button {
     text-decoration: underline;
     text-align: center;
 }
+
+/*login and logout styles*/
+ons-toolbar-button#settings-logout span, ons-toolbar-button#matches-logout span, ons-toolbar-button#match-map-logout span {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+div#login-container {
+    background-image: url('../assets/images/background.jpg');
+    height: 100%;
+    background-size: cover;
+}
+
+button.firebaseui-idp-button.mdl-button.mdl-js-button.mdl-button--raised.firebaseui-idp-google.firebaseui-id-idp-button {
+    border-radius: 2em;
+}
+
+button.firebaseui-idp-button.mdl-button.mdl-js-button.mdl-button--raised.firebaseui-idp-password.firebaseui-id-idp-button {
+    background-color: #0aa6e4;
+    border-radius: 2em;
+}
+
+div#text-box {
+    margin: 1em auto;
+    background-color: rgba(255, 255, 2655, 0.7);
+    width: 90%;
+}
+
+p.login-text {
+    padding: 1em 1.5em;
+    margin: 0;
+    text-align: center;
+    font-size: 1em !important;
+}
+
+div#content {
+    padding-top: 60%;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+img#login-logo {
+    width: 45%;
+    margin: auto;
+    padding-top: 1.5em;
+    display: block;
+}

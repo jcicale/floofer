@@ -12,49 +12,51 @@
         //initialize googlemaps api
         $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB2K5U_RRvqQVUF3GXSXmtLcugsIocZT4U");
 
-        //setting up localStorage
-        var storage = window.localStorage;
-
-        Storage.prototype.setArray = function(key, obj) {
-            return this.setItem(key, JSON.stringify(obj))
-        };
-        Storage.prototype.getArray = function(key) {
-            return JSON.parse(this.getItem(key))
-        };
+        var firstLoad = true;
 
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // User is signed in.
                 var displayName = user.displayName;
                 var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
                 var userId = user.uid;
-                var phoneNumber = user.phoneNumber;
-                var providerData = user.providerData;
-                user.getIdToken().then(function(accessToken) {
-                    console.log(JSON.stringify({
-                        displayName: displayName,
-                        email: email,
-                        emailVerified: emailVerified,
-                        phoneNumber: phoneNumber,
-                        photoURL: photoURL,
-                        uid: userId,
-                        accessToken: accessToken,
-                        providerData: providerData
-                    }, null, '  '));
+                var database = firebase.database();
 
-                    var database = firebase.database();
+                function writeUserData(userId, displayName, email) {
+                    var userExists;
+                    var ref = firebase.database().ref("users/" + userId);
+                    ref.once("value")
+                        .then(function(snapshot) {
+                            userExists = snapshot.exists();
+                            if (!userExists) {
+                                firebase.database().ref('users/' + userId).set({
+                                    username: displayName,
+                                    email: email,
+                                    firstLoad: true,
+                                    likedPets: [],
+                                    likedPetIds: []
+                                });
 
-                    function writeUserData(userId, displayName, email) {
-                        firebase.database().ref('users/' + userId).set({
-                            username: displayName,
-                            email: email,
+                                ons.ready(function() {
+                                    //hack because init and show are not calling on first load :(
+                                    onsShow();
+                                    document.addEventListener('show', onsShow, false);
+                                });
+
+                            } else {
+                                firebase.database().ref('users/' + userId + '/firstLoad').set(false);
+                                firstLoad = false;
+
+                                ons.ready(function() {
+                                    //hack because init and show are not calling on first load :(
+                                    onsShow();
+                                    document.addEventListener('show', onsShow, false);
+                                });
+                            }
                         });
-                    }
-                    writeUserData(userId, displayName, email);
+                }
+                writeUserData(userId, displayName, email);
 
-                });
 
             } else {
                 // User is signed out.
@@ -65,16 +67,7 @@
         });
 
 
-
-        ons.ready(function() {
-            //hack because init and show are not calling on first load :(
-            onsShow();
-            document.addEventListener('show', onsShow, false);
-        });
-
         //global vars for settings
-        var firstLoad = true;
-
         var animalType = null;
 
         var settings = {
@@ -106,13 +99,13 @@
 
         //initialize these to any stored pets
         var likedPets = [];
-        if (storage.getItem('likedPets')){
-            likedPets = storage.getArray('likedPets');
-        }
+        // if (storage.getItem('likedPets')){
+        //     likedPets = storage.getArray('likedPets');
+        // }
         var likedPetIds = [];
-        if (storage.getItem('likedPetIds')) {
-            likedPetIds = storage.getArray('likedPetIds');
-        }
+        // if (storage.getItem('likedPetIds')) {
+        //     likedPetIds = storage.getArray('likedPetIds');
+        // }
         console.log('init liked pets: ');
         console.log(likedPets);
         console.log('init liked pet ids: ');
@@ -158,7 +151,7 @@
                         window.location = "index.html";
                     }, function(error) {
                         // An error happened.
-                        console.log('oops');
+                        console.log('oops: ' + error);
                     });
                 });
 
@@ -239,6 +232,16 @@
                     alert('You must choose settings first!');
                     tabbar.setActiveTab(0);
                 }
+
+                $("#matches-logout").on("click", function() {
+                    firebase.auth().signOut().then(function() {
+                        // Sign-out successful.
+                        window.location = "index.html";
+                    }, function(error) {
+                        // An error happened.
+                        console.log('oops: ' + error);
+                    });
+                });
 
                 if (matchIndex != 0) {
                     populateNextMatch();
@@ -330,6 +333,16 @@
                 });
 
             } else if (page.id === "match-map") {
+                $("#match-map-logout").on("click", function() {
+                    firebase.auth().signOut().then(function() {
+                        // Sign-out successful.
+                        window.location = "index.html";
+                    }, function(error) {
+                        // An error happened.
+                        console.log('oops: ' + error);
+                    });
+                });
+
 
                 if(!geocoder) {
                     geocoder = new google.maps.Geocoder;
@@ -421,11 +434,11 @@
                         return e.id !== page.data.id;
                     });
 
-                    storage.removeItem('likedPets');
-                    storage.setArray('likedPets', likedPets);
-
-                    storage.removeItem('likedPetIds');
-                    storage.setArray('likedPetIds', likedPetIds);
+                    // storage.removeItem('likedPets');
+                    // storage.setArray('likedPets', likedPets);
+                    //
+                    // storage.removeItem('likedPetIds');
+                    // storage.setArray('likedPetIds', likedPetIds);
 
 
                     for (var i = 1; i < markersList.length; i++) {
@@ -890,12 +903,12 @@
                 currentPet.animalType = animalType;
 
                 likedPets.push(currentPet);
-                storage.removeItem('likedPets');
-                storage.setArray('likedPets', likedPets);
+                // storage.removeItem('likedPets');
+                // storage.setArray('likedPets', likedPets);
 
                 likedPetIds.push(currentPet.id);
-                storage.removeItem('likedPetIds');
-                storage.setArray('likedPetIds', likedPetIds);
+                // storage.removeItem('likedPetIds');
+                // storage.setArray('likedPetIds', likedPetIds);
                 console.log(likedPetIds);
             }
 
