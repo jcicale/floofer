@@ -17,12 +17,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-geolocation.PositionError",
-        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
-        "pluginId": "cordova-plugin-geolocation",
-        "runs": true
-    },
-    {
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "pluginId": "cordova-plugin-splashscreen",
@@ -81,11 +75,17 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-universal-links-plugin.universalLinks",
-        "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
-        "pluginId": "cordova-universal-links-plugin",
+        "id": "cordova-plugin-geolocation.PositionError",
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "runs": true
+    },
+    {
+        "id": "com.juliacicale.floofer.CustomPluginFloofer.CustomPluginFloofer",
+        "file": "plugins/com.juliacicale.floofer.CustomPluginFloofer/www/CustomPluginFloofer.js",
+        "pluginId": "com.juliacicale.floofer.CustomPluginFloofer",
         "clobbers": [
-            "universalLinks"
+            "window.CustomPluginFloofer"
         ]
     }
 ];
@@ -95,7 +95,6 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-compat": "1.2.0",
-    "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-browsersync": "0.1.7",
     "cordova-plugin-network-information": "1.3.4",
@@ -103,7 +102,8 @@ module.exports.metadata =
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-inappbrowser": "1.7.2",
     "cordova-plugin-customurlscheme": "4.3.0",
-    "cordova-universal-links-plugin": "1.2.1"
+    "cordova-plugin-geolocation": "2.4.3",
+    "com.juliacicale.floofer.CustomPluginFloofer": "0.0."
 };
 // BOTTOM OF METADATA
 });

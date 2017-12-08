@@ -22,6 +22,25 @@
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "com.juliacicale.floofer.CustomPluginFloofer": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },
     "dependent_plugins": {

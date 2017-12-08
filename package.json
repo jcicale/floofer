@@ -25,16 +25,14 @@
         "cordova-plugin-network-information": "^1.3.4",
         "cordova-plugin-splashscreen": "^4.1.0",
         "cordova-plugin-whitelist": "^1.3.3",
-        "cordova-universal-links-plugin": "^1.2.1",
-        "pet-finder-api": "^1.0.1"
+        "custompluginfloofer": "file:../CustomPluginFloofer",
+        "pet-finder-api": "^1.0.1",
+        "com.juliacicale.floofer.CustomPluginFloofer": "../CustomPluginFloofer"
     },
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
             "cordova-plugin-device": {},
-            "cordova-plugin-geolocation": {
-                "GEOLOCATION_USAGE_DESCRIPTION": " "
-            },
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-browsersync": {},
             "cordova-plugin-network-information": {},
@@ -47,11 +45,15 @@
                 "ANDROID_HOST": " ",
                 "ANDROID_PATHPREFIX": "/"
             },
-            "cordova-universal-links-plugin": {}
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
+            "com.juliacicale.floofer.CustomPluginFloofer": {}
         },
         "platforms": [
             "android",
-            "browser"
+            "browser",
+            "ios"
         ]
     }
 }

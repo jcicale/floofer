@@ -13,9 +13,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.juliacicale.floofer"
-        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
@@ -41,7 +38,10 @@
             "ANDROID_PATHPREFIX": "/",
             "PACKAGE_NAME": "com.juliacicale.floofer"
         },
-        "cordova-universal-links-plugin": {
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.juliacicale.floofer"
+        },
+        "com.juliacicale.floofer.CustomPluginFloofer": {
             "PACKAGE_NAME": "com.juliacicale.floofer"
         }
     },

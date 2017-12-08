@@ -15,14 +15,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-geolocation": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-geolocation@^2.4.3"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-compat": {
         "source": {
             "type": "registry",
@@ -97,10 +89,18 @@
             "URL_SCHEME": "com.juliacicale.floofer"
         }
     },
-    "cordova-universal-links-plugin": {
+    "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
-            "id": "cordova-universal-links-plugin"
+            "id": "cordova-plugin-geolocation@2.4.3"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.juliacicale.floofer.CustomPluginFloofer": {
+        "source": {
+            "type": "local",
+            "path": "/Users/juliacicale1/LUC/comp422/project/floofer/node_modules/custompluginfloofer"
         },
         "is_top_level": true,
         "variables": {}

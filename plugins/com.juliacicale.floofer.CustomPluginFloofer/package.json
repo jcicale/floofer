@@ -1,0 +1,11 @@
+{
+  "name": "custompluginfloofer",
+  "version": "0.0.0",
+  "description": "a plugin for a pup",
+  "main": "CustomPluginFloofer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julia Cicale",
+  "license": "ISC"
+}
