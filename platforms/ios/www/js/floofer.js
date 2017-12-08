@@ -256,55 +256,59 @@
                     $('#its-a-match').hide();
                 });
 
-                document.addEventListener('swipeleft swiperight', function(event) {
-                    if (event.target.matches('#pet-swipe')) {
-                        if (event.type === 'swipeleft') {
-                            if (matchIndex === currentPetsList.length - 6) {
-                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
-                                console.log(queryUrl);
-                                $.getJSON(queryUrl, function (data) {
-                                    console.log(data);
-                                    offset = data.petfinder.lastOffset.$t;
-                                    if (evenArray) {
-                                        populateTemporaryPetsArray(data, 1);
-                                    } else populateTemporaryPetsArray(data, 0);
+                document.addEventListener('swiperight', function(event) {
+                    event.preventDefault();
 
-                                });
-                            }
-                            if (matchIndex === currentPetsList.length - 1) {
-                                if (evenArray) {
-                                    currentPetsList = petsArray1;
-                                    evenArray = !evenArray;
-                                } else {
-                                    currentPetsList = petsArray0;
-                                    evenArray = !evenArray;
-                                }
-                            }
-                            direction = "swipe-left";
-                            addDirectionTransitionAndSaveMatches ("swipe-left");
-                        } else if (event.type === 'swiperight') {
-                            if (matchIndex === currentPetsList.length - 6) {
-                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
-                                $.getJSON(queryUrl, function (data) {
-                                    offset = data.petfinder.lastOffset.$t;
-                                    if (evenArray) {
-                                        populateTemporaryPetsArray(data, 1);
-                                    } else populateTemporaryPetsArray(data, 0);
+                    if (matchIndex === currentPetsList.length - 6) {
+                        var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
+                        $.getJSON(queryUrl, function (data) {
+                            offset = data.petfinder.lastOffset.$t;
+                            if (evenArray) {
+                                populateTemporaryPetsArray(data, 1);
+                            } else populateTemporaryPetsArray(data, 0);
 
-                                });
-                            }
-                            if (matchIndex === currentPetsList.length -1) {
-                                if (evenArray) {
-                                    currentPetsList = petsArray1;
-                                    evenArray = !evenArray;
-                                } else {
-                                    currentPetsList = petsArray0;
-                                    evenArray = !evenArray;
-                                }
-                            }
-                            direction = "swipe-right";
-                            addDirectionTransitionAndSaveMatches("swipe-right");
+                        });
+                    }
+                    if (matchIndex === currentPetsList.length - 1) {
+                        if (evenArray) {
+                            currentPetsList = petsArray1;
+                            evenArray = !evenArray;
+                        } else {
+                            currentPetsList = petsArray0;
+                            evenArray = !evenArray;
                         }
+                    }
+                    direction = "swipe-right";
+                    addDirectionTransitionAndSaveMatches("swipe-right");
+                });
+
+                document.addEventListener('swipeleft', function(event) {
+                    event.preventDefault();
+
+                    if (target.event.matches("#pet-swipe")) {
+                        if (matchIndex === currentPetsList.length - 6) {
+                            var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
+                            console.log(queryUrl);
+                            $.getJSON(queryUrl, function (data) {
+                                console.log(data);
+                                offset = data.petfinder.lastOffset.$t;
+                                if (evenArray) {
+                                    populateTemporaryPetsArray(data, 1);
+                                } else populateTemporaryPetsArray(data, 0);
+
+                            });
+                        }
+                        if (matchIndex === currentPetsList.length - 1) {
+                            if (evenArray) {
+                                currentPetsList = petsArray1;
+                                evenArray = !evenArray;
+                            } else {
+                                currentPetsList = petsArray0;
+                                evenArray = !evenArray;
+                            }
+                        }
+                        direction = "swipe-left";
+                        addDirectionTransitionAndSaveMatches ("swipe-left");
                     }
                 });
 
@@ -725,7 +729,7 @@
 
             if (deviceType === "Android") {
                 if(settings.breed) {
-                    var pup = settings.breed
+                    var pup = settings.breed;
                     window.CustomPluginFloofer.getPup(pup,
                         function(result) {
                             console.log("Custom Android Plugin result = "+result);

@@ -425,6 +425,7 @@ div#map-key{
 div.key-item {
     display: inline-block;
     padding: 4px 0;
+    width: 30%;
 }
 
 img.key-image {
@@ -434,8 +435,8 @@ img.key-image {
 
 span.label {
     font-weight: 700;
-    float: right;
-    margin-top: 3px;
+    margin-top: 5px;
+    position: absolute;
 }
 
 div#mini-profile-description-container {

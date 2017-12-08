@@ -138,8 +138,6 @@
                 page.id = 'settings';
             }
 
-            // console.log("page-event="+page.id);
-
             var tabbar = document.getElementById("tabbar");
 
             //load main menu and navigation
@@ -200,7 +198,6 @@
                         longitude = 0;
                         geolocatedZip = 0;
                         settings.location = 0;
-                        console.log('slider off');
                     }
                 });
 
@@ -238,6 +235,8 @@
                     tabbar.setActiveTab(0);
                 }
 
+                $('#its-a-match').hide();
+
                 $("#matches-logout").off().on("click", function() {
                     firebase.auth().signOut().then(function() {
                         // Sign-out successful.
@@ -248,7 +247,7 @@
                     });
                 });
 
-                if (matchIndex != 0) {
+                if (matchIndex !== 0) {
                     populateNextMatch();
                 }
 
@@ -256,64 +255,68 @@
                     $('#its-a-match').hide();
                 });
 
-                document.addEventListener('swipeleft swiperight', function(event) {
-                    if (event.target.matches('#pet-swipe')) {
-                        if (event.type === 'swipeleft') {
-                            if (matchIndex === currentPetsList.length - 6) {
-                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
-                                console.log(queryUrl);
-                                $.getJSON(queryUrl, function (data) {
-                                    console.log(data);
-                                    offset = data.petfinder.lastOffset.$t;
-                                    if (evenArray) {
-                                        populateTemporaryPetsArray(data, 1);
-                                    } else populateTemporaryPetsArray(data, 0);
+                document.addEventListener('swiperight', function(event) {
+                    event.preventDefault();
 
-                                });
-                            }
-                            if (matchIndex === currentPetsList.length - 1) {
-                                if (evenArray) {
-                                    currentPetsList = petsArray1;
-                                    evenArray = !evenArray;
-                                } else {
-                                    currentPetsList = petsArray0;
-                                    evenArray = !evenArray;
-                                }
-                            }
-                            direction = "swipe-left";
-                            addDirectionTransitionAndSaveMatches ("swipe-left");
-                        } else if (event.type === 'swiperight') {
-                            if (matchIndex === currentPetsList.length - 6) {
-                                var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
-                                $.getJSON(queryUrl, function (data) {
-                                    offset = data.petfinder.lastOffset.$t;
-                                    if (evenArray) {
-                                        populateTemporaryPetsArray(data, 1);
-                                    } else populateTemporaryPetsArray(data, 0);
+                    if (matchIndex === currentPetsList.length - 6) {
+                        var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?"
+                        $.getJSON(queryUrl, function (data) {
+                            offset = data.petfinder.lastOffset.$t;
+                            if (evenArray) {
+                                populateTemporaryPetsArray(data, 1);
+                            } else populateTemporaryPetsArray(data, 0);
 
-                                });
-                            }
-                            if (matchIndex === currentPetsList.length -1) {
-                                if (evenArray) {
-                                    currentPetsList = petsArray1;
-                                    evenArray = !evenArray;
-                                } else {
-                                    currentPetsList = petsArray0;
-                                    evenArray = !evenArray;
-                                }
-                            }
-                            direction = "swipe-right";
-                            addDirectionTransitionAndSaveMatches("swipe-right");
+                        });
+                    }
+                    if (matchIndex === currentPetsList.length - 1) {
+                        if (evenArray) {
+                            currentPetsList = petsArray1;
+                            evenArray = !evenArray;
+                        } else {
+                            currentPetsList = petsArray0;
+                            evenArray = !evenArray;
                         }
+                    }
+                    direction = "swipe-right";
+                    addDirectionTransitionAndSaveMatches("swipe-right");
+                });
+
+                document.addEventListener('swipeleft', function(event) {
+                    event.preventDefault();
+
+                    if (target.event.matches("#pet-swipe")) {
+                        if (matchIndex === currentPetsList.length - 6) {
+                            var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
+                            // console.log(queryUrl);
+                            $.getJSON(queryUrl, function (data) {
+                                // console.log(data);
+                                offset = data.petfinder.lastOffset.$t;
+                                if (evenArray) {
+                                    populateTemporaryPetsArray(data, 1);
+                                } else populateTemporaryPetsArray(data, 0);
+
+                            });
+                        }
+                        if (matchIndex === currentPetsList.length - 1) {
+                            if (evenArray) {
+                                currentPetsList = petsArray1;
+                                evenArray = !evenArray;
+                            } else {
+                                currentPetsList = petsArray0;
+                                evenArray = !evenArray;
+                            }
+                        }
+                        direction = "swipe-left";
+                        addDirectionTransitionAndSaveMatches ("swipe-left");
                     }
                 });
 
                 $("#pass-button").off().on("tap", function() {
                     if (matchIndex === currentPetsList.length - 6) {
                         var queryUrl = currentQueryUrl + "&offset=" + offset + "&callback=?";
-                        console.log(queryUrl);
+                        // console.log(queryUrl);
                         $.getJSON(queryUrl, function (data) {
-                            console.log(data);
+                            // console.log(data);
                             offset = data.petfinder.lastOffset.$t;
                             if (evenArray) {
                                 populateTemporaryPetsArray(data, 1);
@@ -399,10 +402,6 @@
 
         //onsen - set stack-based navigation
         function onsNav(page) {
-            console.log('onsen nav bullshit garbage');
-            console.log(page);
-            console.log('onsNav page.id='+page.id);
-            console.log(page.nodeName.toLowerCase());
             if (page.id === 'match-map') {
                 if (likedPetIds) {
                     document.querySelector('#mini-profile').onclick = function() {
@@ -419,7 +418,6 @@
                                     gender: currentlySelectedPet.gender,
                                     size: currentlySelectedPet.size,
                                     breed: currentlySelectedPet.breed}});
-                        console.log("push page title");
                     };
                 }
 
@@ -666,7 +664,7 @@
                 }
                 currentQueryUrl = queryUrl;
                 queryUrl += "&callback=?";
-                console.log(queryUrl);
+                // console.log(queryUrl);
                 return queryUrl;
             }
             alert("You have to select type of animal and location!");
@@ -680,7 +678,7 @@
         function populateBreedList (queryUrl) {
 
             $.getJSON(queryUrl, function (data) {
-                console.log(data);
+                // console.log(data);
 
                 var breeds = data.petfinder.breeds.breed;
 
@@ -754,7 +752,7 @@
         //query Petfinder
         function makePetfinderAPICall(callback) {
             $.getJSON(buildQueryUrl(settings), function (data) {
-                console.log(data);
+                // console.log(data);
                 offset = data.petfinder.lastOffset.$t;
                 populateTemporaryPetsArray(data, 0);
 
@@ -970,7 +968,7 @@
             var fullSizePhotos = currentPetsList[matchIndex].photos;
             if(fullSizePhotos !== []) {
                 $('#matches-pet-photo').attr("src", fullSizePhotos[0]);
-                console.log(fullSizePhotos[0]);
+                // console.log(fullSizePhotos[0]);
             } else {
                 $('#matches-pet-photo').attr("src", "../assets/icons/dog-256.png");
             }
@@ -1012,7 +1010,7 @@
                 var likedPetIdsRef = firebase.database().ref("users/" + firebase.auth().currentUser.uid).child("likedPetIds");
                 likedPetIdsRef.push(currentPet.id);
 
-                console.log(likedPetIds);
+                // console.log(likedPetIds);
             }
 
             $("ons-row.profile-container").addClass(direction);
@@ -1143,7 +1141,7 @@
                 mapcenter = settings.zip.toString();
             } else mapcenter = '60657';
 
-            console.log(likedPetAddresses);
+            // console.log(likedPetAddresses);
 
             createMapAndUserMarker(likedPetAddresses, mapcenter, map, createMapAndUserMarkerCallback);
 
@@ -1235,9 +1233,6 @@
                         var currentPetIdsList = markerToUpdate.petIds;
                         currentPetIdsList.push(petAddress.petId);
                         markerToUpdate.petIds = currentPetIdsList;
-                        console.log('look here!');
-                        console.log(windowToUpdate);
-                        console.log(markerToUpdate);
                     }
                     //else create a new marker
                     else {
@@ -1294,9 +1289,9 @@
             }
 
             if (index === length-1) {
-                console.log('bug hunting');
-                console.log(markersList.length);
-                console.log(markersList);
+                // console.log('bug hunting');
+                // console.log(markersList.length);
+                // console.log(markersList);
                 for (var j = 0; j < markersList.length; j++) {
                     markersList[j].setMap(map);
                 }
@@ -1361,7 +1356,7 @@
 
             $('#mini-profile').empty();
 
-            console.log(currentlySelectedPetIdsList);
+            // console.log(currentlySelectedPetIdsList);
 
             if (currentlySelectedPetIdsList.length === 1) {
                 $('#mini-profile').append(
